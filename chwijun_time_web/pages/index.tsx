@@ -1,13 +1,9 @@
-import Head from 'next/head'
-import React, {useState} from 'react';
+import React from 'react';
+import { Main } from 'components'
 
 export default function Home() {
-  const [text, setText] = useState('ff');
 
   return (
-    <>
-      <input type="text" onChange={(e) => {setText(e.target.value)}} />
-      <div>{text}</div>
-    </>
+      <Main />
   )
 }
