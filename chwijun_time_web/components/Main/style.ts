@@ -7,9 +7,25 @@ export const MainPlace = styled.div`
     height: 100vh;
 `;
 
-export const Logo = styled.img`
+export const Logo = styled.div`
+    display: flex;
+    align-items: center;
+    
     width: 90px;
     height: 90px;
+`
+export const LeftHead = styled.div`
+    display: flex;
+
+    width: 50%;
+    height: 80px;
+`
+export const RightHead = styled.div`
+    display: flex;
+    justify-content: flex-end;
+
+    width: 50%;
+    height: 80px;
 `
 export const BackgroundImg = styled.img`
     position: absolute;
@@ -19,33 +35,29 @@ export const BackgroundImg = styled.img`
 
     z-index: -1;
 `
-export const LoginRegister = styled.div`
+export const SignContainer = styled.div`
     display: flex;
+    justify-content: flex-end;
 
     width: 200px;
-    height: 13px;
-    margin-top: 8px;
+    height: 70px;
+    margin-top: 12px;
+    margin-right: 40px;
 
     color: #f7f7f7;
     font-size: 16px;
 `
-export const Login = styled.div`
-    width: 50%;
-    height: 100%;
+export const LRText = styled.div`
+    width: 60px;
+    height: 20px;
 
-    border: none;
-    border-right: 2px solid #cfcfcf;
-    text-align: center;
+    &:hover {
+        cursor: pointer;
+    }
 `
-export const Register = styled.div`
-    width: 50%;
-    height: 100%;
-    text-align: center;
-`
+
 export const Head = styled.div`
     display: flex;
-    justify-content: space-between;
-    
     width: 100%;
     height: 100px;
 `
