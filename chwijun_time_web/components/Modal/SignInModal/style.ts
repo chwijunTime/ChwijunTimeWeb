@@ -79,10 +79,6 @@ export const LoginButton = styled.button`
     margin-top: 15px;
     color: white;
     font-size: 17px;
-
-    &:hover {
-        cursor: pointer;
-    }
 `
 export const TextPlace = styled.div`
     display: flex;

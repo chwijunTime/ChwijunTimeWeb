@@ -6,16 +6,26 @@ interface Props {
 }
 
 const SignUpModal = ({handleSignUpModal}: Props) => {
+    // 외부 영역 클릭 시 모달 창을 닫기 위한 ref 설정 변수
     const setOpen = useRef<HTMLDivElement>();
+    // 회원가입 시 서버로부터 id가 이미 존재하는 지 판별하는 변수
     const [idExist, setIdExist] = useState(false);
-    // 이건 서버에서 가져온 태그 목록
-    const tagList = useState(['ABcd', 'Efgh', 'ijkl', 'mnop', 'qrst', 'uvwx', 'yzae']);
-    // 이건 사용자가 입력한 태그 목록
-    const [userTag, setUserTag] = useState([]);
-    // 사용자가 입력한 값.
-    const [userInput, setUserInput] = useState('');
+    // 사용자가 입력한 id
+    const [inputId, setInputId] = useState('');
+    // 사용자가 입력한 ps
+    const [inputPs, setInputPs] = useState('');
+    // 사용자가 입력한 비밀번호 확인
+    const [confirmPs, setConfirmPs] = useState('');
+    // 비밀번호가 일치하는 지 판별하는 변수
+    const [isCorrect, setIsCorrect] = useState(true);
+    // id가 존재하는 지 존재하지 않는 지 text 담을 변수
+    const [isExist, setIsExist] = useState('');
+    // ps가 일치하는 지 일치하지 않는 지 text 담을 변수
+    const [correct, setCorrect] = useState('');
+
 
     useEffect(() => {
+        // 외부 영역 클릭 시 모달 창을 닫는 함수
         function handleClickOutside(e: MouseEvent) {
             if(setOpen && !setOpen.current?.contains(e.target as Node)) {
                 handleSignUpModal(false);
@@ -28,9 +38,29 @@ const SignUpModal = ({handleSignUpModal}: Props) => {
         }
     }, [setOpen])
 
-    const FilterUserInput = tagList.filter(tagList => 
-        console.log('gea', tagList.toString().toLowerCase().includes(userInput)),
-        tagList.toString().toLowerCase().includes(userInput));
+    // id 중복 확인 버튼 클릭 시 실행되는 함수
+    const isExistId = (inputId: String) => {
+        // 서버에 값을 보내고, 그 반환된 결과를 여기에 적으세요.
+        if(inputId === "") {
+            setIsExist("이메일을 입력해주세요.");
+            return;
+        }
+        if(idExist) {
+            setIsExist("이미 존재하는 이메일입니다!");
+        } else {
+            setIsExist("사용가능한 이메일입니다.");
+        }
+    }
+    // 회원가입 버튼 클릭 시 비번이 일치하는 지 확인하는 함수
+    const isCorrectPs = (inputPs: String, confirmPs: String) => {
+        if(inputPs === "" || confirmPs === "") {
+            setCorrect("비밀번호를 입력해주세요!");
+        } else if(inputPs !== confirmPs) {
+            setCorrect("비밀번호가 일치하지 않습니다.");
+        } else {
+            setCorrect("");
+        }
+    }
 
     return(
         <S.ModalContainer>
@@ -38,24 +68,19 @@ const SignUpModal = ({handleSignUpModal}: Props) => {
             <S.SignUp ref={setOpen}>
                 <S.Content>
                     <S.Text>회원가입</S.Text>
-                    <S.InputText type="text" placeholder="E-Mail(ID)"/>
+                    <S.InputText type="text" placeholder="E-Mail(ID)" onChange={(e) => setInputId(e.target.value)} />
                     <S.OverlapPlace>
                          <S.OverlapText exist={idExist} >
-                             { idExist === true ? "이미 사용 중인 이메일입니다!" : "사용 가능한 이메일입니다."}
+                             { isExist }
                          </S.OverlapText>
-                        <S.OverlapBtn>중복 확인</S.OverlapBtn>
+                        <S.OverlapBtn onClick={() => isExistId(inputId)} >중복 확인</S.OverlapBtn>
                     </S.OverlapPlace>
-                    <S.InputText type="password" placeholder="Password" />
-                    <S.InputText type="password" placeholder="Confirm Password"/>
-                    <S.SInputText placeholder="학번 ex)3101" />
-                    <S.SInputText placeholder="학번 ex)3101" />
-                    <S.InputText placeholder="휴대전화 번호"/>
-                    <S.SInputText placeholder="태그" onChange={(e) => setUserInput(e.target.value)} />
-                    <S.TagPlace>
-                        
-
-                        
-                    </S.TagPlace>
+                    <S.InputText type="password" placeholder="Password" onChange={(e) => setInputPs(e.target.value)} />
+                    <S.InputText type="password" placeholder="Confirm Password" onChange={(e) => setConfirmPs(e.target.value)} />
+                    <S.IsCorrectPs>
+                        { correct }
+                    </S.IsCorrectPs>
+                    <S.SignUpBtn onClick={() => isCorrectPs(inputPs, confirmPs)} >회원가입</S.SignUpBtn>
                 </S.Content>
             </S.SignUp>
         </S.ModalContainer>

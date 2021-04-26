@@ -19,7 +19,7 @@ export const SignUp = styled.div`
     flex-direction: column;
 
     width: 500px;
-    height: 580px;
+    height: 340px;
 
     border-radius: 30px;
 
@@ -71,10 +71,6 @@ export const OverlapBtn = styled.button`
     color: white;
     font-size: 12px;
     background-color: #1C70D3;
-
-    &:hover {
-        cursor: pointer;
-    }
 `
 export const OverlapText = styled.div`
     width: auto;
@@ -82,24 +78,28 @@ export const OverlapText = styled.div`
 
     color: ${props => props.exist ? '#ff3636' : ''};
 `
-export const SInputText = styled.input`
-    width: 30%;
-    height: 40px;
+export const SignUpBtn = styled.button`
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-    font-size: 15px;
-    margin-top: 15px;
+    width: 100%;
+    height: 40px;
 
     border: 1px solid;
     border-radius: 5px;
+    border-color: #8A8787;
     outline: none;
 
-    border-color: #ded9d9;
-    background-color: #EFEFEF;
+    background-color: #1C70D3;
+    margin-top: 20px;
+    color: white;
+    font-size: 17px;
 `
-export const TagPlace = styled.div`
+export const IsCorrectPs = styled.div`
     width: 100%;
-    height: 40px;
-`
-export const Tag = styled.button`
-    
+    height: 20px;
+
+    margin-top: 5px;
+    color: #ff3636;
 `
