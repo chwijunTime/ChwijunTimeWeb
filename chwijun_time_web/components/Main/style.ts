@@ -2,17 +2,16 @@ import styled from 'styled-components'
 
 export const MainPlace = styled.div`
     display: flex;
-
     width: 100vw;
     height: 100vh;
+
+    background: ${props => (props.signInBlur || props.signUpBlur) ? "rgba(0,0,0,.5)" : ""};
+    filter: ${props => (props.signInBlur || props.signUpBlur) ? "brightness(50%)" : ""};
 `;
 
 export const Logo = styled.div`
     display: flex;
     align-items: center;
-    
-    width: 90px;
-    height: 90px;
 `
 export const LeftHead = styled.div`
     display: flex;
@@ -47,15 +46,6 @@ export const SignContainer = styled.div`
     color: #f7f7f7;
     font-size: 16px;
 `
-export const LRText = styled.div`
-    width: 60px;
-    height: 20px;
-
-    &:hover {
-        cursor: pointer;
-    }
-`
-
 export const Head = styled.div`
     display: flex;
     width: 100%;
@@ -94,7 +84,4 @@ export const StartBtn = styled.button`
     font-size: 18px;
     background-color: #5BC7F5;
     color: white;
-    &:hover {
-        cursor: pointer;
-    }
 `

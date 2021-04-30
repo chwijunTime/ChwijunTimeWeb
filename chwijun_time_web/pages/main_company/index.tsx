@@ -1,15 +1,12 @@
-import React, { useEffect } from "react";
-import * as S from './style'
-
+import React from "react";
 import KakaoMap from "containers/Map";
-import Header from 'components/Header';
+import { Template } from "components";
 
 const Map: React.FC = () => {
   return(
-    <>
-      <Header />
+    <Template>
       <KakaoMap />
-    </>
+    </Template>
   )
 };
 

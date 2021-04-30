@@ -25,6 +25,8 @@ export const SignIn = styled.div`
 
     background-color: #ffffff;
     visibility: visible;
+
+    z-index: 120;
 `
 export const Content = styled.div`
     width: 85%;
@@ -102,4 +104,3 @@ export const Register = styled.div`
         cursor: pointer;
     }
 `
-

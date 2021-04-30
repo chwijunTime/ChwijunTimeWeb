@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef, Fragment } from 'react';
 import * as S from './style';
+import { submitSignInInfo } from "service/post";
+import Router from 'next/router';
 
 interface Props {
     handleSignInModal: (status: boolean) => void;
@@ -8,21 +10,28 @@ interface Props {
 
 const SignInModal:React.FC<Props> = ({handleSignInModal, handleSignUpModal}: Props) => {
     const setOpen = useRef<HTMLDivElement>();
-    const [inputId, setInputId] = useState('');
-    const [inputPs, setInputPs] = useState('');
+    const [id, setId] = useState('');
+    const [pw, setPw] = useState('');
     const [isChecked, setIsChecked] = useState(false);
 
-    const clickBtn = () => {
-        if(inputId === "") {
-            alert("E-Mail을 입력해주세요.");
-            return;
-        } else if(inputPs === "") {
-            alert("비밀번호를 입력해주세요.");
-            return;
-        } if(isChecked) {
-            localStorage.setItem("E-Mail", inputId);
+    const clickBtn = async () => {
+        console.log('1')
+        try {
+            if(id === "" || pw === "") {
+                id === "" ? alert("이메일을 입력해주세요.") :( pw === "" ? alert("비밀번호를 입력해주세요.") : '')
+                return;
+            }
+            const { data } = await submitSignInInfo(id, pw);
+
+            if(data.success === true) {
+                localStorage.setItem('accessToken', data.data.accessToken);
+                Router.push('/notice');
+            } else if(data.success === false) {
+                alert(data.msg);
+            }
+        } catch(error) {
+            console.log(error);
         }
-        alert("로그인 성공");
     }
 
     useEffect(() => {
@@ -44,8 +53,8 @@ const SignInModal:React.FC<Props> = ({handleSignInModal, handleSignUpModal}: Pro
                 <S.SignIn ref={setOpen} >
                     <S.Content>
                         <S.Text>로그인</S.Text>
-                        <S.InputText type="text" placeholder="E-Mail(ID)" onChange={(e) => setInputId(e.target.value)} />
-                        <S.InputText type="password" placeholder="Password" onChange={(e) => setInputPs(e.target.value)} />
+                        <S.InputText type="text" placeholder="E-Mail(ID)" onChange={(e) => setId(e.target.value)} />
+                        <S.InputText type="password" placeholder="Password" onChange={(e) => setPw(e.target.value)} />
                         <S.SaveIdPlace>
                             <S.IsCheckIdSave type="checkbox" onChange={(e) => setIsChecked(e.target.checked) } />
                             <div style={{fontSize: "11px", paddingLeft: "5px"}}>아이디 저장</div>

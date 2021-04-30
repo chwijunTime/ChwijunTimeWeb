@@ -19,7 +19,7 @@ export const SignUp = styled.div`
     flex-direction: column;
 
     width: 500px;
-    height: 340px;
+    height: 400px;
 
     border-radius: 30px;
 
@@ -53,7 +53,7 @@ export const InputText = styled.input`
 `
 export const OverlapPlace = styled.div`
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
 
     width: 100%;
     height: 20px;
@@ -72,12 +72,7 @@ export const OverlapBtn = styled.button`
     font-size: 12px;
     background-color: #1C70D3;
 `
-export const OverlapText = styled.div`
-    width: auto;
-    height: 20px;
 
-    color: ${props => props.exist ? '#ff3636' : ''};
-`
 export const SignUpBtn = styled.button`
     display: flex;
     justify-content: center;
@@ -96,10 +91,17 @@ export const SignUpBtn = styled.button`
     color: white;
     font-size: 17px;
 `
-export const IsCorrectPs = styled.div`
-    width: 100%;
-    height: 20px;
+export const ClassNumber = styled.input`
+    width: 30%;
+    height: 40px;
 
-    margin-top: 5px;
-    color: #ff3636;
+    font-size: 15px;
+    margin-top: 15px;
+
+    border: 1px solid;
+    border-radius: 5px;
+    outline: none;
+
+    border-color: #ded9d9;
+    background-color: #EFEFEF;
 `
