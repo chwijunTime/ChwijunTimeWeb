@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, Fragment } from 'react';
 import * as S from './style';
 import { submitSignInInfo } from "service/post";
+import { setToken } from 'service/token';
 import Router from 'next/router';
 
 interface Props {
@@ -15,16 +16,15 @@ const SignInModal:React.FC<Props> = ({handleSignInModal, handleSignUpModal}: Pro
     const [isChecked, setIsChecked] = useState(false);
 
     const clickBtn = async () => {
-        console.log('1')
         try {
-            if(id === "" || pw === "") {
-                id === "" ? alert("이메일을 입력해주세요.") :( pw === "" ? alert("비밀번호를 입력해주세요.") : '')
+            if(id === '' || pw === '') {
+                id === '' ? alert("이메일을 입력해주세요.") :( pw === '' ? alert("비밀번호를 입력해주세요.") : '')
                 return;
             }
             const { data } = await submitSignInInfo(id, pw);
 
             if(data.success === true) {
-                localStorage.setItem('accessToken', data.data.accessToken);
+                setToken(data.data.accessToken);
                 Router.push('/notice');
             } else if(data.success === false) {
                 alert(data.msg);

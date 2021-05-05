@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-export const NoticePlace = styled.div`
+export const MouPlace = styled.div`
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -33,31 +33,7 @@ export const Option = styled.div`
     margin-left: 20px;
     font-size: 19px;
 
-    &:hover {
-        cursor: pointer;
-    }
-`
-export const AddNotice = styled.div`
-    display: flex;
-    justify-content: flex-end;
-    width: 50%;
-    height: 40px;
-`
-export const NoticeContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-
-    background-color: #EFEFEF;
-`
-export const NoticeList = styled.div`
-    display: flex;
-    width: 80%;
-    height: 40px;
-
-    margin-top: 10px;
+    border-bottom: ${props => props.current ? "#000000" : ""};
 
     &:hover {
         cursor: pointer;
@@ -70,4 +46,20 @@ export const EnrollNotice = styled.div`
     &:hover {
         cursor: pointer;
     }
+`
+export const AddNotice = styled.div`
+    display: flex;
+    justify-content: flex-end;
+    width: 50%;
+    height: 40px;
+`
+
+export const MouContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+
+    background-color: #EFEFEF;
 `

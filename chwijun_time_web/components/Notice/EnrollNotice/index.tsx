@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import Link from 'next/link';
 import * as S from './style';
 import Router from 'next/router';
+import { submitEnrollNotice } from 'service/post';
 
 const EnrollNotice:React.FC = () => {
     const [title, setTitle] = useState('');
@@ -22,18 +22,19 @@ const EnrollNotice:React.FC = () => {
         Router.push('/notice');
     }
 
-    const Enroll = () => {
-        if(title === "") {
-            alert("제목을 입력해주세요.");
-        } else if(content === "") {
-            alert("내용을 입력해주세요.");
-        }
-        else if(confirm("등록하시겠습니까?") == true) {
-            // 서버에 등록하는 소스 적고 나가세요
-            alert("등록되었습니다.");
-            Router.push('/notice');
-        } else {
-            alert('취소되었습니다.');
+    const Enroll = async () => {
+        try{
+            if(title === "") {
+                alert("제목을 입력해주세요.");
+            } else if(content === "") {
+                alert("내용을 입력해주세요.");
+            }
+            const { data } = await submitEnrollNotice(content, title);
+            confirm("등록하시겠습니까?") ? (
+                data.success ? (alert("등록되었습니다."), Router.push('/notice') ): alert(data.msg)              
+            ) : alert("취소되었습니다.")
+        } catch(error) {
+            console.log(error);
         }
     }
 
@@ -47,8 +48,6 @@ const EnrollNotice:React.FC = () => {
             setContent(sessionStorage.getItem('content') || '');
         }       
     }, [])
-
-    console.log(title)
 
     return(
         <S.EnrollNoticeContainer>

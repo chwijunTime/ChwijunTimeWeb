@@ -51,28 +51,6 @@ export const InputText = styled.input`
     border-color: #ded9d9;
     background-color: #EFEFEF;
 `
-export const OverlapPlace = styled.div`
-    display: flex;
-    justify-content: flex-end;
-
-    width: 100%;
-    height: 20px;
-    margin-top: 5px;
-`
-export const OverlapBtn = styled.button`
-    width: 80px;
-    height: 23px;
-
-    border: none;
-    border-radius: 5px;
-    border-color: #8A8787;
-    outline: none;
-
-    color: white;
-    font-size: 12px;
-    background-color: #1C70D3;
-`
-
 export const SignUpBtn = styled.button`
     display: flex;
     justify-content: center;
@@ -104,4 +82,7 @@ export const ClassNumber = styled.input`
 
     border-color: #ded9d9;
     background-color: #EFEFEF;
+`
+export const Space = styled.div`
+    margin-bottom: 20px;
 `

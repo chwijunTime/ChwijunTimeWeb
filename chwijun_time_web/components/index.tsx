@@ -3,3 +3,4 @@ export { default as Template } from './template';
 export { default as Main } from './Main'
 export { default as NoticeComponent } from './Notice';
 export { default as EnrollNotice } from './Notice/EnrollNotice';
+export { default as MouComponent } from './Mou';
