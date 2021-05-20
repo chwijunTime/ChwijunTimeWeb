@@ -20,6 +20,18 @@ export const GlobalStyle = createGlobalStyle`
   button {
     cursor: pointer;
   }
+  textarea {
+    font-size: 16px;
+    text-align: start;
+    border: 1px solid;
+    outline: none;
+    border-radius: 3px;
+    border-color: #ded9d9;
+    margin-left: 15px;
+    resize: none;
+
+    font-family: inherit;
+  }
 `
 
 

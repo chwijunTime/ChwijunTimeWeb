@@ -15,6 +15,11 @@ const SignInModal:React.FC<Props> = ({handleSignInModal, handleSignUpModal}: Pro
     const [pw, setPw] = useState('');
     const [isChecked, setIsChecked] = useState(false);
 
+    const handleKeyPress = (e) => {
+        if(e.key === 'Enter') {
+            clickBtn();
+        }
+    }
     const clickBtn = async () => {
         try {
             if(id === '' || pw === '') {
@@ -54,9 +59,10 @@ const SignInModal:React.FC<Props> = ({handleSignInModal, handleSignUpModal}: Pro
                     <S.Content>
                         <S.Text>로그인</S.Text>
                         <S.InputText type="text" placeholder="E-Mail(ID)" onChange={(e) => setId(e.target.value)} />
-                        <S.InputText type="password" placeholder="Password" onChange={(e) => setPw(e.target.value)} />
+                        <S.InputText type="password" placeholder="Password" onChange={(e) => setPw(e.target.value)}
+                        onKeyPress={handleKeyPress}  />
                         <S.SaveIdPlace>
-                            <S.IsCheckIdSave type="checkbox" onChange={(e) => setIsChecked(e.target.checked) } />
+                            <S.IsCheckIdSave type="checkbox" onChange={(e) => setIsChecked(e.target.checked) }/>
                             <div style={{fontSize: "11px", paddingLeft: "5px"}}>아이디 저장</div>
                         </S.SaveIdPlace>
                         <S.LoginButton onClick={() => clickBtn()} >로그인</S.LoginButton>

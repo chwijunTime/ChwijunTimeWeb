@@ -4,3 +4,6 @@ export { default as Main } from './Main'
 export { default as NoticeComponent } from './Notice';
 export { default as EnrollNotice } from './Notice/EnrollNotice';
 export { default as MouComponent } from './Mou';
+export { default as EnrollMou } from './Mou/EnrollMou';
+export { default as JobNoticeComponent } from './JobNotice';
+export { default as Pagenation } from './Pagenation';

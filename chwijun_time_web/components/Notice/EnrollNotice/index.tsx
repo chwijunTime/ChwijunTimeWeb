@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import * as S from './style';
 import Router from 'next/router';
 import { submitEnrollNotice } from 'service/post';
+import Header from 'components/Header';
 
 const EnrollNotice:React.FC = () => {
     const [title, setTitle] = useState('');
@@ -51,8 +52,7 @@ const EnrollNotice:React.FC = () => {
 
     return(
         <S.EnrollNoticeContainer>
-            <S.HeadTitle>공지사항 등록</S.HeadTitle>
-            <S.DivisionLine />
+            <Header>공지사항 등록</Header>
             <S.TitlePlace>
                 <S.TitleText>제목: </S.TitleText>
                 <S.InputTitle placeholder="Enter a Title..." onChange={(e) => setTitle(e.target.value)} value={title} />

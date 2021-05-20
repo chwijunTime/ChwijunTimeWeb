@@ -1,19 +1,16 @@
 import axios from 'common/axios';
-import { BaseUrl } from 'config/config.json';
-import { getAccessToken } from './token';
 
-export const submitSignInInfo = (id: string, pw: string) => {
-    return axios.post(`/v1/login`, {
+export const submitSignInInfo = async (id: string, pw: string) => {
+    return await axios.post(`/v1/login`, {
         "memberEmail": id,
         "memberPassword": pw
     }).catch(function(error) {
         return(error.response);
     })
-
 }
 
-export const submitSignUpInfo = (id: string, pw: string, num: string) => {
-    return axios.post(`/v1/join`, {
+export const submitSignUpInfo = async (id: string, pw: string, num: string) => {
+    return await axios.post(`/v1/join`, {
         "memberClassNumber": num,
         "memberEmail": id,
         "memberPassword": pw
@@ -22,8 +19,8 @@ export const submitSignUpInfo = (id: string, pw: string, num: string) => {
     })
 }
 
-export const submitEnrollNotice = (content: string, title: string) => {
-    return axios.post(`/v1/notice`, {
+export const submitEnrollNotice = async (content: string, title: string) => {
+    return await axios.post(`/v1/notice`, {
         "content": content,
         "title": title
     }).catch(function(error) {

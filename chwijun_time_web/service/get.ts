@@ -1,8 +1,15 @@
-import axios from 'axios';
-import { BaseUrl } from 'config/config.json';
+import axios from 'common/axios';
 
-export const getAllNotice = async (token: String) => {
-    const response = await axios.get(`${BaseUrl}/notice`, {
-        
+export const getAllNotice = async () => {
+    return await axios.get('/v1/notice', {       
+    }).catch(function(error) {
+        return (error.response);
+    })
+}
+
+export const getAllMou = async () => {
+    return await axios.get('/v1/contracting-company', {
+    }).catch(function(error) {
+        return (error.response);
     })
 }

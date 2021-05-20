@@ -2,10 +2,27 @@ import React, { useEffect, useState } from 'react';
 import Link from "next/link";
 import * as S from './style';
 import NoticeList from './NoticeComponent';
+import { getAllNotice } from 'service/get';
+import Router from 'next/router';
 
 const NoticeComponent: React.FC = () => {
     const [selected, setSelected] = useState('first');
     const list = [{idx: 1, title: "하이", date: "2021-04-08"}, {idx: 2, title: "하이루", date: "2021-04-21"}]
+    const [noticeList, setNoticeList] = useState([]);
+
+    async function getAllNoticeList() {
+        try {
+            const { data } = await getAllNotice();
+            // 공지사항 불러오기 실패할 경우 변수를 통해 가운데에 텍스트로 실패라고 띄우기
+            setNoticeList(data.list);
+        } catch(error) {
+            console.log(error);
+        }            
+    }
+
+    useEffect(() => {
+        getAllNoticeList();
+    }, [])
 
     return(
         <S.NoticePlace> 
@@ -16,15 +33,13 @@ const NoticeComponent: React.FC = () => {
                 <S.Option >관심</S.Option>
             </S.OptionPlace>
             <S.AddNotice>
-                <S.EnrollNotice>
-                    <Link href="/notice/[enrollNotice]" as="/notice/enrollNotice">등록</Link>
-                </S.EnrollNotice>
+                <S.EnrollNotice onClick={() => Router.push('/notice/enrollNotice')}>등록</S.EnrollNotice>
             </S.AddNotice>
             </S.Additinal>
             
             <S.NoticeContainer>
-                { list.map((obj, idx) => {
-                    return <NoticeList idx={obj.idx} title={obj.title} date={obj.date} key={idx} /> 
+                { noticeList && noticeList.map((obj: any, idx) => {
+                    return <NoticeList idx={obj.noticeIdx} title={obj.title} date={obj.createDated} key={idx} /> 
                 })}
             </S.NoticeContainer>
 

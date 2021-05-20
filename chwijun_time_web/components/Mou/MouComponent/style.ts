@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const MouList = styled.div`
     display: flex;
-    width: 80%;
+    width: 90%;
     height: 40px;
 
     margin-top: 10px;
@@ -14,24 +14,34 @@ export const MouList = styled.div`
 export const MouName = styled.div`
     display: flex;
     align-items: center;
-    width: 25%;
+    width: 20%;
     height: auto;
 
     font-size: 15px;
     font-weight: bold;
 `
-export const Tag = styled.div`
+export const TagPlace = styled.div`
     display: flex;
     align-items: center;
-    width: 17%;
+    width: 22%;
     height: auto;
 
     font-size: 15px;
 `
+export const Tag = styled.div`
+    &::after {
+        content: ", ";
+        white-space: pre;
+    }
+    &:last-child::after {
+        content: " ";
+        white-space: pre;
+    }
+`
 export const Address = styled.div`
     display: flex;
     align-items: center;
-    width: 30%;
+    width: 33%;
     height: auto;
 
     font-size: 15px;
@@ -39,13 +49,13 @@ export const Address = styled.div`
 export const Salary = styled.div`
     display: flex;
     align-items: center;
-    width: 15%;
+    width: 20%;
     height: auto;
 
     font-size: 15px;
 `
 export const IconBtn = styled.div`
-    width: 8%;
+    width: 3%;
     height: auto;
 
     margin-left: 30px;

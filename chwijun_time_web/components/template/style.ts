@@ -15,19 +15,28 @@ export const SideBar = styled.div`
 
     background-color: #5B70B8;
 `
+export const LogoPlace = styled.div`
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 90px;
+    height: 90px;
+`
 export const Content = styled.div`
     width: 78%;
     height: 100%;
 `
 export const SideHead = styled.div`
     display: flex;
+    justify-content: flex-end;
 
     width: 100%;
     height: 10%;
 `
 export const HeadText = styled.div`
-    margin-left: 40px;
+    margin-right: 20px;
     margin-top: 20px;
+    width: auto;
     height: 20px;
     color: white;
     &:hover {

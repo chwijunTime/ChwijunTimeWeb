@@ -7,6 +7,12 @@ interface Props {
 }
 
 const SignUpModal = ({handleSignUpModal}: Props) => {
+
+    const handleKeyPress = (e) => {
+        if(e.key === 'Enter') {
+            isCorrectPs(pw, confirmPw);
+        }
+    }
     // 외부 영역 클릭 시 모달 창을 닫기 위한 ref 설정 변수
     const setOpen = useRef<HTMLDivElement>();
     // 사용자가 입력한 id
@@ -40,10 +46,10 @@ const SignUpModal = ({handleSignUpModal}: Props) => {
             alert("비밀번호가 일치하지 않습니다.");
         } else {
             const { data } = await submitSignUpInfo(id, pw, num);
-            console.log(data);
             if(data.success === false) {
                 alert(data.msg);
             } else {
+                alert("회원가입이 완료되었습니다.");
                 handleSignUpModal(false);
             }
         }
@@ -60,7 +66,8 @@ const SignUpModal = ({handleSignUpModal}: Props) => {
                     <S.InputText type="password" placeholder="Password" onChange={(e) => setPw(e.target.value)} />
                     <S.InputText type="password" placeholder="Confirm Password" onChange={(e) => setConfirmPw(e.target.value)} />
                     <S.Space />
-                    <S.ClassNumber placeholder="학번 ex)3101" onChange={(e) => {setNum(e.target.value)}} />
+                    <S.ClassNumber placeholder="학번 ex)3101" onChange={(e) => {setNum(e.target.value)}}
+                    onKeyPress={handleKeyPress} />
                     <S.SignUpBtn onClick={() => isCorrectPs(pw, confirmPw)} >회원가입</S.SignUpBtn>
                 </S.Content>
             </S.SignUp>
