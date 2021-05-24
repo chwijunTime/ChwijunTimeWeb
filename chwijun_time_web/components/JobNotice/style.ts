@@ -35,9 +35,22 @@ export const Content = styled.div`
     flex-direction: column;
     align-items: center;
     width: 95%;
-    height: 80%;
+    height: 560px;
     border-radius: 5px;
     background-color: white;
+`
+export const ListPlace = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 80%;
+`
+export const PageNationPlace = styled.div`
+    display: flex;
+    justify-content: center;
+    width: 95%;
+    height: 40px;
 `
 export const Title = styled.div`
     display: flex;

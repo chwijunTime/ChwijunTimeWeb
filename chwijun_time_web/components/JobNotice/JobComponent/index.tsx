@@ -4,7 +4,8 @@ import * as S from './style';
 interface Props {
     name: string,
     field: string,
-    day: string
+    day: string,
+    key: number
 }
 
 const JobComponent:React.FC<Props> = ({name, field, day}) => {

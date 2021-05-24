@@ -1,52 +1,79 @@
 import React, { useEffect, useState } from 'react';
 import * as S from './style';
+import { NextIcon, PrevIcon } from 'public/index';
 
 interface Props {
     posts: Array<Object>,
-    setCurrentList: (list: Array<any>) => void,
+    setCurrentList: (list: Array<any>) => void;
+    setNumber: (list: Array<any>) => void;
 }
 
-const Pagenation:React.FC<Props> = ({ posts, setCurrentList }) => {
-
-    // 첫번째 요소
-    const [indexOfFirst, setIndexOfFirst] = useState(1);
-    // 마지막 요소
-    const [indexOfLast, setIndexOfLast] = useState(1);
-    // 사용자가 현재 보고있는 페이지
-    const [currentPage, setCurrentPage] = useState(1);
+const Pagenation:React.FC<Props> = ({ posts, setCurrentList, setNumber }) => {
+    // 페이지네이션바의 첫번째 요소
+    const [indexOfFirst, setIndexOfFirst] = useState(0);
+    // 페이지네이션바의 마지막 요소
+    const [indexOfLast, setIndexOfLast] = useState(5); 
     // 한번에 보여줄 리스트 갯수
-    const postsPerPage = 9;
+    const postsPerPage = 2;
+     // 사용자가 현재 보고있는 페이지
+    const [currentPage, setCurrentPage] = useState<any>(1);
     // 전체 페이지 갯수
-    const [totalPage, setTotalPage] = useState(1);
+    const [totalPage, setTotalPage] = useState(Math.ceil(posts.length / postsPerPage));
     // 사용자가 볼 네비게이션바
-    const [array, setArray] = useState<Number[]>([]);
-    // 페이지 번호가 담겨있는 배열
-    const target = array.slice(indexOfFirst, indexOfLast);
-    
-    function SetArray() {
-       for(let i = indexOfFirst; i <= totalPage; i++ ) {
-            array.push(i);
-       }
-    }
-    function PageMove() {
+    const [array, setArray] = useState<any>([]);
+    // 페이지 번호가 담겨있는 배열. 10개씩 짤랐다.
+    const [target, setTarget] = useState([]);
 
+    const handleArray = () => {
+       for(let i = 0; i < totalPage; i++) {
+            array.push(i + 1);
+       }
+       setTarget(array.slice(indexOfFirst, indexOfLast));
+    }
+    const handleTarget = () => {
+        setTarget(array.slice(indexOfFirst, indexOfLast));
+    }
+    const PrevClick = () => {
+        if(currentPage === 1) return alert("첫번째 페이지입니다.");
+        if(currentPage % 5 === 1) {
+            setIndexOfFirst(indexOfFirst - 5);
+            setIndexOfLast(indexOfLast - 5);
+        }
+        setCurrentPage(currentPage - 1);
+    }
+    const NextClick = () => {
+        if(currentPage === totalPage) return alert("마지막 페이지입니다.");
+        if(currentPage % 5 === 0) {
+            setIndexOfFirst(indexOfFirst + 5);
+            setIndexOfLast(indexOfLast + 5);
+        }
+        setCurrentPage(currentPage + 1);
+    }
+
+    const PageMove = () => {
+        setNumber([currentPage * 9 - 9, currentPage * 9]);     
+        setCurrentList(posts.slice(currentPage * postsPerPage - postsPerPage, currentPage * postsPerPage));              
     }
 
     // 사용자가 보고있는 페이지가 바뀌면 == 사용자가 네비게이션으로 이동하려고 한다면! 바꿔라.
     useEffect(() => {
-        // totalPage 수를 구함.
-        setTotalPage(Math.ceil(posts.length / postsPerPage));
-        SetArray();
-        // 보여줘야 할 리스트 배열 리턴
-        setCurrentList(posts.slice(currentPage * postsPerPage - postsPerPage, currentPage * postsPerPage))
+        handleArray();
+    }, [])
+    useEffect(() => {
+        handleTarget();
+    }, [indexOfFirst, indexOfLast]);
+    useEffect(() => {
+        PageMove();
     }, [currentPage])
 
     return(
-        <div>
-            {array.map((idx) => {
-                return <S.PageNumber onClick={PageMove}>{idx}</S.PageNumber>
+        <S.PageNumberContainer>
+            <S.PrevBtn onClick={() => PrevClick()}>이전</S.PrevBtn>
+            {target.map((idx, key) => {
+                return <S.PageNumber onClick={() => setCurrentPage(idx)} current={currentPage === idx} key={key}>{idx}</S.PageNumber>
             })}
-        </div>
+            <S.NextBtn onClick={() => NextClick()}>다음</S.NextBtn>
+        </S.PageNumberContainer>
     )
 }
 

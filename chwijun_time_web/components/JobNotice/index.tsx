@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect } from 'react';
 import * as S from './style';
 import JobComponent from './JobComponent';
 import Image from 'next/image'
@@ -14,12 +14,13 @@ const JobNoticeComponent:React.FC = () => {
                                         ,{name: "고스트패스", field: "프론트엔드, 인공지능", day: "2021-02-01 ~ 2021-04-13"}
                                         ,{name: "고스트패스", field: "프론트엔드, 인공지능", day: "2021-02-01 ~ 2021-04-13"}
                                         ,{name: "고스트패스", field: "프론트엔드, 인공지능", day: "2021-02-01 ~ 2021-04-13"}
+                                        ,{name: "고스트패스", field: "프론트엔드, 인공지능", day: "2021-02-01 ~ 2021-04-13"}
+                                        ,{name: "고스트패스", field: "프론트엔드, 인공지능", day: "2021-02-01 ~ 2021-04-13"}
                                         ,{name: "고스트패스", field: "프론트엔드, 인공지능", day: "2021-02-01 ~ 2021-04-13"}])
-    // 현재 페이지
-    const [currentPage, setCurrentPage] = useState(1);
+
     // 페이지네이션에서 값을 관리해주는 배열 ( map함수로 돌려줄 배열 (리스트들) ); 현재 보여줄 리스트들이 담겨있는 배열
     const [currentList, setCurrentList] = useState(posts.slice(0,9));
-
+    const [number, setNumber] = useState([1, 9]);
 
     return(
         <S.JobNoticeContainer>
@@ -36,11 +37,17 @@ const JobNoticeComponent:React.FC = () => {
                     <S.Deadline>공고일 / 마감일</S.Deadline>
                 </S.Title>
                 <S.Content>
+                    <S.ListPlace>
                     {currentList.map((obj, idx) => {
                         return <JobComponent name={obj.name} field={obj.field} day={obj.day} key={idx} />
                     })}
-                    <Pagenation posts={posts} setCurrentList={setCurrentList} />
+                    </S.ListPlace>
+                    <S.PageNationPlace>
+                        <Pagenation posts={posts} setCurrentList={setCurrentList} setNumber={setNumber} />
+                </S.PageNationPlace>
                 </S.Content>
+
+                
             </S.Container>
         </S.JobNoticeContainer>
         

@@ -1,9 +1,7 @@
 import { GlobalStyle } from 'styles/GlobalStyle';
 import App from 'next/app'
 
-
 function MyApp({ Component, pageProps }) {
-  const url = `url('fonts/NIXGONFONTS M 2.0.OTF')`;
   const fontface = `@font-face {
     font-family: "NixgonFont";
     font-weight: 200;
