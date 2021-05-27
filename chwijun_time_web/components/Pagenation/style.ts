@@ -1,5 +1,12 @@
 import styled from 'styled-components';
 
+export const PageNationContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: auto;
+`
 export const PageNumberContainer = styled.ul`
   display: flex;
   justify-content: center;
@@ -10,7 +17,6 @@ export const PageNumberContainer = styled.ul`
 
   padding: 0px;
 `
-
 export const PageNumber = styled.div`
   display: flex;
   justify-content: center;
@@ -24,7 +30,6 @@ export const PageNumber = styled.div`
 
   background-color: ${props => props.current ? '#5B70B8' : '#ffffff' };
   color: ${props => props.current ? '#ffffff' : '#000000'};
-  
   &:hover {
     cursor: pointer;
   }
@@ -44,4 +49,24 @@ export const PrevBtn = styled.button`
 export const NextBtn = styled(PrevBtn)`
   margin-left: 10px;
   margin-right: 0px;
+`
+export const OptionPlace = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  height: 30px;
+
+  margin-top: 20px;
+`
+export const EnrollBtn = styled.button`
+    display: flex;
+    align-items: center;
+    width: 100px;
+    height: 20px;
+
+    font-size: 16px;
+    color: #454BC8;
+    outline: none;
+    border: none;
+    background-color: white;
 `

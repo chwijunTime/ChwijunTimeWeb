@@ -1,20 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import * as S from './style';
-import { NextIcon, PrevIcon } from 'public/index';
+import { PenIcon } from 'public/index';
+import Router from 'next/router';
 
 interface Props {
     posts: Array<Object>,
     setCurrentList: (list: Array<any>) => void;
     setNumber: (list: Array<any>) => void;
+    url: string,
 }
 
-const Pagenation:React.FC<Props> = ({ posts, setCurrentList, setNumber }) => {
+const Pagenation:React.FC<Props> = ({ posts, setCurrentList, setNumber, url }) => {
     // 페이지네이션바의 첫번째 요소
     const [indexOfFirst, setIndexOfFirst] = useState(0);
     // 페이지네이션바의 마지막 요소
     const [indexOfLast, setIndexOfLast] = useState(5); 
     // 한번에 보여줄 리스트 갯수
-    const postsPerPage = 2;
+    const postsPerPage = 9;
      // 사용자가 현재 보고있는 페이지
     const [currentPage, setCurrentPage] = useState<any>(1);
     // 전체 페이지 갯수
@@ -67,13 +69,18 @@ const Pagenation:React.FC<Props> = ({ posts, setCurrentList, setNumber }) => {
     }, [currentPage])
 
     return(
-        <S.PageNumberContainer>
-            <S.PrevBtn onClick={() => PrevClick()}>이전</S.PrevBtn>
-            {target.map((idx, key) => {
-                return <S.PageNumber onClick={() => setCurrentPage(idx)} current={currentPage === idx} key={key}>{idx}</S.PageNumber>
-            })}
-            <S.NextBtn onClick={() => NextClick()}>다음</S.NextBtn>
-        </S.PageNumberContainer>
+        <S.PageNationContainer>
+            <S.OptionPlace>
+                <S.EnrollBtn onClick={() => Router.push(url)}><PenIcon />글쓰기</S.EnrollBtn>
+            </S.OptionPlace>  
+            <S.PageNumberContainer>
+                <S.PrevBtn onClick={() => PrevClick()}>이전</S.PrevBtn>
+                {target.map((idx, key) => {
+                    return <S.PageNumber onClick={() => setCurrentPage(idx)} current={currentPage === idx} key={key}>{idx}</S.PageNumber>
+                })}
+                <S.NextBtn onClick={() => NextClick()}>다음</S.NextBtn>
+            </S.PageNumberContainer>          
+        </S.PageNationContainer>
     )
 }
 

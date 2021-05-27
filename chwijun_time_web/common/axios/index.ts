@@ -6,7 +6,7 @@ console.log(getAccessToken());
 
 const axiosInstance = axios.create({
     headers: {
-        'Authorization': getAccessToken()
+        'Authorization': `Bearer ${getAccessToken()}`
     },
     baseURL: BaseUrl,
 })

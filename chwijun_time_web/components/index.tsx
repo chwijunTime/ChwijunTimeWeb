@@ -7,3 +7,4 @@ export { default as MouComponent } from './Mou';
 export { default as EnrollMou } from './Mou/EnrollMou';
 export { default as JobNoticeComponent } from './JobNotice';
 export { default as Pagenation } from './Pagenation';
+export { default as EnrollJobNotice } from './JobNotice/EnrollJobNotice';

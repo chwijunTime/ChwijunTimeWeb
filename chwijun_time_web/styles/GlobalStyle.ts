@@ -21,16 +21,16 @@ export const GlobalStyle = createGlobalStyle`
     cursor: pointer;
   }
   textarea {
-    font-size: 16px;
     text-align: start;
-    border: 1px solid;
     outline: none;
-    border-radius: 3px;
-    border-color: #ded9d9;
-    margin-left: 15px;
+    border-radius: 5px;
+    border: 1px solid #878787;
     resize: none;
 
+    font-size: 15px;
     font-family: inherit;
+    padding-left: 5px;
+    padding-top: 5px;
   }
 `
 

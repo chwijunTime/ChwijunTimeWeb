@@ -1,7 +1,6 @@
 import React, {useState, useEffect } from 'react';
 import * as S from './style';
 import JobComponent from './JobComponent';
-import Image from 'next/image'
 import { Pagenation } from 'components';
 
 const JobNoticeComponent:React.FC = () => {
@@ -42,15 +41,13 @@ const JobNoticeComponent:React.FC = () => {
                         return <JobComponent name={obj.name} field={obj.field} day={obj.day} key={idx} />
                     })}
                     </S.ListPlace>
+                    
                     <S.PageNationPlace>
-                        <Pagenation posts={posts} setCurrentList={setCurrentList} setNumber={setNumber} />
-                </S.PageNationPlace>
-                </S.Content>
-
-                
+                        <Pagenation posts={posts} setCurrentList={setCurrentList} setNumber={setNumber} url={'/jobnotice/enrollJobNotice'} />
+                    </S.PageNationPlace>
+                </S.Content>               
             </S.Container>
-        </S.JobNoticeContainer>
-        
+        </S.JobNoticeContainer>  
     )
 }
 

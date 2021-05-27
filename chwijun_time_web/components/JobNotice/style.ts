@@ -97,9 +97,4 @@ export const SearchBar = styled.input`
         outline: none!important;
         border-color: #565bf0;
     }
-
-    background-image: url("./Search.png");
-    background-size: 26px;
-    background-repeat: no-repeat;
-    background-position: 99%;
 `
