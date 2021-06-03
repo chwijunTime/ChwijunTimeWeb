@@ -2,7 +2,7 @@ import { BaseUrl } from 'config/config.json';
 import { getAccessToken } from 'service/token';
 import axios from 'axios';
 axios.defaults.baseURL = BaseUrl;
-axios.defaults.headers.common['Authrization'] = `Bearer ${getAccessToken()}`;
+axios.defaults.headers.common['Authorization'] = `Bearer ${getAccessToken()}`;
 
 export const getAllNotice = async () => {
     return await axios.get('/v1/notice', {       

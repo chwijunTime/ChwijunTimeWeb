@@ -3,7 +3,7 @@ import { getAccessToken } from 'service/token';
 import axios from 'axios';
 
 axios.defaults.baseURL = BaseUrl;
-axios.defaults.headers.common['Authrization'] = `Bearer ${getAccessToken()}`;
+axios.defaults.headers.common['Authorization'] = `Bearer ${getAccessToken()}`;
 
 export const submitSignInInfo = async (id: string, pw: string) => {
     return await axios.post(`/v1/login`, {
