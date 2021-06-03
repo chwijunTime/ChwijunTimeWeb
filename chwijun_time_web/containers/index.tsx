@@ -1,1 +1,1 @@
-export { default as Map } from 'containers/Map';
+export { default as EnrollMouContainer } from './EnrollMouContainer/index';

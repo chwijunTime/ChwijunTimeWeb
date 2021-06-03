@@ -32,7 +32,7 @@ const EnrollNotice:React.FC = () => {
             }
             const { data } = await submitEnrollNotice(content, title);
             confirm("등록하시겠습니까?") ? (
-                data.success ? (alert("등록되었습니다."), Router.push('/notice') ): alert(data.success)              
+                data.success ? (alert("등록되었습니다."), Router.push('/notice') ): alert("등록에 실패하였습니다. 이유: " + data.msg)              
             ) : alert("취소되었습니다.")
         } catch(error) {
             console.log(error);

@@ -1,32 +1,39 @@
 import styled from 'styled-components';
 
-export const MouList = styled.div`
-    display: flex;
-    width: 90%;
+export const Container = styled.div`
+    display: flex;  
+    width: 95%;
     height: 40px;
 
     margin-top: 10px;
+    border-bottom: 1px solid #BDBDBD;
 
     &:hover {
         cursor: pointer;
     }
 `
-export const MouName = styled.div`
+export const Number = styled.div`
     display: flex;
+    justify-content: center;
     align-items: center;
-    width: 20%;
+    width: 5%;
     height: auto;
 
-    font-size: 15px;
-    font-weight: bold;
+    color: #8E8E8E;
 `
-export const TagPlace = styled.div`
+export const Name = styled.div`
     display: flex;
     align-items: center;
-    width: 22%;
+    width: 30%;
     height: auto;
 
-    font-size: 15px;
+    margin-left: 20px;
+    color: #454BC8;
+`
+export const TagPlace = styled(Name)`
+    width: 25%;
+    justify-content: start;
+    color: #8E8E8E;
 `
 export const Tag = styled.div`
     &::after {
@@ -38,25 +45,7 @@ export const Tag = styled.div`
         white-space: pre;
     }
 `
-export const Address = styled.div`
-    display: flex;
-    align-items: center;
-    width: 33%;
-    height: auto;
-
-    font-size: 15px;
-`
-export const Salary = styled.div`
-    display: flex;
-    align-items: center;
-    width: 20%;
-    height: auto;
-
-    font-size: 15px;
-`
-export const IconBtn = styled.div`
-    width: 3%;
-    height: auto;
-
-    margin-left: 30px;
+export const Address = styled(Name)`
+    width: 30%;
+    color: #8E8E8E;
 `

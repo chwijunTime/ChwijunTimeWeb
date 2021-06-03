@@ -7,7 +7,6 @@ import Router from 'next/router';
 
 const NoticeComponent: React.FC = () => {
     const [selected, setSelected] = useState('first');
-    const list = [{idx: 1, title: "하이", date: "2021-04-08"}, {idx: 2, title: "하이루", date: "2021-04-21"}]
     const [noticeList, setNoticeList] = useState([]);
 
     async function getAllNoticeList() {

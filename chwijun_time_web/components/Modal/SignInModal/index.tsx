@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, Fragment } from 'react';
 import * as S from './style';
 import { submitSignInInfo } from "service/post";
-import { setToken, setRefreshToken } from 'service/token';
+import { setAccessToken, setRefreshToken } from 'service/token';
 import Router from 'next/router';
 
 interface Props {
@@ -27,10 +27,10 @@ const SignInModal:React.FC<Props> = ({handleSignInModal, handleSignUpModal}: Pro
                 return;
             }
             const { data } = await submitSignInInfo(id, pw);
-
+            console.log(data);
             if(data.success === true) {
-                setToken(data.data.accessToken);
-                setRefreshToken(data.data.RefreshToken);
+                setAccessToken(data.data.accessToken);
+                setRefreshToken(data.data.refreshToken);
                 Router.push('/notice');
             } else if(data.success === false) {
                 alert(data.msg);

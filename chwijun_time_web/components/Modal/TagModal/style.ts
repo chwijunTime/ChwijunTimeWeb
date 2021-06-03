@@ -5,13 +5,14 @@ export const ModalContainer = styled.div`
     justify-content: center;
     align-items: center;
 
-    position: fixed;
+    position: absolute;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
    
     z-index: 20;
+    background-color: rgba(0,0,0,.4);
 `
 export const TagModal = styled.div`
     display: flex;

@@ -93,6 +93,35 @@ export const Add_Btn = styled.button`
     background-color: #8c8c8c;
     color: white;
 `
+export const Tag = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: auto;
+    height: 23px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: 5px 5px;
+    color: white;
+    font-size: 13px;
+    border: none;
+    border-radius: 20px;
+    background-color: #5B70B8;
+`
 export const Enroll_Btn = styled(Add_Btn)`
-    
+    width: 70px;
+    height: 33px;
+    border-radius: 5px;
+    background-color: #5B70B8;
+    margin-left: 20px;
+`
+export const BtnPlace = styled.div`
+    display: flex;
+    justify-content: flex-end;
+    width: 60%;
+    height: 40px;
+    margin-top: 30px;
+`
+export const Cancel_Btn = styled(Enroll_Btn)`
+    background-color: #a1a1a1;
 `

@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React, { useEffect, useState } from 'react';
 import * as S from './style';
 import { Logo } from 'public/index';
 import Router from 'next/router';
@@ -12,7 +12,13 @@ const Template:React.FC = ({children}) => {
     const F_Logout = () => {
         confirm('로그아웃 하시겠습니까?') ? (removeToken(), removeRefreshToken(), Router.push('/')) : null;       
     }
-        
+    const [para, setPara] = useState('');
+
+    // 나중에 배포하면 오류뜰거임. 그때 저 배열안에 값 바꿔주세요.
+    useEffect(() => {
+        setPara('/'+window.location.href.split('/')[3]);
+    }, [])
+
     return(
         <S.Template>
             <S.SideBar>
@@ -25,8 +31,8 @@ const Template:React.FC = ({children}) => {
                 </S.SideHead>
                 <S.SideListPlace>
                 { menuList.map((menu, index) => {
-                        return <S.SideList key={index} onClick={() => Router.push(menu.path)}>{menu.name}</S.SideList>
-                    }) }
+                        return <S.SideList key={index} current={para === menu.path} onClick={() => Router.push(menu.path)}>{menu.name}</S.SideList>
+                }) }
                 </S.SideListPlace>
                     
             </S.SideBar>

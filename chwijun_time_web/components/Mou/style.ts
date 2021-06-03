@@ -1,65 +1,124 @@
 import styled from 'styled-components';
+import image from 'next/image';
 
-export const MouPlace = styled.div`
+export const JobNoticeContainer = styled.div`
     display: flex;
     flex-direction: column;
     width: 100%;
     height: 100%;
 `
+
 export const Header = styled.div`
     display: flex;
-    justify-content: center;
     align-items: center;
     width: 100%;
-    height: 90px;
+    height: 60px;
 
-    font-size: 35px;
     font-weight: bold;
-`
-export const Additinal = styled.div`
-    display: flex;
-    width:100%;
-    height: 40px;
-`
-export const OptionPlace = styled.div`
-    display: flex;
-    width: 50%;
-    height: 40px;
-`
-export const Option = styled.div`
-    display: flex;
-    width: 40px;
-    height: 35px;
-    margin-left: 20px;
     font-size: 19px;
 
-    border-bottom: ${props => props.current ? "#000000" : ""};
-
-    &:hover {
-        cursor: pointer;
-    }
-`
-export const EnrollNotice = styled.div`
-    font-size: 19px;
-    margin-right: 20px;
-
-    &:hover {
-        cursor: pointer;
-    }
-`
-export const AddNotice = styled.div`
-    display: flex;
-    justify-content: flex-end;
-    width: 50%;
-    height: 40px;
+    padding-left: 10px;
 `
 
-export const MouContainer = styled.div`
+export const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
     height: 100%;
 
-    background-color: #EFEFEF;
+    background-color: #F4F4F4;
+`
+
+export const Content = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 95%;
+    height: 560px;
+    border-radius: 5px;
+    background-color: white;
+`
+export const ListPlace = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 80%;
+`
+export const PageNationPlace = styled.div`
+    display: flex;
+    justify-content: center;
+    width: 95%;
+    height: 40px;
+`
+export const Title = styled.div`
+    display: flex;
+    width: 90%;
+    height: 20px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+`
+export const Number = styled.div`
+    display: flex;
+    justify-content: center;
+    width: 5%;
+    height: auto;
+`
+export const Name = styled.div`
+    width: 30%;
+    height: auto;
+    margin-left: 20px;
+`
+export const Field = styled(Name)`
+    width: 25%;
+`
+export const Deadline = styled(Name)`
+    width: 30%;
+`
+
+export const SearchPlace = styled.div`
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 60px;
+`
+export const SearchBar = styled.input`
+    width: 440px;
+    height: 40px;
+
+    border: 1px solid #bdbdbd;
+    border-radius: 5px;
+    margin-left: 25px;
+    margin-top: 10px;
+    padding-left: 10px;
+
+    &:focus {
+        outline: none!important;
+        border-color: #565bf0;
+    }
+`
+export const OptionPlace = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  height: 30px;
+
+  margin-top: 20px;
+`
+export const EnrollBtn = styled.button`
+    display: flex;
+    align-items: center;
+    width: 100px;
+    height: 20px;
+
+    font-size: 16px;
+    color: #454BC8;
+    outline: none;
+    border: none;
+    background-color: white;
+`
+export const NotExistList = styled.div`
+    font-size: 20px;
+    padding-top: 30px;
 `

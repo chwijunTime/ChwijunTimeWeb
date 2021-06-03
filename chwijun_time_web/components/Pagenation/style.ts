@@ -50,23 +50,3 @@ export const NextBtn = styled(PrevBtn)`
   margin-left: 10px;
   margin-right: 0px;
 `
-export const OptionPlace = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  width: 100%;
-  height: 30px;
-
-  margin-top: 20px;
-`
-export const EnrollBtn = styled.button`
-    display: flex;
-    align-items: center;
-    width: 100px;
-    height: 20px;
-
-    font-size: 16px;
-    color: #454BC8;
-    outline: none;
-    border: none;
-    background-color: white;
-`

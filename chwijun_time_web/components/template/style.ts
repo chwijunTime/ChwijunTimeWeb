@@ -57,8 +57,14 @@ export const SideList = styled.div`
 
     color: white;
     margin-top: 15px;
+    transition: 0.2s ease-in-out;
+
+    margin-left: ${props => props.current ? '10px' : ''};
+    font-size: ${props => props.current ? '18px' : ''};
 
     &:hover {
         cursor: pointer;
+        transform: translateX(10px);
     }
+
 `

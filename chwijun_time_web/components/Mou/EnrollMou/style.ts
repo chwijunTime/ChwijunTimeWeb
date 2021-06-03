@@ -1,104 +1,159 @@
 import styled from 'styled-components';
 
-export const EnrollMouContainer = styled.div`
+export const MouContainer = styled.div`
     display: flex;
     flex-direction: column;
+    align-items: center;
     width: 100%;
     height: 100%;
+    background: ${props => props.open ? "rgba(0,0,0,.5)" : ""};
+    filter: ${props => props.open ? 'brightness(50%)' : ''};
 `
-export const NamePlace = styled.div`
-    display :flex;
-    align-items: center;
-
-    width: 100%;
-    height: 40px;
-
-    margin-bottom: 20px;
+export const Header = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    margin-top: 20px;
 `
-export const Text= styled.div`
-    width: 100px;
-    height: auto;
+export const UrlText = styled.div`
+    font-size: 15px;
+    color: #666;
+`
+export const Title = styled.div`
+    display: flex;
+    flex-direction: column;
     
-    padding-left: 15px;
-    font-size: 18px;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 30px;
 `
-export const InputName = styled.input`
-    width: 500px;
-    height: 40px;
+export const Sub_Title = styled.div`
+    font-size: 15px;
+    font-weight: normal;
+    margin-top: 5px;
+`
+export const InputContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 95%;
 
-    font-size: 16px;
-    border: 1px solid;
-    outline: none;
-    border-radius: 3px;
-    border-color: #ded9d9;
+    border: none;
+    border-top: 2px solid #5B70B8;
+    margin-top: 20px;
+`
+export const ItemList = styled.div`
+    display: flex;
+    width: 100%;
+    min-height: 54px;
+    border: none;
+    border-bottom: 1px solid #ddd;
+`
+export const Item = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    min-height: 54px;
 
-    margin-left: 15px;
-    padding-left: 10px;
+    font-weight: bold;
+    background-color: #f5f7f6;
 `
-export const FeildInput = styled(InputName)`
-    width: 300px;
+export const ETC_Item = styled(Item)`
+    min-height: 108px;
 `
-export const IntroPlace = styled(NamePlace)`
-    align-items: stretch;
-    height: 130px;
+export const InputItem = styled.div`
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
 `
-export const InputIntro = styled.textarea`
-    width: 500px;
-    height: 110px;
-`
-export const SalaryInput = styled(InputName)`
-    width: 400px; 
-`
-export const TagBtn = styled.button`
-    width: 100px;
+
+export const S_Input = styled.input`
+    width: 330px;
     height: 35px;
 
-    background-color: #5B70B8;
-    color: white;
-    border-radius: 20px;
-    border: 1px solid #d2d2d2;
     font-size: 14px;
-    margin-left: 15px;
+    padding-left: 10px;
+    border: 1px solid #bbb;
+    border-radius: 5px;
+    outline: none;  
+    &:focus {
+        border: 1px solid #4e60cc;
+    }
+`
+export const Address_Input = styled(S_Input)`
+    width: 400px;
+`
+export const Salary_Input = styled(S_Input)`
+    width: 100px;
+`
+export const M_Input = styled.textarea`
+    width: 500px;
+    height: 80px;
+    border: 1px solid #bbb;
+    padding-left: 10px;
+    &:focus {
+        border: 1px solid #4e60cc;
+    }
+`
+export const Add_Btn = styled.button`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70px;
+    height: 25px;
+
+    font-size: 15px;
+    border: none;
+    border-radius: 20px;
+    background-color: #8c8c8c;
+    color: white;
+`
+export const Tag = styled.div`
+    width: auto;
+    height: 27px;
+    padding: 2px 10px 0px 10px;
+    text-align: center;
+    vertical-align: middle;
+    color: white;
+    font-size: 13px;
+    border: none;
+    border-radius: 20px;
+    background-color: #a1a1a1;
+    margin-right: 10px;
+`
+export const Enroll_Btn = styled(Add_Btn)`
+    width: 70px;
+    height: 33px;
+    border-radius: 5px;
+    background-color: #5B70B8;
+    margin-left: 20px;
 `
 export const BtnPlace = styled.div`
     display: flex;
-    
-    width: 65%;
-    height: 200px;
-    margin-top: 20px;
-    margin-left: 115px;
+    justify-content: flex-end;
+    width: 95%;
+    height: 40px;
+    margin-top: 10px;
 `
-export const EnrollBtn = styled.button`
+export const Cancel_Btn = styled(Enroll_Btn)`
+    background-color: #a1a1a1;
+`
+export const Location_Btn = styled.button`
     display: flex;
+    width: 80px;
+    height: 30px;
     justify-content: center;
     align-items: center;
-
-    width: 100px;
-    height: 33px;
-
-    border: 1px solid;
-    border-radius: 5px;
-    border-color: #8A8787;
-    outline: none;
-
-    background-color: #5B70B8 ;
-    color: white;
-    font-size: 16px;
-    margin-right: 20px;
-`
-export const CancleBtn = styled.button`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    width: 100px;
-    height: 33px;
 
     border: none;
     border-radius: 5px;
-    outline: none;
-
-    background-color: #d6d6d6;
-    font-size: 16px;
-    margin-left: 20px;
+    background-color: #5B70B8;
+    color: white;
+`
+export const Tag_Btn = styled(Location_Btn)`
+`
+export const SubText = styled.div`
+    padding-left: 15px;
+    font-size: 14px;
+    color: #666;
 `
