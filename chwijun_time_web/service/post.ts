@@ -53,3 +53,17 @@ export const submitEnrollJobNotice = async (name: string, field: string, explain
             return(error.response);
         })
 }
+export const submitEnrollMou = async (name: string, location: string, address: string, etc: string, salary: string,
+    tag: any[]) => {
+        return await instance.post(`/v1/contracting-company`, {
+            "contractingBusinessAreas": location,
+            "contractingCompanyAboutUs": etc,
+            "contractingCompanyAddress": address,
+            "contractingCompanyAverageAnnualSalary": salary,
+            "contractingCompanyName": name,
+            "tagName": tag
+        }).catch(function(error) {
+            console.log(error);
+            return(error.response);
+    })
+}

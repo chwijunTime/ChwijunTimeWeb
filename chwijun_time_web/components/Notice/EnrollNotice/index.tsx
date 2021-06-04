@@ -27,8 +27,10 @@ const EnrollNotice:React.FC = () => {
         try{
             if(title === "") {
                 alert("제목을 입력해주세요.");
+                return;
             } else if(content === "") {
                 alert("내용을 입력해주세요.");
+                return;
             }
             const { data } = await submitEnrollNotice(content, title);
             confirm("등록하시겠습니까?") ? (

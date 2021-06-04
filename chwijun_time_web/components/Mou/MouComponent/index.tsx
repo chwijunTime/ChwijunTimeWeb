@@ -12,17 +12,17 @@ const MouList:React.FC<Props> = ({info}) => {
     return(
         <S.Container>
             <S.Number>1</S.Number>
-            <S.Name>{info.name}</S.Name>
+            <S.Name>{info.contractingCompanyName}</S.Name>
             <S.TagPlace>
-                { info.tag.map((obj, idx) => {
+                { info.contractingCompanyTags && info.contractingCompanyTags.map((obj, idx) => {
                     return idx < MAX_LENGTH && <S.Tag key={idx}>{obj}</S.Tag> 
                  })                   
                 }
-                { info.tag.length > MAX_LENGTH && 
-                    <>외 {info.tag.length - MAX_LENGTH}개</>
+                { info.contractingCompanyTags && info.contractingCompanyTags.length > MAX_LENGTH && 
+                    <>외 {info.contractingCompanyTags.length - MAX_LENGTH}개</>
                 }
             </S.TagPlace>           
-            <S.Address>{info.location}</S.Address>
+            <S.Address>{info.contractingCompanyAddress}</S.Address>
         </S.Container>
     )
 }

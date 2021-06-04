@@ -3,12 +3,13 @@ import * as S from './style';
 import Header from 'components/Header';
 import Router from 'next/router';
 import { TagModal, LocationModal } from 'components/Modal';
+import { submitEnrollMou } from 'service/post';
 
 const EnrollMou:React.FC = () => {
     const [name, setName] = useState('');
     const [location, setLocation] = useState('');
     const [address, setAddress] = useState('');
-    const [ETC, setETC] = useState('');
+    const [etc, setEtc] = useState('');
     const [salary, setSalary] = useState('');
     const [tag, setTag] = useState<string[]>([]);
 
@@ -22,8 +23,15 @@ const EnrollMou:React.FC = () => {
         setLocationModal(status);
     }
 
-    const Enroll = () => {
-        alert('등록하시겠습니까?')
+    const Enroll = async () => {
+        try {
+            const { data } = await submitEnrollMou(name, location, address, etc, salary, tag);
+            confirm('등록하시겠습니까?') ? (
+                data.success ? (alert("등록되었습니다."), Router.push('/mou') ): alert(data.msg)              
+            ) : alert("취소되었습니다.")
+        } catch(error) {
+            console.log(error);
+        }
     }
 
     return(
@@ -44,6 +52,7 @@ const EnrollMou:React.FC = () => {
                 <S.ItemList>
                     <S.Item>지역</S.Item>
                     <S.InputItem>
+                        { location !== '' && <S.Location>{location}</S.Location>}
                         <S.Location_Btn onClick={() => setLocationModal(true)}>지역 선택</S.Location_Btn>
                     </S.InputItem>
                 </S.ItemList>
@@ -63,7 +72,7 @@ const EnrollMou:React.FC = () => {
                 <S.ItemList>
                     <S.ETC_Item>기타정보</S.ETC_Item>
                     <S.InputItem>
-                    <S.M_Input placeholder="기타정보를 입력해주세요." onChange={(e) => setETC(e.target.value)} />
+                    <S.M_Input placeholder="기타정보를 입력해주세요." onChange={(e) => setEtc(e.target.value)} />
                     </S.InputItem>
                 </S.ItemList>
                 <S.ItemList>
@@ -78,7 +87,7 @@ const EnrollMou:React.FC = () => {
             </S.InputContainer>
             <S.BtnPlace>               
                 <S.Cancel_Btn onClick={() => confirm('취소하시겠습니까?') ? Router.push('/mou') : null}>취소</S.Cancel_Btn>
-                <S.Enroll_Btn>등록</S.Enroll_Btn>
+                <S.Enroll_Btn onClick={() => Enroll()}>등록</S.Enroll_Btn>
             </S.BtnPlace>
             { tagModal && 
               <TagModal handleModal={handleTagModal} currentTag={tag} handleTag={setTag} />

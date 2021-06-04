@@ -6,8 +6,6 @@ export const MouContainer = styled.div`
     align-items: center;
     width: 100%;
     height: 100%;
-    background: ${props => props.open ? "rgba(0,0,0,.5)" : ""};
-    filter: ${props => props.open ? 'brightness(50%)' : ''};
 `
 export const Header = styled.div`
     display: flex;
@@ -109,16 +107,16 @@ export const Add_Btn = styled.button`
     color: white;
 `
 export const Tag = styled.div`
+    display: flex;
+    align-items: center;
     width: auto;
-    height: 27px;
-    padding: 2px 10px 0px 10px;
-    text-align: center;
-    vertical-align: middle;
-    color: white;
-    font-size: 13px;
-    border: none;
+    height: 25px;
+    padding: 0px 10px 0px 10px;
+
+    font-size: 14px;
+    border: 1px solid #5B70B8;
     border-radius: 20px;
-    background-color: #a1a1a1;
+
     margin-right: 10px;
 `
 export const Enroll_Btn = styled(Add_Btn)`
@@ -156,4 +154,7 @@ export const SubText = styled.div`
     padding-left: 15px;
     font-size: 14px;
     color: #666;
+`
+export const Location = styled.div`
+    padding-right: 10px;
 `

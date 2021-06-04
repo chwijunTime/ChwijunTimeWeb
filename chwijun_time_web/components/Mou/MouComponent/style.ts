@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
     display: flex;  
-    width: 95%;
+    width: 100%;
     height: 40px;
 
     margin-top: 10px;
@@ -16,7 +16,7 @@ export const Number = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 5%;
+    width: 8%;
     height: auto;
 
     color: #8E8E8E;

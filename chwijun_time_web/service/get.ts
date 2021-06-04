@@ -28,3 +28,18 @@ export const getAllJobNotice = async () => {
         return (error.response);
     })
 }
+export const getAllTag = async () => {
+    return await instance.get('/v1/tag', {
+    }).catch(function(error) {
+        return (error.response);
+    })
+}
+export const getSearchMou = async (keyword: string) => {
+    return await instance.get('v1/contracting-company-keyword', {
+        params: {
+            "keyword": keyword
+        }
+    }).catch(function(error) {
+        return (error.response);
+    })
+}

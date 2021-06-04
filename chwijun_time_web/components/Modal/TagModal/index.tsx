@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import * as S from './style';
 import { CancelIcon } from 'public/index';
+import { getAllTag } from 'service/get';
 
 interface Props {
     handleModal: (status: boolean) => void,
@@ -8,23 +9,34 @@ interface Props {
     currentTag: string[]
 }
 const TagModal:React.FC<Props> = ({handleModal, handleTag, currentTag}) => {
-    const [tagList, setTagList] = useState([{name: 'react'}, {name: 'typescript'}, {name: 'feadsf'}, {name: 'feadsffea'},
-                                            {name: 'fandskfne'}])
+    const [tagList, setTagList] = useState<any>([]);
     const [findList, setFindList] = useState<any>();
     const [selected, setSelected] = useState<string[]>(currentTag);
+
+    useEffect(() => {
+        async function getAllTagList() {
+            try {
+                const { data } = await getAllTag();
+                setTagList(data.list);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        getAllTagList();
+    }, [])
 
     return(
         <S.ModalContainer>
             <S.TagModal>
                 <S.SearchPlace>
-                    <S.SearchBar placeholder="태그 검색..." onChange={(e) => setFindList(tagList.filter(obj => obj.name.includes(e.target.value.toLowerCase())))} />                  
+                    <S.SearchBar placeholder="태그 검색..." onChange={(e) => setFindList(tagList.filter(obj => obj.tagName.includes(e.target.value.toLowerCase())))} />                  
                 </S.SearchPlace>
                 <S.DropdownListPlace>
                 { findList && findList.map((obj, idx) => {
                     return (
                         idx < 3 && <S.DropdownList key={idx} onClick={() => 
-                        {selected.includes(obj.name) ? alert("이미 선택된 태그입니다.") : setSelected(selected => [...selected, obj.name])}}>
-                            {obj.name}</S.DropdownList>
+                        {selected.includes(obj.tagName) ? alert("이미 선택된 태그입니다.") : setSelected(selected => [...selected, obj.tagName])}}>
+                            {obj.tagName}</S.DropdownList>
                     )    
                 })}
                 </S.DropdownListPlace>
