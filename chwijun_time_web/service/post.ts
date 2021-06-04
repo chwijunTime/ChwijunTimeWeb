@@ -2,11 +2,15 @@ import { BaseUrl } from 'config/config.json';
 import { getAccessToken } from 'service/token';
 import axios from 'axios';
 
-axios.defaults.baseURL = BaseUrl;
-axios.defaults.headers.common['Authorization'] = `Bearer ${getAccessToken()}`;
+const instance = axios.create({
+    baseURL: BaseUrl,
+    headers: {
+        'Authorization': `Bearer ${getAccessToken()}`
+    }
+});
 
 export const submitSignInInfo = async (id: string, pw: string) => {
-    return await axios.post(`/v1/login`, {
+    return await instance.post(`/v1/login`, {
         "memberEmail": id,
         "memberPassword": pw
     }).catch(function(error) {
@@ -15,7 +19,7 @@ export const submitSignInInfo = async (id: string, pw: string) => {
 }
 
 export const submitSignUpInfo = async (id: string, pw: string, num: string) => {
-    return await axios.post(`/v1/join`, {
+    return await instance.post(`/v1/join`, {
         "memberClassNumber": num,
         "memberEmail": id,
         "memberPassword": pw
@@ -25,7 +29,7 @@ export const submitSignUpInfo = async (id: string, pw: string, num: string) => {
 }
 
 export const submitEnrollNotice = async (content: string, title: string) => {
-    return await axios.post(`/v1/notice`, {
+    return await instance.post(`/v1/notice`, {
         "content": content,
         "title": title
     }).catch(function(error) {
@@ -35,7 +39,7 @@ export const submitEnrollNotice = async (content: string, title: string) => {
 }
 export const submitEnrollJobNotice = async (name: string, field: string, explain: string, sweetener: string,
     location: string, deadline: string, other: string, tag: string[]) => {
-        return await axios.post(`/v1/employment-announcement`, {
+        return await instance.post(`/v1/employment-announcement`, {
             "deadLine": deadline,
             "employmentAnnouncementAddress": location,
             "employmentAnnouncementEtc": other,

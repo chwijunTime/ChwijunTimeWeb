@@ -18,8 +18,8 @@ export const LocationModal = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-width: 500px;
-    min-height: 550px;
+    width: 500px;
+    height: 550px;
 
     border-radius: 15px;
 
@@ -35,12 +35,26 @@ export const Title = styled.div`
     margin: 10px 0px;
     
 `
-export const CityPlace = styled.div`
+export const CityPlace = styled.table`
     display: flex;
+    flex-wrap: wrap;
     width: 90%;
-    height: 200px;
-    border: 1px solid #000000;
+    height: auto;
 `
 export const ProvincePlace = styled(CityPlace)`
-    
+
+`
+export const CityTitle = styled.div`
+    width: 90%;
+    margin-bottom: 5px;
+`
+export const CityComponent = styled.td`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 33%;
+    height: 45px;
+    min-height: 30px;
+
+    border: 1px solid #666;
 `

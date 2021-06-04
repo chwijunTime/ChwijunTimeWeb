@@ -3,6 +3,8 @@ import * as S from './style';
 import { submitSignInInfo } from "service/post";
 import { setAccessToken, setRefreshToken } from 'service/token';
 import Router from 'next/router';
+import axios from 'axios';
+import { BaseUrl } from 'config/config.json';
 
 interface Props {
     handleSignInModal: (status: boolean) => void;
@@ -21,22 +23,24 @@ const SignInModal:React.FC<Props> = ({handleSignInModal, handleSignUpModal}: Pro
         }
     }
     const clickBtn = async () => {
-        try {
-            if(id === '' || pw === '') {
-                id === '' ? alert("이메일을 입력해주세요.") :( pw === '' ? alert("비밀번호를 입력해주세요.") : '')
-                return;
-            }
-            const { data } = await submitSignInInfo(id, pw);
-            console.log(data);
-            if(data.success === true) {
-                setAccessToken(data.data.accessToken);
-                setRefreshToken(data.data.refreshToken);
-                Router.push('/notice');
-            } else if(data.success === false) {
-                alert(data.msg);
-            }
-        } catch(error) {
-            console.log(error);
+        if(id === '' || pw === '') {
+            id === '' ? alert("이메일을 입력해주세요.") :( pw === '' ? alert("비밀번호를 입력해주세요.") : '')
+            return;
+        }
+
+        const { data } = await axios.post(`${BaseUrl}/v1/login`, {
+            "memberEmail": id,
+            "memberPassword": pw
+        }).catch(function(error) {
+            return(error.response);
+        })
+
+        if(data.success === true) {
+            setAccessToken(data.data.accessToken);
+            setRefreshToken(data.data.refreshToken);
+            Router.push('/notice');
+        } else if(data.success === false) {
+            alert(data.msg);
         }
     }
 
