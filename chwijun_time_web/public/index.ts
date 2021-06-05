@@ -6,3 +6,5 @@ export { default as NextIcon } from './svg/NextIcon';
 export { default as PrevIcon } from './svg/PrevIcon';
 export { default as PenIcon } from './svg/PenIcon';
 export { default as CancelIcon } from './svg/CancelIcon';
+export { default as JobNoticeIcon } from './svg/JobNoticeIcon';
+export { default as MouIcon } from './svg/MouIcon';
