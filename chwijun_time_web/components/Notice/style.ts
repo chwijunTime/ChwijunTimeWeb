@@ -1,73 +1,111 @@
-import styled from "styled-components";
+import styled from 'styled-components';
+import image from 'next/image';
 
-export const NoticePlace = styled.div`
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
-`
-export const Header = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 90px;
-
-    font-size: 35px;
-    font-weight: bold;
-`
-export const Additinal = styled.div`
-    display: flex;
-    width:100%;
-    height: 40px;
-`
-export const OptionPlace = styled.div`
-    display: flex;
-    width: 50%;
-    height: 40px;
-`
-export const Option = styled.div`
-    display: flex;
-    width: 40px;
-    height: 35px;
-    margin-left: 20px;
-    font-size: 19px;
-
-    &:hover {
-        cursor: pointer;
-    }
-`
-export const AddNotice = styled.div`
-    display: flex;
-    justify-content: flex-end;
-    width: 50%;
-    height: 40px;
-`
 export const NoticeContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
     height: 100%;
-
-    background-color: #EFEFEF;
 `
-export const NoticeList = styled.div`
+
+export const Header = styled.div`
     display: flex;
-    width: 80%;
+    flex-direction: column;
+    width: 95%;
+    margin-top: 20px;
+`
+export const UrlText = styled.div`
+    font-size: 15px;
+    color: #666;
+`
+export const HeaderTitle = styled.div`
+    display: flex;
+    flex-direction: column;
+    
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 30px;
+`
+export const Sub_HeaderTitle = styled.div`
+    font-size: 15px;
+    font-weight: normal;
+    margin-top: 5px;
+`
+
+
+export const Content = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 95%;
+    min-height: 600px; 
+
+    border: none;
+    border-top: 2px solid #5B70B8;
+    background-color: white;
+    margin-top: 20px;
+`
+export const Title = styled.div`
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+
+    background-color: #f6f6f6;
+    border-bottom: 1px solid #BDBDBD;   
+    font-weight: bold;
+`
+export const Number = styled.div`
+    display: flex;
+    justify-content: center;
+    width: 8%;
+    height: auto;
+`
+export const Subject = styled(Number)`
+    width: 50%;
+`
+export const Date = styled(Number)`
+    width: 30%;
+`
+
+
+export const ListPlace = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 80%;
+`
+export const PageNationPlace = styled.div`
+    display: flex;
+    justify-content: center;
+    width: 95%;
+    height: 40px;
+`
+export const OptionPlace = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  height: 30px;
+
+  margin-top: 20px;
+`
+export const EnrollBtn = styled.button`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
     height: 40px;
 
-    margin-top: 10px;
-
-    &:hover {
-        cursor: pointer;
-    }
+    font-size: 16px;
+    color: black;
+    outline: none;
+    border: 1px solid #000000;
+    border-radius: 10px;
+    background-color: white;
 `
-export const EnrollNotice = styled.div`
-    font-size: 19px;
-    margin-right: 20px;
-
-    &:hover {
-        cursor: pointer;
-    }
+export const NotExistList = styled.div`
+    font-size: 20px;
+    padding-top: 30px;
 `

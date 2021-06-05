@@ -3,20 +3,16 @@ import * as S from './style';
 import { ArrowIcon } from 'public/index';
 
 interface Props {
-    idx: Number;
-    title: String;
-    date: String;
-    key: Number;
+    info: any;
 }
 
-const NoticeList:React.FC<Props> = ({idx, title, date, key}) => {
+const NoticeList:React.FC<Props> = ({info}) => {
 
     return(
-        <S.NoticeList key={key}>
-            <S.Number>{idx}</S.Number>
-            <S.Title>{title}</S.Title>
-            <S.Date>{date}</S.Date>
-            <S.IconBtn><ArrowIcon /></S.IconBtn>
+        <S.NoticeList>
+            <S.Number>1</S.Number>
+            <S.Title>feawef</S.Title>
+            <S.Date>feasdf</S.Date>
         </S.NoticeList>
     )
 }

@@ -22,9 +22,6 @@ const Template:React.FC = ({children}) => {
     return(
         <S.Template>
             <S.SideBar>
-                <S.LogoPlace>
-                    <Logo />
-                </S.LogoPlace>
                 <S.SideHead>                  
                     <S.HeadText>My Info</S.HeadText>
                     <S.HeadText onClick={() => F_Logout()}>Log out</S.HeadText>

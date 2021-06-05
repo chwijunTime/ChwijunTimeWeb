@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import image from 'next/image';
 
-export const JobNoticeContainer = styled.div`
+export const MouContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -10,19 +10,42 @@ export const JobNoticeContainer = styled.div`
 `
 export const Header = styled.div`
     display: flex;
-    align-items: center;
+    flex-direction: column;
     width: 95%;
-    height: 60px;
-
+    margin-top: 20px;
+`
+export const UrlText = styled.div`
+    font-size: 15px;
+    color: #666;
+`
+export const HeaderPlace = styled.div`
+    display: flex;
+    justify-content: space-between;
+    
+    font-size: 20px;
     font-weight: bold;
-    font-size: 22px;
+    margin-top: 30px;
+`
+export const HeaderTitle = styled.div`
+    display: flex;
+    flex-direction: column;
+    
+    font-size: 20px;
+    font-weight: bold;
+`
+export const Sub_HeaderTitle = styled.div`
+    font-size: 15px;
+    font-weight: normal;
+    margin-top: 5px;
 `
 export const Content = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 95%;
-    height: 560px; 
+    height: 600px; 
+
+    margin-top: 20px;
     border: none;
     border-top: 2px solid #5B70B8;
     background-color: white;
@@ -56,15 +79,13 @@ export const Number = styled.div`
     width: 8%;
     height: auto;
 `
-export const Name = styled.div`
+export const Name = styled(Number)`
     width: 30%;
-    height: auto;
-    margin-left: 20px;
 `
-export const Field = styled(Name)`
+export const Tag = styled(Number)`
     width: 25%;
 `
-export const Deadline = styled(Name)`
+export const Address = styled(Number)`
     width: 30%;
 `
 
@@ -72,10 +93,7 @@ export const SearchPlace = styled.div`
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    width: 95%;
-    height: 60px;
-    
-    margin-top: 5px;
+    width: 50%;
 `
 export const SearchBar = styled.input`
     width: 300px;

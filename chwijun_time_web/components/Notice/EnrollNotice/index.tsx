@@ -1,73 +1,50 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import * as S from './style';
 import Router from 'next/router';
 import { submitEnrollNotice } from 'service/post';
-import Header from 'components/Header';
 
 const EnrollNotice:React.FC = () => {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
 
-    const TempSave = () => {
-        if(title === "" && content === "") {
-            Router.push('/notice');
-            return;
-        }
-        if(confirm("작성하신 내용을 임시 저장하시겠습니까?") == true) {
-           sessionStorage.setItem('title', title);
-           sessionStorage.setItem('content', content);
-        } else {
-            sessionStorage.setItem('title', '');
-            sessionStorage.setItem('content', '');
-        }
-        Router.push('/notice');
-    }
-
     const Enroll = async () => {
-        try{
-            if(title === "") {
-                alert("제목을 입력해주세요.");
-                return;
-            } else if(content === "") {
-                alert("내용을 입력해주세요.");
-                return;
-            }
-            const { data } = await submitEnrollNotice(content, title);
-            confirm("등록하시겠습니까?") ? (
-                data.success ? (alert("등록되었습니다."), Router.push('/notice') ): alert("등록에 실패하였습니다. 이유: " + data.msg)              
+        try {
+            const { data } = await submitEnrollNotice(title, content);
+            confirm('등록하시겠습니까?') ? (
+                data.success ? (alert("등록되었습니다."), Router.push('/notice') ): alert(data.msg)              
             ) : alert("취소되었습니다.")
         } catch(error) {
             console.log(error);
         }
     }
 
-    useEffect(() => {
-        if(sessionStorage.getItem('title') == null) {
-            return;
-        } else if(sessionStorage.getItem('content') == null) {
-            return;
-        } else {
-            setTitle(sessionStorage.getItem('title') || '');
-            setContent(sessionStorage.getItem('content') || '');
-        }       
-    }, [])
-
     return(
-        <S.EnrollNoticeContainer>
-            <Header>공지사항 등록</Header>
-            <S.TitlePlace>
-                <S.TitleText>제목: </S.TitleText>
-                <S.InputTitle placeholder="Enter a Title..." onChange={(e) => setTitle(e.target.value)} value={title} />
-            </S.TitlePlace>
-            <S.ContentPlace>
-                <S.TitleText>내용: </S.TitleText>
-                <S.InputContent placeholder="Enter a Content..." onChange={(e) => setContent(e.target.value)} value={content}/>
-            </S.ContentPlace>
-            <S.BtnPlace>
-                <S.EnrollBtn onClick={() => Enroll()}>등록</S.EnrollBtn>
-                <S.CancleBtn onClick={() => TempSave()}>취소</S.CancleBtn>
+        <S.NoticeContainer>
+            <S.Header>
+                <S.UrlText>공지사항 &gt; 공지사항 등록</S.UrlText>
+                <S.Title>공지사항 등록
+                    <S.Sub_Title>학생들에게 도움이 될만한 공지를 등록합니다.</S.Sub_Title>
+                </S.Title>
+            </S.Header>
+            <S.InputContainer>
+                <S.ItemList>
+                    <S.Item>제목</S.Item>
+                    <S.InputItem>
+                        <S.S_Input placeholder="업체명을 입력해주세요." onChange={(e) => setTitle(e.target.value)} />
+                    </S.InputItem>
+                </S.ItemList>
+                <S.ItemList>
+                    <S.Notice_Item>내용</S.Notice_Item>
+                    <S.InputItem>
+                        <S.M_Input placeholder="내용을 입력해주세요." onChange={(e) => setContent(e.target.value)} />
+                    </S.InputItem>
+                </S.ItemList>
+            </S.InputContainer>
+            <S.BtnPlace>               
+                <S.Cancel_Btn onClick={() => confirm('취소하시겠습니까?') ? Router.push('/notice') : null}>취소</S.Cancel_Btn>
+                <S.Enroll_Btn onClick={() => Enroll()}>등록</S.Enroll_Btn>
             </S.BtnPlace>
-        </S.EnrollNoticeContainer>
+        </S.NoticeContainer>
     )
 }
 

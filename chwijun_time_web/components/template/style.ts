@@ -10,7 +10,7 @@ export const SideBar = styled.div`
     flex-direction: column;
     align-items: center;
 
-    width: 22%;
+    width: 20%;
     height: 100%;
 
     background-color: #5B70B8;
@@ -23,7 +23,7 @@ export const LogoPlace = styled.div`
     height: 90px;
 `
 export const Content = styled.div`
-    width: 78%;
+    width: 80%;
     height: 100%;
 `
 export const SideHead = styled.div`

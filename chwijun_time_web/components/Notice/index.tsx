@@ -1,49 +1,65 @@
 import React, { useEffect, useState } from 'react';
-import Link from "next/link";
 import * as S from './style';
 import NoticeList from './NoticeComponent';
-import { getAllNotice } from 'service/get';
 import Router from 'next/router';
+import { getAllNotice } from 'service/get';
+import Pagenation from 'components/Pagenation';
+import { PenIcon } from 'public/index';
 
-const NoticeComponent: React.FC = () => {
-    const [selected, setSelected] = useState('first');
-    const [noticeList, setNoticeList] = useState([]);
-
-    async function getAllNoticeList() {
-        try {
-            const { data } = await getAllNotice();
-            // 공지사항 불러오기 실패할 경우 변수를 통해 가운데에 텍스트로 실패라고 띄우기
-            setNoticeList(data.list);
-        } catch(error) {
-            console.log(error);
-        }            
-    }
+const MouComponent:React.FC = () => {
+    const [noticeList, setNoticeList] = useState([{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [currentList, setCurrentList] = useState<Object[]>([]);
+    const postPerPage = 9;
+    const indexOfLast = currentPage * postPerPage;
+    const indexOfFirst = indexOfLast - postPerPage; 
 
     useEffect(() => {
-        getAllNoticeList();
+        setCurrentList(noticeList.slice(indexOfFirst, indexOfLast));
+    }, [currentPage])
+    
+    useEffect(() => {
+        async function getAllMouList() {
+            try {
+                const { data } = await getAllNotice();
+                setNoticeList(data.list);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        getAllMouList();
     }, [])
 
     return(
-        <S.NoticePlace> 
-            <S.Header>공지사항</S.Header>
-            <S.Additinal>
-            <S.OptionPlace>
-                <S.Option isSelect={selected}>전체</S.Option>
-                <S.Option >관심</S.Option>
-            </S.OptionPlace>
-            <S.AddNotice>
-                <S.EnrollNotice onClick={() => Router.push('/notice/enrollNotice')}>등록</S.EnrollNotice>
-            </S.AddNotice>
-            </S.Additinal>
-            
-            <S.NoticeContainer>
-                { noticeList && noticeList.map((obj: any, idx) => {
-                    return <NoticeList idx={obj.noticeIdx} title={obj.title} date={obj.createDated} key={idx} /> 
-                })}
-            </S.NoticeContainer>
-
-        </S.NoticePlace>
+        <S.NoticeContainer>
+            <S.Header>
+                <S.UrlText>HOME &gt; 공지사항</S.UrlText>
+                <S.HeaderTitle>공지사항
+                    <S.Sub_HeaderTitle>학생들에게 도움이 되는 소식들을 공지합니다.</S.Sub_HeaderTitle>
+                </S.HeaderTitle>
+            </S.Header>
+            <S.Content>
+                <S.Title>
+                    <S.Number>번호</S.Number>
+                    <S.Subject>제목</S.Subject>
+                    <S.Date>등록일</S.Date>
+                </S.Title>
+                    <S.ListPlace>
+                    {currentList.length > 0 ? currentList.map((obj, idx) => {
+                        return <NoticeList info={obj} key={idx} />
+                    }) : <S.NotExistList>등록된 공지사항이 없습니다.</S.NotExistList>}
+                    </S.ListPlace>
+                    <S.OptionPlace>
+                        <S.EnrollBtn onClick={() => Router.push('/notice/enrollNotice')}><PenIcon />글쓰기</S.EnrollBtn>
+                    </S.OptionPlace>
+                    <S.PageNationPlace>
+                    { noticeList.length > 0 &&                        
+                        <Pagenation totalPosts={noticeList.length} postPerPage={postPerPage} paginate={setCurrentPage} currentPage={currentPage} />                  
+                    }
+                    </S.PageNationPlace>
+                </S.Content>
+        </S.NoticeContainer>
     )
 }
 
-export default NoticeComponent;
+export default MouComponent;

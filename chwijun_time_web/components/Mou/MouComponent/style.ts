@@ -3,9 +3,8 @@ import styled from 'styled-components';
 export const Container = styled.div`
     display: flex;  
     width: 100%;
-    height: 40px;
+    height: 50px;
 
-    margin-top: 10px;
     border-bottom: 1px solid #BDBDBD;
 
     &:hover {
@@ -18,8 +17,6 @@ export const Number = styled.div`
     align-items: center;
     width: 8%;
     height: auto;
-
-    color: #8E8E8E;
 `
 export const Name = styled.div`
     display: flex;
@@ -32,8 +29,7 @@ export const Name = styled.div`
 `
 export const TagPlace = styled(Name)`
     width: 25%;
-    justify-content: start;
-    color: #8E8E8E;
+    color: black;
 `
 export const Tag = styled.div`
     &::after {
@@ -47,5 +43,5 @@ export const Tag = styled.div`
 `
 export const Address = styled(Name)`
     width: 30%;
-    color: #8E8E8E;
+    color: black;
 `
