@@ -16,8 +16,20 @@ export const getAllNotice = async () => {
         return (error.response);
     })
 }
+export const getIdxNotice = async (idx: number) => {
+    return await instance.get(`v1/notice/${idx}`, {
+    }).catch(function(error) {
+        return (error.response);
+    })
+}
 export const getAllMou = async () => {
     return await instance.get('/v1/contracting-company', {
+    }).catch(function(error) {
+        return (error.response);
+    })
+}
+export const getIdxMou = async (idx: number) => {
+    return await instance.get(`v1/contracting-company/${idx}`, {
     }).catch(function(error) {
         return (error.response);
     })
@@ -39,6 +51,24 @@ export const getSearchMou = async (keyword: string) => {
         params: {
             "keyword": keyword
         }
+    }).catch(function(error) {
+        return (error.response);
+    })
+}
+export const getAllConsultUser = async () => {
+    return await instance.get('/v1/admin/consulting-user', {
+    }).catch(function(error) {
+        return (error.response);
+    })
+}
+export const getAllConsultAdmin = async () => {
+    return await instance.get('/v1/consulting-admin', {
+    }).catch(function(error) {
+        return (error.response);
+    })
+}
+export const getUserInfo = async () => {
+    return await instance.get('/v1/userinfo', {
     }).catch(function(error) {
         return (error.response);
     })

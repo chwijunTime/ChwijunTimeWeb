@@ -1,12 +1,13 @@
 import React from 'react';
-import { Template, NoticeComponent } from 'components';
+import { NoticeComponent, Admin_NoticeComponent } from 'components';
 
-const Notice:React.FC = () => {
-    return(
-        <Template>
-            <NoticeComponent />
-        </Template>
-    ) 
+const NoticePage:React.FC = () => {
+    const isAdmin = typeof window !== 'undefined' ? localStorage.getItem('roles'): null;
+
+    return (
+        isAdmin === 'ROLE_User' ? <NoticeComponent /> :
+        isAdmin === 'ROLE_Admin' ? <Admin_NoticeComponent /> : null 
+    )
 }
 
-export default Notice;
+export default NoticePage;

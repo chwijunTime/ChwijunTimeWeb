@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import * as S from './style';
-import { submitSignUpInfo } from 'service/post';
+import axios from 'axios';
+import { BaseUrl } from 'config/config.json';
 
 interface Props {
     handleSignUpModal: (status: boolean) => void;
@@ -13,15 +14,10 @@ const SignUpModal = ({handleSignUpModal}: Props) => {
             isCorrectPs(pw, confirmPw);
         }
     }
-    // 외부 영역 클릭 시 모달 창을 닫기 위한 ref 설정 변수
     const setOpen = useRef<HTMLDivElement>();
-    // 사용자가 입력한 id
     const [id, setId] = useState('');
-    // 사용자가 입력한 ps
     const [pw, setPw] = useState('');
-    // 사용자가 입력한 비밀번호 확인
     const [confirmPw, setConfirmPw] = useState('');
-    // 사용자가 입력한 학번
     const [num, setNum] = useState('');
  
     useEffect(() => {
@@ -38,14 +34,19 @@ const SignUpModal = ({handleSignUpModal}: Props) => {
         }
     }, [setOpen])
 
-    // 회원가입 버튼 클릭 시 비번이 일치하는 지 확인하는 함수
     const isCorrectPs = async (inputPs: string, confirmPs: string) => {
         if(inputPs === "" || confirmPs === "") {
             alert("비밀번호를 입력해주세요!");
         } else if(inputPs !== confirmPs) {
             alert("비밀번호가 일치하지 않습니다.");
         } else {
-            const { data } = await submitSignUpInfo(id, pw, num);
+            const { data } = await axios.post(`${BaseUrl}/v1/join`, {
+                    "memberClassNumber": num,
+                    "memberEmail": id,
+                    "memberPassword": pw
+                }).catch(function(error) {
+                    return(error.response);
+                })
             if(data.success === false) {
                 alert(data.msg);
             } else {
@@ -56,12 +57,11 @@ const SignUpModal = ({handleSignUpModal}: Props) => {
     }
 
     return(
-        <S.ModalContainer>
-            
+        <S.ModalContainer>            
             <S.SignUp ref={setOpen}>
                 <S.Content>
                     <S.Text>회원가입</S.Text>
-                    <S.InputText type="text" placeholder="E-Mail(ID)" onChange={(e) => setId(e.target.value)} />
+                    <S.InputText autoFocus type="text" placeholder="E-Mail(ID)" onChange={(e) => setId(e.target.value)} />
                     <S.Space />
                     <S.InputText type="password" placeholder="Password" onChange={(e) => setPw(e.target.value)} />
                     <S.InputText type="password" placeholder="Confirm Password" onChange={(e) => setConfirmPw(e.target.value)} />

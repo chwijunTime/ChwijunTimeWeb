@@ -1,13 +1,15 @@
 import React from 'react';
-import { Template } from 'components';
-import { MouComponent } from 'components';
+import { MouComponent, Admin_MouComponent } from 'components';
 
-const Mou:React.FC = () => {
-    return(
-        <Template>
-            <MouComponent />
-        </Template>
+const MouPage:React.FC = () => {
+    const isAdmin = typeof window !== 'undefined' ? localStorage.getItem('roles'): null;
+
+    return (
+ 
+        isAdmin === 'ROLE_User' ? <MouComponent /> :
+        isAdmin === 'ROLE_Admin' ? <Admin_MouComponent /> : null 
+
     )
 }
 
-export default Mou;
+export default MouPage;

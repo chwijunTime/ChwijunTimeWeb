@@ -2,11 +2,14 @@ import styled from 'styled-components'
 
 export const MainPlace = styled.div`
     display: flex;
-    width: 100vw;
-    height: 100vh;
+    position: absolute;
+    width: 100%;
+    height: 100%;
 
     background: ${props => (props.signInBlur || props.signUpBlur) ? "rgba(0,0,0,.5)" : ""};
     filter: ${props => (props.signInBlur || props.signUpBlur) ? "brightness(50%)" : ""};
+
+    z-index: 1;
 `;
 
 export const Logo = styled.div`

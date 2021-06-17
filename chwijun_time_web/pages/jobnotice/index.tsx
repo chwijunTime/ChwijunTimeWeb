@@ -1,12 +1,14 @@
 import React from 'react';
-import { Template, JobNoticeComponent } from 'components';
+import { JobNoticeComponent, Admin_JobNoticeComponent } from 'components';
 
-const JobNotice:React.FC = () => {
-    return(
-        <Template>
-            <JobNoticeComponent />
-        </Template>
+const NoticePage:React.FC = () => {
+    const isAdmin = typeof window !== 'undefined' ? localStorage.getItem('roles'): null;
+
+    return (
+        isAdmin === 'ROLE_User' ? <JobNoticeComponent /> :
+        isAdmin === 'ROLE_Admin' ? <Admin_JobNoticeComponent /> : null 
+
     )
 }
 
-export default JobNotice;
+export default NoticePage;

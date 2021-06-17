@@ -29,13 +29,10 @@ class MyDocument extends Document {
         }
     }
     render() {
-        const kakaoKey = "38947ff99656d18ca0671a9e42c7860a";
 
         return (
             <Html>
                 <Head>
-                    <script type="text/javascript"
-                    src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=${kakaoKey}&libraries=services`}/>
                     <style />
                 </Head>
                 <body>

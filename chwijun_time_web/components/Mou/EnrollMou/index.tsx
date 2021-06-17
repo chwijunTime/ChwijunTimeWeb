@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import * as S from './style';
-import Header from 'components/Header';
 import Router from 'next/router';
 import { TagModal, LocationModal } from 'components/Modal';
 import { submitEnrollMou } from 'service/post';
 
 const EnrollMou:React.FC = () => {
     const [name, setName] = useState('');
+    const [business, setBusiness] = useState('');
     const [location, setLocation] = useState('');
     const [address, setAddress] = useState('');
     const [etc, setEtc] = useState('');
@@ -25,10 +25,8 @@ const EnrollMou:React.FC = () => {
 
     const Enroll = async () => {
         try {
-            const { data } = await submitEnrollMou(name, location, address, etc, salary, tag);
-            confirm('등록하시겠습니까?') ? (
+            const { data } = await submitEnrollMou(name, business, location, address, etc, salary, tag);
                 data.success ? (alert("등록되었습니다."), Router.push('/mou') ): alert(data.msg)              
-            ) : alert("취소되었습니다.")
         } catch(error) {
             console.log(error);
         }
@@ -50,6 +48,12 @@ const EnrollMou:React.FC = () => {
                     </S.InputItem>
                 </S.ItemList>
                 <S.ItemList>
+                    <S.Item>사업 분야</S.Item>
+                    <S.InputItem>
+                        <S.S_Input placeholder="사업 분야를 입력해주세요." onChange={(e) => setBusiness(e.target.value)} />
+                    </S.InputItem>
+                </S.ItemList>
+                <S.ItemList>
                     <S.Item>지역</S.Item>
                     <S.InputItem>
                         { location !== '' && <S.Location>{location}</S.Location>}
@@ -66,7 +70,7 @@ const EnrollMou:React.FC = () => {
                 <S.ItemList>
                     <S.Item>평균연봉</S.Item>
                     <S.InputItem>
-                    <S.Salary_Input placeholder="연봉" onChange={(e) => setSalary(e.target.value)} /> &nbsp; 만원
+                    <S.Salary_Input placeholder="연봉" onChange={(e) => setSalary(e.target.value + " 만원")} /> &nbsp; 만원
                     </S.InputItem>
                 </S.ItemList>
                 <S.ItemList>
@@ -85,9 +89,9 @@ const EnrollMou:React.FC = () => {
                     </S.InputItem>
                 </S.ItemList>
             </S.InputContainer>
-            <S.BtnPlace>               
+            <S.BtnPlace>  
                 <S.Cancel_Btn onClick={() => confirm('취소하시겠습니까?') ? Router.push('/mou') : null}>취소</S.Cancel_Btn>
-                <S.Enroll_Btn onClick={() => Enroll()}>등록</S.Enroll_Btn>
+                <S.Enroll_Btn onClick={() => confirm('등록하시겠습니까?') ? Enroll() : null}>등록</S.Enroll_Btn>
             </S.BtnPlace>
             { tagModal && 
               <TagModal handleModal={handleTagModal} currentTag={tag} handleTag={setTag} />

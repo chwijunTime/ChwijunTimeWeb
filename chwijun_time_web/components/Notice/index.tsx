@@ -1,25 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import * as S from './style';
-import NoticeList from './NoticeComponent';
-import Router from 'next/router';
+import NoticeList from './NoticeList';
 import { getAllNotice } from 'service/get';
 import Pagenation from 'components/Pagenation';
-import { PenIcon } from 'public/index';
 
-const MouComponent:React.FC = () => {
-    const [noticeList, setNoticeList] = useState([{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]);
+const NoticeComponent:React.FC = () => {
+    const [noticeList, setNoticeList] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [currentList, setCurrentList] = useState<Object[]>([]);
     const postPerPage = 9;
     const indexOfLast = currentPage * postPerPage;
-    const indexOfFirst = indexOfLast - postPerPage; 
-
-    useEffect(() => {
-        setCurrentList(noticeList.slice(indexOfFirst, indexOfLast));
-    }, [currentPage])
+    const indexOfFirst = indexOfLast - postPerPage;
+    const [currentList, setCurrentList] = useState<Object[]>([]);
     
     useEffect(() => {
-        async function getAllMouList() {
+        async function getAllNoticeList() {
             try {
                 const { data } = await getAllNotice();
                 setNoticeList(data.list);
@@ -27,9 +21,13 @@ const MouComponent:React.FC = () => {
                 console.log(error);
             }
         }
-        getAllMouList();
+        getAllNoticeList();
     }, [])
 
+    useEffect(() => {
+        setCurrentList(noticeList.slice(indexOfFirst, indexOfLast));
+    }, [currentPage, noticeList])
+    
     return(
         <S.NoticeContainer>
             <S.Header>
@@ -45,12 +43,12 @@ const MouComponent:React.FC = () => {
                     <S.Date>등록일</S.Date>
                 </S.Title>
                     <S.ListPlace>
-                    {currentList.length > 0 ? currentList.map((obj, idx) => {
-                        return <NoticeList info={obj} key={idx} />
-                    }) : <S.NotExistList>등록된 공지사항이 없습니다.</S.NotExistList>}
+
+                        {currentList.length > 0 ? currentList.map((obj, idx) => {
+                            return <NoticeList info={obj} idx={currentPage * idx + 1} key={idx} />
+                        }) : <S.NotExistList>등록된 공지사항이 없습니다.</S.NotExistList>}
                     </S.ListPlace>
                     <S.OptionPlace>
-                        <S.EnrollBtn onClick={() => Router.push('/notice/enrollNotice')}><PenIcon />글쓰기</S.EnrollBtn>
                     </S.OptionPlace>
                     <S.PageNationPlace>
                     { noticeList.length > 0 &&                        
@@ -62,4 +60,4 @@ const MouComponent:React.FC = () => {
     )
 }
 
-export default MouComponent;
+export default NoticeComponent;

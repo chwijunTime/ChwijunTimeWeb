@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useRef, Fragment } from 'react';
 import * as S from './style';
-import { submitSignInInfo } from "service/post";
 import { setAccessToken, setRefreshToken } from 'service/token';
-import Router from 'next/router';
 import axios from 'axios';
 import { BaseUrl } from 'config/config.json';
 
@@ -28,20 +26,24 @@ const SignInModal:React.FC<Props> = ({handleSignInModal, handleSignUpModal}: Pro
             return;
         }
 
-        const { data } = await axios.post(`${BaseUrl}/v1/login`, {
+        await axios.post(`${BaseUrl}/v1/login`, {
             "memberEmail": id,
             "memberPassword": pw
-        }).catch(function(error) {
+        })
+        .then(res => {
+            const { data } = res;
+            if(data.success === true) {
+                localStorage.setItem('roles', data.data.roles);
+                setAccessToken(data.data.accessToken);
+                setRefreshToken(data.data.refreshToken);
+                window.location.replace('/notice');
+            } else if(data.success === false) {
+                alert(data.msg);
+            }
+        })
+        .catch(function(error) {
             return(error.response);
         })
-
-        if(data.success === true) {
-            setAccessToken(data.data.accessToken);
-            setRefreshToken(data.data.refreshToken);
-            Router.push('/notice');
-        } else if(data.success === false) {
-            alert(data.msg);
-        }
     }
 
     useEffect(() => {
@@ -63,7 +65,7 @@ const SignInModal:React.FC<Props> = ({handleSignInModal, handleSignUpModal}: Pro
                 <S.SignIn ref={setOpen} >
                     <S.Content>
                         <S.Text>로그인</S.Text>
-                        <S.InputText type="text" placeholder="E-Mail(ID)" onChange={(e) => setId(e.target.value)} />
+                        <S.InputText autoFocus type="text" placeholder="E-Mail(ID)" onChange={(e) => setId(e.target.value)} />
                         <S.InputText type="password" placeholder="Password" onChange={(e) => setPw(e.target.value)}
                         onKeyPress={handleKeyPress}  />
                         <S.SaveIdPlace>

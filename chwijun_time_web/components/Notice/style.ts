@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import image from 'next/image';
 
 export const NoticeContainer = styled.div`
     display: flex;
@@ -39,12 +38,12 @@ export const Content = styled.div`
     flex-direction: column;
     align-items: center;
     width: 95%;
-    min-height: 600px; 
+    height: 600px; 
 
+    margin-top: 20px;
     border: none;
     border-top: 2px solid #5B70B8;
     background-color: white;
-    margin-top: 20px;
 `
 export const Title = styled.div`
     display: flex;
@@ -68,8 +67,6 @@ export const Subject = styled(Number)`
 export const Date = styled(Number)`
     width: 30%;
 `
-
-
 export const ListPlace = styled.div`
     display: flex;
     flex-direction: column;
@@ -88,7 +85,7 @@ export const OptionPlace = styled.div`
   justify-content: flex-end;
   width: 100%;
   height: 30px;
-
+  
   margin-top: 20px;
 `
 export const EnrollBtn = styled.button`

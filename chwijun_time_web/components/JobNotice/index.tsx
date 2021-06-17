@@ -1,66 +1,73 @@
-import React, {useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as S from './style';
-import JobComponent from './JobComponent';
-import { Pagenation } from 'components';
+import JobNoticeList from './JobNoticeList';
 import { getAllJobNotice } from 'service/get';
-import Router from 'next/router';
-import { PenIcon } from 'public/index';
+import Pagenation from 'components/Pagenation';
 
 const JobNoticeComponent:React.FC = () => {
-    const [posts, setPosts] = useState([])
+    const [jobNoticeList, setJobNoticeList] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [currentList, setCurrentList] = useState<Object[]>([]);
     const postPerPage = 9;
     const indexOfLast = currentPage * postPerPage;
     const indexOfFirst = indexOfLast - postPerPage; 
+    const [input, setInput] = useState('');
 
     useEffect(() => {
-        setCurrentList(posts.slice(indexOfFirst, indexOfLast));
-    }, [currentPage])
-
+        setCurrentList(jobNoticeList.slice(indexOfFirst, indexOfLast));
+    }, [currentPage, jobNoticeList])
+    
     useEffect(() => {
         async function getAllJobNoticeList() {
             try {
                 const { data } = await getAllJobNotice();
-                setPosts(data.list);
-            } catch(error) {
+                setJobNoticeList(data.list);
+            } catch (error) {
                 console.log(error);
             }
         }
         getAllJobNoticeList();
     }, [])
+    
+    const onSearch = () => {
+        
+    }
 
-    return(
+    return (
         <S.JobNoticeContainer>
-            <S.Header>취업 공고</S.Header>
-            
-            <S.Container>
-                <S.SearchPlace>
-                    <S.SearchBar placeholder="업체명으로 검색..." />                   
-                </S.SearchPlace>
+            <S.Header>
+                <S.UrlText>HOME &gt; 취업 공고</S.UrlText>
+                <S.HeaderPlace>
+                    <S.HeaderTitle>취업 공고
+                        <S.Sub_HeaderTitle>학교에 들어온 취업 공고 리스트입니다.</S.Sub_HeaderTitle>
+                    </S.HeaderTitle>
+                    <S.SearchPlace>
+                        <S.SearchBar placeholder="검색..." onChange={(e) => setInput(e.target.value)} />
+                        <S.SearchBtn>검색</S.SearchBtn>
+                    </S.SearchPlace>
+                </S.HeaderPlace>
+            </S.Header>          
+            <S.Content>
                 <S.Title>
                     <S.Number>번호</S.Number>
                     <S.Name>업체명</S.Name>
-                    <S.Field>채용 분야</S.Field>
-                    <S.Deadline>공고일 / 마감일</S.Deadline>
+                    <S.Field>채용분야</S.Field>
+                    <S.Location>지역</S.Location>
+                    <S.Tag>태그</S.Tag>
                 </S.Title>
-                <S.Content>
-                    <S.ListPlace>
-                    {currentList.length > 0 ? currentList.map((obj: any, idx) => {
-                        return <JobComponent name={obj.name} field={obj.recruitmentField} day={obj.deadLine} key={idx} />
+                <S.ListPlace>
+                    {currentList.length > 0 ? currentList.map((obj, idx) => {
+                        return <JobNoticeList info={obj} key={idx} idx={ currentPage * idx + 1} />
                     }) : <S.NotExistList>등록된 취업공고가 없습니다.</S.NotExistList>}
-                    </S.ListPlace>
-                    <S.OptionPlace>
-                        <S.EnrollBtn onClick={() => Router.push('/jobnotice/enrollJobNotice')}><PenIcon />글쓰기</S.EnrollBtn>
-                    </S.OptionPlace>
-                    <S.PageNationPlace>
-                    { posts.length > 0 &&                       
-                        <Pagenation totalPosts={posts.length} postPerPage={postPerPage} paginate={setCurrentPage} currentPage={currentPage} />                  
+                </S.ListPlace>
+                <S.OptionPlace />
+                <S.PageNationPlace>
+                    { jobNoticeList.length > 0 &&                        
+                        <Pagenation totalPosts={jobNoticeList.length} postPerPage={postPerPage} paginate={setCurrentPage} currentPage={currentPage} />                  
                     }
-                    </S.PageNationPlace>
-                </S.Content>
-            </S.Container>
-        </S.JobNoticeContainer>  
+                </S.PageNationPlace>
+            </S.Content>
+        </S.JobNoticeContainer>
     )
 }
 

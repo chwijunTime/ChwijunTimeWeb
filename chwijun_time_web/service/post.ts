@@ -9,61 +9,55 @@ const instance = axios.create({
     }
 });
 
-export const submitSignInInfo = async (id: string, pw: string) => {
-    return await instance.post(`/v1/login`, {
-        "memberEmail": id,
-        "memberPassword": pw
-    }).catch(function(error) {
-        return(error.response);
-    })
-}
-
-export const submitSignUpInfo = async (id: string, pw: string, num: string) => {
-    return await instance.post(`/v1/join`, {
-        "memberClassNumber": num,
-        "memberEmail": id,
-        "memberPassword": pw
-    }).catch(function(error) {
-        return(error.response);
-    })
-}
-
-export const submitEnrollNotice = async (content: string, title: string) => {
-    return await instance.post(`/v1/notice`, {
+export const submitEnrollNotice = async (title: string, content: string) => {
+    return await instance.post(`/v1/admin/notice`, {
         "content": content,
         "title": title
     }).catch(function(error) {
-        console.log(error);
         return(error.response);
     })
 }
-export const submitEnrollJobNotice = async (name: string, field: string, explain: string, sweetener: string,
-    location: string, deadline: string, other: string, tag: string[]) => {
-        return await instance.post(`/v1/employment-announcement`, {
+export const submitEnrollJobNotice = async (name: string, field: string, explain: string, condition: string,
+    location: string, deadline: string, etc: string, tag: string[]) => {
+        return await instance.post(`/v1/admin/employment-announcement`, {
             "deadLine": deadline,
             "employmentAnnouncementAddress": location,
-            "employmentAnnouncementEtc": other,
+            "employmentAnnouncementEtc": etc,
             "employmentAnnouncementExplanation": explain,
             "employmentAnnouncementName": name,
-            "preferentialConditions": sweetener,
+            "preferentialConditions": condition,
             "recruitmentField": field,
             "tagName": tag
         }).catch(function(error) {
-            console.log(error);
             return(error.response);
         })
 }
-export const submitEnrollMou = async (name: string, location: string, address: string, etc: string, salary: string,
+export const submitEnrollMou = async (name: string, business: string, area: string, address: string, etc: string, salary: string,
     tag: any[]) => {
-        return await instance.post(`/v1/contracting-company`, {
-            "contractingBusinessAreas": location,
+        return await instance.post(`/v1/admin/contracting-company`, {
+            "contractingBusinessAreas": business,
+            "contractingArea": area,
             "contractingCompanyAboutUs": etc,
             "contractingCompanyAddress": address,
             "contractingCompanyAverageAnnualSalary": salary,
             "contractingCompanyName": name,
             "tagName": tag
         }).catch(function(error) {
-            console.log(error);
             return(error.response);
+    })
+}
+export const submitEnrollConsult = async (date: string) => {
+    return await instance.post(`/v1/admin/consulting-admin`, {
+        "applicationDate": date
+    }).catch(function(error) {
+        return(error.response);
+    })
+}
+export const submitConsult = async (number: string, name: string) => {
+    return await instance.post(`/v1/consulting-user`, {
+        "classNumber": number,
+        "name": name
+    }).catch(function(error) {
+        return(error.response);
     })
 }

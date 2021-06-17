@@ -1,11 +1,12 @@
 export const setAccessToken = (token: string) => {
     localStorage.setItem('accessToken', token);
+    console.log("setToken : ", token);
 }
 export const setRefreshToken = (refreshToken: string) => {
     localStorage.setItem('refreshToken', refreshToken);
 }
 export const removeToken = () => {
-    localStorage.removeItem('accessToken');
+    localStorage.clear();
 }
 export const removeRefreshToken = () => {
     localStorage.removeItem('refreshToken');

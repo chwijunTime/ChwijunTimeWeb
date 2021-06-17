@@ -10,9 +10,7 @@ const EnrollNotice:React.FC = () => {
     const Enroll = async () => {
         try {
             const { data } = await submitEnrollNotice(title, content);
-            confirm('등록하시겠습니까?') ? (
-                data.success ? (alert("등록되었습니다."), Router.push('/notice') ): alert(data.msg)              
-            ) : alert("취소되었습니다.")
+            data.success ? (alert("등록되었습니다."), Router.push('/notice') ): alert(data.msg)              
         } catch(error) {
             console.log(error);
         }
@@ -42,7 +40,7 @@ const EnrollNotice:React.FC = () => {
             </S.InputContainer>
             <S.BtnPlace>               
                 <S.Cancel_Btn onClick={() => confirm('취소하시겠습니까?') ? Router.push('/notice') : null}>취소</S.Cancel_Btn>
-                <S.Enroll_Btn onClick={() => Enroll()}>등록</S.Enroll_Btn>
+                <S.Enroll_Btn onClick={() => confirm('등록하시겠습니까?') ? Enroll() : null}>등록</S.Enroll_Btn>
             </S.BtnPlace>
         </S.NoticeContainer>
     )
