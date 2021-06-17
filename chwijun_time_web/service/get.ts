@@ -40,6 +40,12 @@ export const getAllJobNotice = async () => {
         return (error.response);
     })
 }
+export const getIdxJobNotice = async (idx: number) => {
+    return await instance.get(`/v1/employment-announcement/${idx}`, {
+    }).catch(function(error) {
+        return (error.reponse);
+    })
+}
 export const getAllTag = async () => {
     return await instance.get('/v1/tag', {
     }).catch(function(error) {

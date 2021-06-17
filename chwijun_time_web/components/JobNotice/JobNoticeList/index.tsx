@@ -1,5 +1,6 @@
 import React from 'react';
 import * as S from './style';
+import Router from 'next/router';
 
 interface Props {
     info: any,
@@ -12,7 +13,7 @@ const JobNoticeList:React.FC<Props> = ({info, idx}) => {
     return(
         <S.Container>
             <S.Number>{idx}</S.Number>
-            <S.Name>{info.employmentAnnouncementName}</S.Name>
+            <S.Name onClick={() => Router.push(`jobnotice/${info.employmentAnnouncementIdx}`)}>{info.employmentAnnouncementName}</S.Name>
             <S.Field>{info.recruitmentField}</S.Field>
             <S.Location>{info.employmentAnnouncementAddress}</S.Location>
             <S.TagPlace>

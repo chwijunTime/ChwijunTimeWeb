@@ -1,10 +1,10 @@
 import React from 'react';
 import { NoticeElement } from 'components';
 
-const EnrollNoticePage:React.FC = () => {
+const NoticeElementPage:React.FC = () => {
     return(
             <NoticeElement />
     )
 }
 
-export default EnrollNoticePage;
+export default NoticeElementPage;

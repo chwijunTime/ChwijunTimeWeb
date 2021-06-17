@@ -15,6 +15,7 @@ export { default as MouElement } from './Mou/MouElement';
 export { default as Admin_JobNoticeComponent } from './JobNotice/Admin_JobNotice';
 export { default as JobNoticeComponent } from './JobNotice';
 export { default as EnrollJobNotice } from './JobNotice/EnrollJobNotice';
+export { default as JobNoticeElement } from './JobNotice/JobNoticeElement';
 
 export { default as Consult } from './Consult';
 export { default as EnrollConsult } from './Consult/EnrollConsult';

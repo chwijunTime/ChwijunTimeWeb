@@ -63,7 +63,7 @@ const JobNoticeComponent:React.FC = () => {
                     }) : <S.NotExistList>등록된 취업공고가 없습니다.</S.NotExistList>}
                 </S.ListPlace>
                 <S.OptionPlace>
-                    <S.EnrollBtn onClick={() => Router.push('/jobNotice/enrolljobnotice')}><PenIcon />등록</S.EnrollBtn>
+                    <S.EnrollBtn onClick={() => Router.push('/jobnotice/enrolljobnotice')}><PenIcon />등록</S.EnrollBtn>
                 </S.OptionPlace>
                 <S.PageNationPlace>
                     { jobNoticeList.length > 0 &&                        

@@ -2,7 +2,7 @@ import React from 'react';
 import { EnrollJobNotice } from 'components';
 
 const EnrollNoticePage:React.FC = () => {
-    return(
+    return (
         <EnrollJobNotice />
     )
 }
