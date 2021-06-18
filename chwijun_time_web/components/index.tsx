@@ -16,9 +16,12 @@ export { default as Admin_JobNoticeComponent } from './JobNotice/Admin_JobNotice
 export { default as JobNoticeComponent } from './JobNotice';
 export { default as EnrollJobNotice } from './JobNotice/EnrollJobNotice';
 export { default as JobNoticeElement } from './JobNotice/JobNoticeElement';
+export { default as ApplyJobNotice } from './JobNotice/ApplyJobNotice';
 
-export { default as Consult } from './Consult';
+export { default as ConsultComponent } from './Consult';
 export { default as EnrollConsult } from './Consult/EnrollConsult';
+export { default as Admin_ConsultComponent } from './Consult/Admin_Consult';
+export { default as ApplyRefer } from './Consult/ApplyRefer';
 
 export { default as Employment } from './Employment';
 export { default as Admin_Employment } from './Employment/Admin_Employment';

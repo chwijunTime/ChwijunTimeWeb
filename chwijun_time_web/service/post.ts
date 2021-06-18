@@ -53,8 +53,8 @@ export const submitEnrollConsult = async (date: string) => {
         return(error.response);
     })
 }
-export const submitConsult = async (number: string, name: string) => {
-    return await instance.post(`/v1/consulting-user`, {
+export const submitApplyConsult = async (number: string, name: string, consultIdx) => {
+    return await instance.post(`/v1/consulting-user?idx=${consultIdx}`, {
         "classNumber": number,
         "name": name
     }).catch(function(error) {

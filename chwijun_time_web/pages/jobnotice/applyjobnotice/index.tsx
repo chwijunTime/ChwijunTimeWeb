@@ -1,9 +1,9 @@
 import React from 'react';
-import { EnrollNotice } from 'components';
+import { ApplyJobNotice } from 'components';
 
 const EnrollNoticePage:React.FC = () => {
-    return(
-            <EnrollNotice />
+    return (
+        <ApplyJobNotice />
     )
 }
 

@@ -46,6 +46,7 @@ const JobNoticeComponent:React.FC = () => {
                     <S.SearchPlace>
                         <S.SearchBar placeholder="검색..." onChange={(e) => setInput(e.target.value)} />
                         <S.SearchBtn>검색</S.SearchBtn>
+                        <S.ApplyBtn onClick={() => Router.push('/jobnotice/applyjobnotice')}>공고신청 조회</S.ApplyBtn>
                     </S.SearchPlace>
                 </S.HeaderPlace>
             </S.Header>          
@@ -59,7 +60,7 @@ const JobNoticeComponent:React.FC = () => {
                 </S.Title>
                 <S.ListPlace>
                     {currentList.length > 0 ? currentList.map((obj, idx) => {
-                        return <JobNoticeList info={obj} idx={ currentPage * idx + 1} key={idx} />
+                        return <JobNoticeList info={obj} idx={ (currentPage-1) * 9 + idx + 1} key={idx} />
                     }) : <S.NotExistList>등록된 취업공고가 없습니다.</S.NotExistList>}
                 </S.ListPlace>
                 <S.OptionPlace>

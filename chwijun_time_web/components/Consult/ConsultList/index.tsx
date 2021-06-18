@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import * as S from './style';
-import { submitConsult } from 'service/post';
 import { deleteConsult } from 'service/delete';
 import { ApplyModal } from 'components/Modal';
 import moment from 'moment';
@@ -25,22 +24,25 @@ const JobNoticeList:React.FC<Props> = ({info, idx}) => {
     }
 
     return(
-        <S.Container>
-            <S.Number>{idx}</S.Number>
-            <S.Status status={info.consultingStatus === "No_Application"}>{status}</S.Status>
-            <S.Date>{date}</S.Date>
-            { localStorage.getItem('roles') === 'ROLE_User' && (
-                <S.Apply>
-                    <S.Apply_Btn disabled={info.consultingStatus === "Apply"} 
-                    status={info.consultingStatus === "No_Application"} onClick={() => Click_Apply()}>신청</S.Apply_Btn>
-                </S.Apply>
-            )}
-            { localStorage.getItem('roles') === 'ROLE_Admin' && (
-                <S.Apply>
-                    <MdDelete onClick={() => confirm("삭제하시겠습니까?") ? Click_Delete() : null}>삭제</MdDelete>
-                </S.Apply>
-            )}
-        </S.Container>
+        <>
+            <S.Container>
+                <S.Number>{idx}</S.Number>
+                <S.Status status={info.consultingStatus === "No_Application"}>{status}</S.Status>
+                <S.Date>{date}</S.Date>
+                { localStorage.getItem('roles') === 'ROLE_User' && (
+                    <S.Apply>
+                        <S.Apply_Btn disabled={info.consultingStatus === "Apply"} 
+                        status={info.consultingStatus === "No_Application"} onClick={() => Click_Apply()}>신청</S.Apply_Btn>
+                    </S.Apply>
+                )}
+                { localStorage.getItem('roles') === 'ROLE_Admin' && (
+                    <S.Apply>
+                        <MdDelete onClick={() => confirm("삭제하시겠습니까?") ? Click_Delete() : null}>삭제</MdDelete>
+                    </S.Apply>
+                )}
+            </S.Container>
+            { modal && <ApplyModal handleModal={handleModal} consultIdx={info.consultingIdx} /> }
+        </>
     )
 }
 

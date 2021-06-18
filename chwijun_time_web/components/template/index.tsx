@@ -46,7 +46,7 @@ const Template:React.FC = () => {
     });
     // 나중에 배포하면 오류뜰거임. 그때 저 배열안에 값 바꿔주세요.
     useEffect(() => {
-        setPara('/'+window.location.href.split('/')[3])  
+        setPara('/'+window.location.href.split('/')[3])
     }, [])
 
     return(

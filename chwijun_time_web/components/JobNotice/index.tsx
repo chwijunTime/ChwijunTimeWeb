@@ -57,10 +57,10 @@ const JobNoticeComponent:React.FC = () => {
                 </S.Title>
                 <S.ListPlace>
                     {currentList.length > 0 ? currentList.map((obj, idx) => {
-                        return <JobNoticeList info={obj} key={idx} idx={ currentPage * idx + 1} />
+                        return <JobNoticeList info={obj} key={idx} idx={ (currentPage-1) * 9 + idx + 1} />
                     }) : <S.NotExistList>등록된 취업공고가 없습니다.</S.NotExistList>}
                 </S.ListPlace>
-                <S.OptionPlace />
+                <S.OptionPlace /> 
                 <S.PageNationPlace>
                     { jobNoticeList.length > 0 &&                        
                         <Pagenation totalPosts={jobNoticeList.length} postPerPage={postPerPage} paginate={setCurrentPage} currentPage={currentPage} />                  

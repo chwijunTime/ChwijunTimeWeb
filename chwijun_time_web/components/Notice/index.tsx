@@ -45,7 +45,7 @@ const NoticeComponent:React.FC = () => {
                     <S.ListPlace>
 
                         {currentList.length > 0 ? currentList.map((obj, idx) => {
-                            return <NoticeList info={obj} idx={currentPage * idx + 1} key={idx} />
+                            return <NoticeList info={obj} idx={(currentPage-1) * 9 + idx + 1} key={idx} />
                         }) : <S.NotExistList>등록된 공지사항이 없습니다.</S.NotExistList>}
                     </S.ListPlace>
                     <S.OptionPlace>

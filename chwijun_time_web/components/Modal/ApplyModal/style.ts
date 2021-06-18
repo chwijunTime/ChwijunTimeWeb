@@ -19,9 +19,51 @@ export const ApplyModal = styled.div`
     flex-direction: column;
     align-items: center;
     width: 500px;
-    height: 400px;
+    height: 300px;
 
     border-radius: 15px;
 
     background-color: #ffffff;
+`
+export const Title = styled.div`
+    display: flex;
+    align-items: center;
+    width: 90%;
+    height: 50px;
+
+    font-size: 17px;
+`
+export const InputText = styled.input`
+    width: 90%;
+    height: 40px;
+
+    font-size: 15px;
+    margin-top: 15px;
+
+    border: 1px solid;
+    border-radius: 5px;
+    outline: none;
+
+    border-color: #ded9d9;
+    background-color: #EFEFEF;
+`
+export const BtnPlace = styled.div`
+    display: flex;
+    justify-content: space-between;
+    width: 40%;
+
+    margin-top: 80px;
+`
+export const ConfirmBtn = styled.button`
+    width: 80px;
+    height: 35px;
+
+    font-size: 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #5B70B8;
+    color: white;
+`
+export const CancleBtn = styled(ConfirmBtn)`
+    background-color: #a1a1a1;
 `

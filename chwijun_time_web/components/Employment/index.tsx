@@ -57,7 +57,7 @@ const EmploymentComponent:React.FC = () => {
                 </S.Title>
                 <S.ListPlace>
                     {currentList.length > 0 ? currentList.map((obj, idx) => {
-                        return <EmploymentList info={obj} key={idx} idx={ currentPage * idx + 1} />
+                        return <EmploymentList info={obj} key={idx} idx={ (currentPage-1) * 9 + idx + 1} />
                     }) : <S.NotExistList>등록된 취업 확정 현황이 없습니다.</S.NotExistList>}
                 </S.ListPlace>
                 <S.OptionPlace />

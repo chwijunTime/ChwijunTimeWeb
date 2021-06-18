@@ -49,7 +49,7 @@ const ConsultComponent:React.FC = () => {
                 </S.Title>
                 <S.ListPlace>
                     {currentList.length > 0 ? currentList.map((obj, idx) => {
-                        return <ConsultList info={obj} idx={currentPage * idx + 1} key={idx} />
+                        return <ConsultList info={obj} idx={(currentPage-1) * 9 + idx + 1} key={idx} />
                     }) : <S.NotExistList>등록된 상담신청이 없습니다.</S.NotExistList>}
                 </S.ListPlace>
                 <S.OptionPlace>
