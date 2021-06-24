@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import * as S from './style';
 import ApplyList from './../ApplyList';
-import { getAllConsultUser } from 'service/get';
+import { getAllApplyJobNotice } from 'service/get';
 import Pagenation from 'components/Pagenation';
 
-const ConsultComponent:React.FC = () => {
+const ApplyJobNotice:React.FC = () => {
     const [applyList, setApplyList] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [currentList, setCurrentList] = useState<Object[]>([]);
@@ -19,7 +19,7 @@ const ConsultComponent:React.FC = () => {
     useEffect(() => {
         async function getAllApplyList() {
             try {
-                const { data } = await getAllConsultUser();
+                const { data } = await getAllApplyJobNotice('All');
                 setApplyList(data.list);
             } catch (error) {
                 console.log(error);
@@ -29,12 +29,12 @@ const ConsultComponent:React.FC = () => {
     }, [])
 
     return (
-        <S.ConsultContainer>
+        <S.ApplyContainer>
             <S.Header>
-                <S.UrlText>HOME &gt; 상담 신청 &gt; 상담 신청 조회</S.UrlText>
+                <S.UrlText>HOME &gt; 취업 공고 &gt; 취업공고 신청조회</S.UrlText>
                 <S.HeaderPlace>
-                    <S.HeaderTitle>상담 신청
-                        <S.Sub_HeaderTitle>취업에 고민이 있는 학생들의 신청 리스트입니다.</S.Sub_HeaderTitle>
+                    <S.HeaderTitle>취업공고 신청
+                        <S.Sub_HeaderTitle>취업공고 신청을 한 학생들 리스트입니다.</S.Sub_HeaderTitle>
                     </S.HeaderTitle>
                 </S.HeaderPlace>
             </S.Header>
@@ -48,7 +48,7 @@ const ConsultComponent:React.FC = () => {
                 <S.ListPlace>
                     {currentList.length > 0 ? currentList.map((obj, idx) => {
                         return <ApplyList info={obj} idx={(currentPage-1) * 9 + idx + 1} key={idx} />
-                    }) : <S.NotExistList>신청된 상담 목록이 없습니다.</S.NotExistList>}
+                    }) : <S.NotExistList>신청된 취업공고 목록이 없습니다.</S.NotExistList>}
                 </S.ListPlace>
                 <S.OptionPlace />
                 <S.PageNationPlace>
@@ -57,8 +57,8 @@ const ConsultComponent:React.FC = () => {
                     }
                 </S.PageNationPlace>
             </S.Content>
-        </S.ConsultContainer>
+        </S.ApplyContainer>
     )
 }
 
-export default ConsultComponent;
+export default ApplyJobNotice;

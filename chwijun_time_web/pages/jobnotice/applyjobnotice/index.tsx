@@ -1,10 +1,13 @@
 import React from 'react';
-import { ApplyJobNotice } from 'components';
+import { ApplyJobNotice, Template } from 'components';
 
-const EnrollNoticePage:React.FC = () => {
+const ApplyJobNoticePage:React.FC = () => {
     return (
-        <ApplyJobNotice />
+        <>
+            <Template />
+            <ApplyJobNotice />
+        </>
     )
 }
 
-export default EnrollNoticePage;
+export default ApplyJobNoticePage;

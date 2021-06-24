@@ -1,9 +1,13 @@
 import React from 'react';
-import { ApplyRefer } from 'components';
+import { ApplyRefer, Template } from 'components';
 
 const ApplyReferPage = () => {
     return(
-        <ApplyRefer />
+        <>       
+            <Template />
+            <ApplyRefer />
+        </>
+        
     )
 }
 

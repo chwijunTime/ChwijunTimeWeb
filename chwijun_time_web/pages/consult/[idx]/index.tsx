@@ -1,9 +1,12 @@
 import React from 'react';
-import { EnrollConsult } from 'components';
+import { EnrollConsult, Template } from 'components';
 
 const EnrollConsultPage = () => {
     return(
-        <EnrollConsult />
+        <>
+            <Template />
+            <EnrollConsult />
+        </>
     )
 }
 

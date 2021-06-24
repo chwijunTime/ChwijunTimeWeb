@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import * as S from './style';
 import { Logo } from 'public/index';
 import { SignInModal, SignUpModal } from 'components/Modal';

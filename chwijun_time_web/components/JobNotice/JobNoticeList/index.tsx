@@ -1,6 +1,8 @@
 import React from 'react';
 import * as S from './style';
 import Router from 'next/router';
+import { deleteJobNotice } from 'service/delete'; 
+import { MdDelete } from "react-icons/md";
 
 interface Props {
     info: any,
@@ -9,6 +11,15 @@ interface Props {
 
 const JobNoticeList:React.FC<Props> = ({info, idx}) => {
     const MAX_LENGTH = 2;
+
+    const Click_Delete = async () => {
+        try {
+            const { data } = await deleteJobNotice(info.employmentAnnouncementIdx);
+            data.success ? (alert('삭제되었습니다.'), window.location.replace('/jobnotice')) : null;
+        } catch(error) {
+            console.log(error);
+        }
+    }
 
     return(
         <S.Container>
@@ -24,7 +35,12 @@ const JobNoticeList:React.FC<Props> = ({info, idx}) => {
                 { info.employmentAnnouncementTags && info.employmentAnnouncementTags.length > MAX_LENGTH && 
                     <>외 {info.employmentAnnouncementTags.length - MAX_LENGTH}개</>
                 }
-            </S.TagPlace>                      
+            </S.TagPlace>
+            { localStorage.getItem('roles') === 'ROLE_Admin' && (
+                <S.Delete>
+                    <MdDelete onClick={() => confirm("삭제하시겠습니까?") ? Click_Delete() : null} />
+                </S.Delete>
+            )}                      
         </S.Container>
     )
 }

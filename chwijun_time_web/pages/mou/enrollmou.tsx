@@ -1,9 +1,12 @@
 import React from 'react';
-import { EnrollMou } from 'components';
+import { EnrollMou, Template } from 'components';
 
 const EnrollMouPage:React.FC = () => {
     return(
+        <>
+            <Template />
             <EnrollMou />
+        </>
     )
 }
 

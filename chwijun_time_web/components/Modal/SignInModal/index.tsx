@@ -33,6 +33,7 @@ const SignInModal:React.FC<Props> = ({handleSignInModal, handleSignUpModal}: Pro
         .then(res => {
             const { data } = res;
             if(data.success === true) {
+                localStorage.setItem('email', data.data.memberEmail);
                 localStorage.setItem('roles', data.data.roles);
                 setAccessToken(data.data.accessToken);
                 setRefreshToken(data.data.refreshToken);

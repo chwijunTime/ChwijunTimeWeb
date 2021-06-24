@@ -1,5 +1,4 @@
 import React, { useState, useEffect, Fragment } from 'react';
-import {useIsomorphicLayoutEffect} from 'react-use';
 import * as S from './style';
 import { CgOrganisation, CgMenu } from "react-icons/cg";
 import { BsBookHalf, BsInboxesFill } from "react-icons/bs";
@@ -10,11 +9,11 @@ import { BiChalkboard, BiFile } from "react-icons/bi";
 import Router from 'next/router';
 import { removeToken } from 'service/token';
 import { getUserInfo } from 'service/get';
+import { Logout } from 'service/post';
 
 const Template:React.FC = () => {
     const [open, setOpen] = useState(true);
-    const [height, setHeight] = useState(0);
-    const [email, setEmail] = useState('');
+    const email = useState(typeof window !== 'undefined' ? localStorage.getItem('email') : '');
     const color = '#b4c2ed';
     const [para, setPara] = useState('');
     const menuList = [
@@ -28,29 +27,20 @@ const Template:React.FC = () => {
         {name: "꿀팁 저장소", path: "/honeystorage", icon: <BsInboxesFill color={para === '/honeystorage' ? '#f0f2f7' : color} />}
     ]
 
-    const F_Logout = () => {
-        confirm('로그아웃 하시겠습니까?') ? (removeToken(), window.location.replace('/')) : null;       
+    const F_Logout = async () => {
+        confirm('로그아웃 하시겠습니까?') ? (
+            await Logout(),
+            removeToken(), window.location.replace('/')
+            ) : null;
     }
     
-    useEffect(() => {
-        async function getUserEmail() {
-            try {
-                const { data } = await getUserInfo();
-                data.success ? setEmail(data.data.memberEmail) : alert(data.msg);
-            } catch (error) {
-                console.log(error);
-            }           
-        }
-        getUserEmail();
-        setHeight(screen.availHeight);
-    });
     // 나중에 배포하면 오류뜰거임. 그때 저 배열안에 값 바꿔주세요.
     useEffect(() => {
-        setPara('/'+window.location.href.split('/')[3])
+        setPara('/'+window.location.href.split('/')[3]);
     }, [])
 
     return(
-        <S.SideBar current={open} height={height}>
+        <S.SideBar current={open}>
             { open ? (
                 <Fragment>
                     <S.LogoPlace>취준타임<CgMenu onClick={() => setOpen(!open)} style={{width: '30px', height: '30px'}} /></S.LogoPlace>

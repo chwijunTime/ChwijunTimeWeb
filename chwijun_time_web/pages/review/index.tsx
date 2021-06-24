@@ -1,9 +1,14 @@
 import React from 'react';
+import { Template, Review } from 'components';
 
-const Review:React.FC = () => {
-    return(
-        <></>           
+const ReviewPage:React.FC = () => {
+    
+    return (
+        <>
+            <Template />
+            <Review />        
+        </>
     )
 }
 
-export default Review;
+export default ReviewPage;

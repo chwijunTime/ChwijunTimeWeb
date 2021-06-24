@@ -1,9 +1,12 @@
 import React from 'react';
-import { MouElement } from 'components';
+import { MouElement, Template } from 'components';
 
 const EnrollMouPage = () => {
     return(
-        <MouElement />
+        <>
+            <Template />
+            <MouElement />
+        </>
     )
 }
 

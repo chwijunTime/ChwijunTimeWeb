@@ -1,14 +1,52 @@
 import { BaseUrl } from 'config/config.json';
-import { getAccessToken } from 'service/token';
+import { getAccessToken, getRefreshToken, setAccessToken } from 'service/token';
 import axios from 'axios';
+
 
 const instance = axios.create({
     baseURL: BaseUrl,
     headers: {
-        'Authorization': `Bearer ${getAccessToken()}`
-    }
+        'Authorization': `Bearer ${getAccessToken()}`,
+    },
+    timeout: 1000
 });
 
+instance.interceptors.response.use(
+    (response) => {
+        console.log("success: ", response);
+        return response;
+    }, async (error) => {
+        const {
+            config,
+            response: { status },
+        } = error;
+        if(status === 401) {
+            const originalRequest = config;
+            const { data } = await axios.post(`${BaseUrl}/v1/auth/refresh`, {
+                "refreshToken": getRefreshToken()
+            });
+            data.success ? setAccessToken(data.data.newToken) : (alert("다시 로그인해주세요."), window.location.replace('/'));
+            axios.defaults.headers.common.Authorization = `Bearer ${getAccessToken()}`;
+            originalRequest.headers.Authorization = `Bearer ${getAccessToken()}`;
+            return axios(originalRequest);
+        }
+    return Promise.reject(error);
+    }
+)
+
+export const TokenRefresh = async () => {
+    return await instance.post(`v1/auth/refresh`, {
+        "refreshToken": getRefreshToken()
+    }).catch(function(error) {
+        return (error.response);
+    })
+}
+export const Logout = async () => {
+    return await instance.post(`v1/logout`, {
+    }).catch(function(error) {
+        return (error.response);
+    })
+}
 export const submitEnrollNotice = async (title: string, content: string) => {
     return await instance.post(`/v1/admin/notice`, {
         "content": content,
@@ -33,7 +71,7 @@ export const submitEnrollJobNotice = async (name: string, field: string, explain
         })
 }
 export const submitEnrollMou = async (name: string, business: string, area: string, address: string, etc: string, salary: string,
-    tag: any[]) => {
+    tag: string[]) => {
         return await instance.post(`/v1/admin/contracting-company`, {
             "contractingBusinessAreas": business,
             "contractingArea": area,
@@ -61,3 +99,30 @@ export const submitApplyConsult = async (number: string, name: string, consultId
         return(error.response);
     })
 }
+export const submitEnrollEmployment = async (name: string, area: string, address: string,
+    etc: string, generation: string, site: string, student: string, tag: string[]) => {
+        return await instance.post(`/v1/admin/employment-confirmation`, {
+            "employmentConfirmationAddress": address,
+            "employmentConfirmationAreas": area,
+            "employmentConfirmationEtc": etc,
+            "employmentConfirmationGeneration": generation,
+            "employmentConfirmationName": name,
+            "employmentConfirmationSite": site,
+            "studentName": student,
+            "tagName": tag
+        }).catch(function(error) {
+            return(error.response);
+        })
+    }
+export const submitEnrollReview = async (name: string, review: string, address: string, date: string,
+    question: string, cost: number, tag: string[]) => {
+        return await instance.post('v1/companyreview', {
+            "companyAddress": address,
+            "companyCost": cost,
+            "companyDateofApplication": date,
+            "companyFrequentlyAskedQuestions": question,
+            "companyName": name,
+            "companyReviews": review,
+            "tagName": tag
+        })
+    }

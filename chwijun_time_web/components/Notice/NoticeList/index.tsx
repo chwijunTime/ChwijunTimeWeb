@@ -29,7 +29,7 @@ const NoticeList:React.FC<Props> = ({info, idx}) => {
             <S.Date>{info.createDated.split('T')[0]}</S.Date>
             { localStorage.getItem('roles') === 'ROLE_Admin' && (
                 <S.Delete>
-                    <MdDelete onClick={() => confirm("삭제하시겠습니까?") ? Click_Delete() : null}>삭제</MdDelete>
+                    <MdDelete onClick={() => confirm("삭제하시겠습니까?") ? Click_Delete() : null} />
                 </S.Delete>
             )}
         </S.NoticeList>

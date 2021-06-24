@@ -1,9 +1,12 @@
 import React from 'react';
-import { EnrollJobNotice } from 'components';
+import { EnrollJobNotice, Template } from 'components';
 
 const EnrollNoticePage:React.FC = () => {
     return (
-        <EnrollJobNotice />
+        <>
+            <Template />
+            <EnrollJobNotice />
+        </>
     )
 }
 

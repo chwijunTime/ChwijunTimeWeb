@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const ConsultContainer = styled.div`
+export const ApplyContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;

@@ -21,7 +21,7 @@ export const Number = styled.div`
 export const Name = styled.div`
     display: flex;
     align-items: center;
-    width: 35%;
+    width: 30%;
     height: auto;
 
     color: #454BC8;
@@ -46,4 +46,11 @@ export const Tag = styled.div`
 export const Location = styled(Number)`
     width: 15%;
     color: black;
+`
+export const Delete = styled(Number)`
+    width: 7%;
+    justify-content: flex-end;
+    font-size: 24px;
+    padding-right: 10px;
+    color: #878787;
 `

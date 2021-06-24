@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import * as S from './style';
-import { getAllJobNotice } from 'service/get';
+import { getAllEmployment } from 'service/get';
 import EmploymentList from './../EmploymentList';
 import Pagenation from 'components/Pagenation';
 import { PenIcon } from 'public';
 import Router from 'next/router';
 
 const EmploymentComponent:React.FC = () => {
-    const [jobNoticeList, setJobNoticeList] = useState([]);
+    const [employmentList, setEmploymentList] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [currentList, setCurrentList] = useState<Object[]>([]);
     const postPerPage = 9;
@@ -16,14 +16,14 @@ const EmploymentComponent:React.FC = () => {
     const [input, setInput] = useState('');
 
     useEffect(() => {
-        setCurrentList(jobNoticeList.slice(indexOfFirst, indexOfLast));
-    }, [currentPage, jobNoticeList])
+        setCurrentList(employmentList.slice(indexOfFirst, indexOfLast));
+    }, [currentPage, employmentList])
     
     useEffect(() => {
         async function getAllJobNoticeList() {
             try {
-                const { data } = await getAllJobNotice();
-                setJobNoticeList(data.list);
+                const { data } = await getAllEmployment();
+                setEmploymentList(data.list);
             } catch (error) {
                 console.log(error);
             }
@@ -51,23 +51,23 @@ const EmploymentComponent:React.FC = () => {
             </S.Header>          
             <S.Content>
                 <S.Title>
-                    <S.Number>번호</S.Number>
+                    <S.Generation>기수</S.Generation>
                     <S.Name>업체명</S.Name>
-                    <S.Field>채용분야</S.Field>
+                    <S.Student>이름</S.Student>
                     <S.Location>지역</S.Location>
                     <S.Tag>태그</S.Tag>
                 </S.Title>
                 <S.ListPlace>
                     {currentList.length > 0 ? currentList.map((obj, idx) => {
-                        return <EmploymentList info={obj} key={idx} idx={ (currentPage-1) * 9 + idx + 1} />
+                        return <EmploymentList info={obj} key={idx} />
                     }) : <S.NotExistList>등록된 취업 확정 현황이 없습니다.</S.NotExistList>}
                 </S.ListPlace>
                 <S.OptionPlace>
-                    <S.EnrollBtn onClick={() => Router.push('/consult/enrollConsult')}><PenIcon />등록</S.EnrollBtn>
+                    <S.EnrollBtn onClick={() => Router.push('/employment/enrollemployment')}><PenIcon />등록</S.EnrollBtn>
                 </S.OptionPlace>
                 <S.PageNationPlace>
-                    { jobNoticeList.length > 0 &&                        
-                        <Pagenation totalPosts={jobNoticeList.length} postPerPage={postPerPage} paginate={setCurrentPage} currentPage={currentPage} />                  
+                    { employmentList.length > 0 &&                        
+                        <Pagenation totalPosts={employmentList.length} postPerPage={postPerPage} paginate={setCurrentPage} currentPage={currentPage} />                  
                     }
                 </S.PageNationPlace>
             </S.Content>

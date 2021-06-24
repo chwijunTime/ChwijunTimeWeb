@@ -45,7 +45,7 @@ export const Address = styled(Number)`
     color: black;
 `
 export const Delete = styled(Number)`
-    width: 12%;
+    width: 7%;
     justify-content: flex-end;
     font-size: 24px;
     padding-right: 10px;

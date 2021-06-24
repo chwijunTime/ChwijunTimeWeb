@@ -73,22 +73,22 @@ export const Title = styled.div`
     border-bottom: 1px solid #BDBDBD;   
     font-weight: bold;
 `
-export const Number = styled.div`
+export const Generation = styled.div`
     display: flex;
     justify-content: center;
     width: 8%;
     height: auto;
 `
-export const Name = styled(Number)`
-    width: 35%;
+export const Name = styled(Generation)`
+    width: 30%;
 `
-export const Field = styled(Number)`
+export const Student = styled(Generation)`
     width: 15%;
 `
-export const Tag = styled(Number)`
+export const Tag = styled(Generation)`
     width: 25%;
 `
-export const Location = styled(Number)`
+export const Location = styled(Generation)`
     width: 15%;
 `
 

@@ -9,9 +9,10 @@ registerLocale('ko', ko);
 
 interface Props {
     handleDate: (day: string) => void,
+    isDate: boolean
 }
 
-const Calendar:React.FC<Props> = ({handleDate}) => {
+const Calendar:React.FC<Props> = ({handleDate, isDate}) => {
   const [startDate, setStartDate] = useState(new Date());
 
   const ExampleCustomInput = ({ value, onClick }: {value: string; onClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void}) => (
@@ -24,8 +25,10 @@ const Calendar:React.FC<Props> = ({handleDate}) => {
 
   return (
     <>
-    <DatePicker locale={ko} selected={startDate} onChange={date => setStartDate(date)} minDate={new Date()} 
-    dateFormat={'yyyy-MM-dd'} customInput={React.createElement(ExampleCustomInput)} />         
+      { isDate && <DatePicker locale={ko} selected={startDate} onChange={date => setStartDate(date)} minDate={new Date()}
+      dateFormat={'yyyy-MM-dd'} customInput={React.createElement(ExampleCustomInput)} /> }
+      { !isDate && <DatePicker locale={ko} selected={startDate} onChange={date => setStartDate(date)} maxDate={new Date()}
+      dateFormat={'yyyy-MM-dd'} customInput={React.createElement(ExampleCustomInput)} /> }
     </>
   );
 };

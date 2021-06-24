@@ -1,9 +1,12 @@
 import React from 'react';
-import { JobNoticeElement } from 'components';
+import { JobNoticeElement, Template } from 'components';
 
 const JobNoticeElementPage:React.FC = () => {
     return(
-        <JobNoticeElement />
+        <>
+            <Template />
+            <JobNoticeElement />
+        </>
     )
 }
 

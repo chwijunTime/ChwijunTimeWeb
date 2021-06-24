@@ -32,7 +32,7 @@ const EnrollConsult:React.FC = () => {
                 <S.ItemList>
                     <S.Item>상담일자</S.Item>
                     <S.InputItem>
-                        <Calendar handleDate={setDate} />
+                        <Calendar handleDate={setDate} isDate={true} />
                     </S.InputItem>
                 </S.ItemList>
                 <S.ItemList>

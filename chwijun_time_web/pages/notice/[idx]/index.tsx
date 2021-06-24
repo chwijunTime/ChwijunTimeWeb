@@ -1,9 +1,12 @@
 import React from 'react';
-import { NoticeElement } from 'components';
+import { NoticeElement, Template } from 'components';
 
 const NoticeElementPage:React.FC = () => {
     return(
+        <>
+            <Template />
             <NoticeElement />
+        </>
     )
 }
 

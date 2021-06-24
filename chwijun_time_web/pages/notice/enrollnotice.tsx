@@ -1,9 +1,13 @@
 import React from 'react';
-import { EnrollNotice } from 'components';
+import { EnrollNotice, Template } from 'components';
 
 const EnrollNoticePage:React.FC = () => {
     return(
+        <>
+            <Template />
             <EnrollNotice />
+        </>
+        
     )
 }
 
