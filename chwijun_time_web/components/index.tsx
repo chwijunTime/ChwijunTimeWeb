@@ -31,3 +31,7 @@ export { default as EmploymentElement } from './Employment/EmploymentElement';
 export { default as Review } from './Review';
 export { default as ReviewElement } from './Review/ReviewElement';
 export { default as EnrollReview } from './Review/EnrollReview';
+
+export { default as Storage } from './Storage';
+export { default as EnrollStorage } from './Storage/EnrollStorage';
+export { default as StorageElement } from './Storage/StorageElement';

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import * as S from './style';
 import DatePicker, {registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";

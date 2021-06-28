@@ -12,6 +12,9 @@ interface Props {
 const JobNoticeList:React.FC<Props> = ({info, idx}) => {
     const MAX_LENGTH = 2;
 
+    const Click_Apply = () => {
+        handleModal(true);
+    }
     const Click_Delete = async () => {
         try {
             const { data } = await deleteJobNotice(info.employmentAnnouncementIdx);
@@ -40,7 +43,13 @@ const JobNoticeList:React.FC<Props> = ({info, idx}) => {
                 <S.Delete>
                     <MdDelete onClick={() => confirm("삭제하시겠습니까?") ? Click_Delete() : null} />
                 </S.Delete>
-            )}                      
+            )}
+            { localStorage.getItem('roles') === 'ROLE_User' && (
+                <S.Apply>
+                    <S.Apply_Btn status={info.consultingStatus === "No_Application"}
+                    onClick={() => Click_Apply()}>신청</S.Apply_Btn>
+                </S.Apply>
+            )}
         </S.Container>
     )
 }

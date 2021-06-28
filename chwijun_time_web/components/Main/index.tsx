@@ -3,11 +3,8 @@ import * as S from './style';
 import { Logo } from 'public/index';
 import { SignInModal, SignUpModal } from 'components/Modal';
 
-interface LoginInfo {
-    isLogin: boolean;
-}
 
-const Main:React.FC<LoginInfo> = ({isLogin}) => {
+const Main:React.FC = () => {
     const [signInModal, setSignInModal] = useState(false)
     const [signUpModal, setSignUpModal] = useState(false)
 

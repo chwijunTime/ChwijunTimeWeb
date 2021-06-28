@@ -13,7 +13,7 @@ const JobNoticeList:React.FC<Props> = ({info, idx}) => {
     const status = useState(info.consultingStatus === 'No_Application' ? '신청중' :
      info.consultingStatus === 'Apply' ? '마감' : '');
     const [modal, handleModal] = useState(false);
-    const [date, setDate] = useState<string>(moment(new Date(info.applicationDate)).format('yyyy-MM-DD HH:mm'));
+    const date = useState<string>(moment(new Date(info.applicationDate)).format('yyyy-MM-DD HH:mm'));
 
     const Click_Apply = () => {
         handleModal(true);

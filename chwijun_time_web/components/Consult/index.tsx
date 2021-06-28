@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import * as S from './style';
 import ConsultList from './ConsultList';
-import Router from 'next/router';
 import { getAllConsultAdmin } from 'service/get';
 import Pagenation from 'components/Pagenation';
-import { PenIcon } from 'public/index';
 
 const ConsultComponent:React.FC = () => {
     const [consultList, setConsultList] = useState([]);
@@ -13,7 +11,6 @@ const ConsultComponent:React.FC = () => {
     const postPerPage = 9;
     const indexOfLast = currentPage * postPerPage;
     const indexOfFirst = indexOfLast - postPerPage; 
-    const [input, setInput] = useState('');
 
     useEffect(() => {
         setCurrentList(consultList.slice(indexOfFirst, indexOfLast));
@@ -52,9 +49,7 @@ const ConsultComponent:React.FC = () => {
                         return <ConsultList info={obj} idx={(currentPage-1) * 9 + idx + 1} key={idx} />
                     }) : <S.NotExistList>등록된 상담신청이 없습니다.</S.NotExistList>}
                 </S.ListPlace>
-                <S.OptionPlace>
-                    <S.EnrollBtn onClick={() => Router.push('/consult/enrollConsult')}><PenIcon />등록</S.EnrollBtn>
-                </S.OptionPlace>
+                <S.OptionPlace />
                 <S.PageNationPlace>
                     { consultList.length > 0 &&                        
                         <Pagenation totalPosts={consultList.length} postPerPage={postPerPage} paginate={setCurrentPage} currentPage={currentPage} />                  

@@ -70,3 +70,9 @@ export const deleteReview = async (idx: number) => {
         return (error.response);
     })
 }
+export const deleteStorage = async (idx: number) => {
+    return await instance.delete(`v1/tips-storage/${idx}`, {
+    }).catch(function(error) {
+        return (error.response);
+    })
+}

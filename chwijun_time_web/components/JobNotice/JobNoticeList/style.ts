@@ -54,3 +54,27 @@ export const Delete = styled(Number)`
     padding-right: 10px;
     color: #878787;
 `
+export const Apply = styled(Number)`
+    width: 37%;
+    justify-content: flex-end;
+    padding-right: 10px;
+    font-size: 24px;
+    color: #878787;
+`
+export const Apply_Btn = styled.button`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
+    height: 30px;
+
+    border: none;
+    border-radius: 5px;
+
+    color: white;
+    background-color: ${props => props.status ? '#5B70B8' : '#a1a1a1'};
+
+    &:hover {
+        cursor: ${props => props.status ? 'pointer' : 'default'};
+    }
+`

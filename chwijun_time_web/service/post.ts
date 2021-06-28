@@ -124,5 +124,18 @@ export const submitEnrollReview = async (name: string, review: string, address: 
             "companyName": name,
             "companyReviews": review,
             "tagName": tag
+        }).catch(function(error) {
+            return(error.response);
         })
-    }
+}
+
+export const submitEnrollStorage = async (name: string, address: string, info: string, tag: string[]) => {
+    return await instance.post('v1/tips-storage', {
+        "tagName": tag,
+        "tipsInfo": info,
+        "workCompanyAddress": address,
+        "workCompanyName": name
+    }).catch(function(error) {
+        return (error.response);
+    })
+}

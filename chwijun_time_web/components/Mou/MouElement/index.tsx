@@ -14,7 +14,7 @@ const MouElement:React.FC = () => {
                 console.log(data);
                 setMouInfo(data.data);
             } catch (error) {
-                console.log("hello", error);
+                console.log(error);
             }
         }
         getIdxMouList();

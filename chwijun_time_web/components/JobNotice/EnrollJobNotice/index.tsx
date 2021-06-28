@@ -78,7 +78,7 @@ const EnrollJobNotice:React.FC = () => {
                 <S.ItemList>
                     <S.Item>마감일</S.Item>
                     <S.InputItem>
-                        <Calendar handleDate={setDeadline} />
+                        <Calendar handleDate={setDeadline} isDate={true} />
                     </S.InputItem>
                 </S.ItemList>
                 <S.ItemList>

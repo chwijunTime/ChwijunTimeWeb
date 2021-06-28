@@ -8,7 +8,7 @@ interface Props {
 }
 
 const ApplyList:React.FC<Props> = ({info, idx}) => {
-    const [date, setDate] = useState<string>(moment(new Date(info.applicationDate)).format('yyyy-MM-DD HH:mm'));
+    const date = useState<string>(moment(new Date(info.applicationDate)).format('yyyy-MM-DD HH:mm'));
 
     return(
         <S.Container>

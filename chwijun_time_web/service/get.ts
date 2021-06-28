@@ -70,7 +70,13 @@ export const getIdxJobNotice = async (idx: number) => {
     })
 }
 export const getAllApplyJobNotice = async (status: string) => {
-    return await instance.get(`/v1/admin/application-status?=${status}`, {
+    return await instance.get(`/v1/admin/application-status?status=${status}`, {
+    }).catch(function(error) {
+        return (error.response);
+    })
+}
+export const getSearchJobNotice = async (string: string) => {
+    return await instance.get(`v1/application-keyword?keyword=${string}`, {
     }).catch(function(error) {
         return (error.response);
     })
@@ -128,6 +134,18 @@ export const getAllReview = async () => {
 }
 export const getIdxReview = async (idx: number) => {
     return await instance.get(`v1/companyreview/${idx}`, {
+    }).catch(function(error) {
+        return (error.response);
+    })
+}
+export const getAllStorage = async () => {
+    return await instance.get('v1/tips-storage', {
+    }).catch(function(error) {
+        return (error.response);
+    })
+}
+export const getIdxStorage = async (idx: number) => {
+    return await instance.get(`v1/tips-storage/${idx}`, {
     }).catch(function(error) {
         return (error.response);
     })

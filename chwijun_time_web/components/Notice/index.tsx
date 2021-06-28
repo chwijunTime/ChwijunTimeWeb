@@ -48,8 +48,7 @@ const NoticeComponent:React.FC = () => {
                             return <NoticeList info={obj} idx={(currentPage-1) * 9 + idx + 1} key={idx} />
                         }) : <S.NotExistList>등록된 공지사항이 없습니다.</S.NotExistList>}
                     </S.ListPlace>
-                    <S.OptionPlace>
-                    </S.OptionPlace>
+                    <S.OptionPlace />
                     <S.PageNationPlace>
                     { noticeList.length > 0 &&                        
                         <Pagenation totalPosts={noticeList.length} postPerPage={postPerPage} paginate={setCurrentPage} currentPage={currentPage} />                  
