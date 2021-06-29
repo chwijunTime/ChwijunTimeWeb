@@ -139,3 +139,19 @@ export const submitEnrollStorage = async (name: string, address: string, info: s
         return (error.response);
     })
 }
+export const submitAcceptCorrection = async (number: string, content: string, idx: number) => {
+    return await instance.post(`v1/admin/correction-approval?idx=${idx}`, {
+        "classNumber": number,
+        "correctionContent": content
+    }).catch(function(error) {
+        return (error.response);
+    })
+}
+export const submitRejectCorrection = async (number: string, content: string, idx: number) => {
+    return await instance.post(`v1/admin/correction-rejection?idx=${idx}`, {
+        "classNumber": number,
+        "reasonForRejection": content
+    }).catch(function(error) {
+        return (error.response);
+    })
+}

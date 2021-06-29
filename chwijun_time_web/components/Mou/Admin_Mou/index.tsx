@@ -7,7 +7,7 @@ import Pagenation from 'components/Pagenation';
 import { PenIcon } from 'public/index';
 
 const MouComponent:React.FC = () => {
-    const [mouList, setMouList] = useState([{}]);
+    const [mouList, setMouList] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const postPerPage = 9;
     const indexOfLast = currentPage * postPerPage;

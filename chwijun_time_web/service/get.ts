@@ -150,3 +150,9 @@ export const getIdxStorage = async (idx: number) => {
         return (error.response);
     })
 }
+export const getAllCorrection = async () => {
+    return await instance.get(`v1/admin/correction`, {
+    }).catch(function(error) {
+        return (error.response);
+    })
+}

@@ -28,7 +28,7 @@ const MouList:React.FC<Props> = ({info, idx}) => {
             <S.TagPlace>
                 { info.contractingCompanyTags && info.contractingCompanyTags.map((obj, idx) => {
                     return idx < MAX_LENGTH && <S.Tag key={idx}>{obj}</S.Tag> 
-                 })                   
+                 })
                 }
                 { info.contractingCompanyTags && info.contractingCompanyTags.length > MAX_LENGTH && 
                     <>외 {info.contractingCompanyTags.length - MAX_LENGTH}개</>

@@ -35,3 +35,5 @@ export { default as EnrollReview } from './Review/EnrollReview';
 export { default as Storage } from './Storage';
 export { default as EnrollStorage } from './Storage/EnrollStorage';
 export { default as StorageElement } from './Storage/StorageElement';
+
+export { default as Portfolio } from './Portfolio';
