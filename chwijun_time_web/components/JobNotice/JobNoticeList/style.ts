@@ -21,7 +21,7 @@ export const Number = styled.div`
 export const Name = styled.div`
     display: flex;
     align-items: center;
-    width: 30%;
+    width: 25%;
     height: auto;
 
     color: #454BC8;
@@ -55,7 +55,7 @@ export const Delete = styled(Number)`
     color: #878787;
 `
 export const Apply = styled(Number)`
-    width: 37%;
+    width: 12%;
     justify-content: flex-end;
     padding-right: 10px;
     font-size: 24px;
@@ -72,9 +72,5 @@ export const Apply_Btn = styled.button`
     border-radius: 5px;
 
     color: white;
-    background-color: ${props => props.status ? '#5B70B8' : '#a1a1a1'};
-
-    &:hover {
-        cursor: ${props => props.status ? 'pointer' : 'default'};
-    }
+    background-color: #5B70B8;
 `

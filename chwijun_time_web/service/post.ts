@@ -2,7 +2,6 @@ import { BaseUrl } from 'config/config.json';
 import { getAccessToken, getRefreshToken, setAccessToken } from 'service/token';
 import axios from 'axios';
 
-
 const instance = axios.create({
     baseURL: BaseUrl,
     headers: {
@@ -151,6 +150,28 @@ export const submitRejectCorrection = async (number: string, content: string, id
     return await instance.post(`v1/admin/correction-rejection?idx=${idx}`, {
         "classNumber": number,
         "reasonForRejection": content
+    }).catch(function(error) {
+        return (error.response);
+    })
+}
+export const submitApplyJobNotice = async (PortfolioUrl: string, ResumeUrl: string,
+    GithubUrl: string, idx: number) => {
+        return await instance.post(`v1/application/${idx}`, {
+            "applicationEmploymentPortfolioURL": PortfolioUrl,
+            "applicationEmploymentResumeURL": ResumeUrl,
+            "gitHubURL": GithubUrl
+        }).catch(function(error) {
+            return (error.response);
+        })
+    }
+export const submitAcceptJobNotice = async (idx: number) => {
+    return await instance.post(`v1/admin/application-accept/${idx}`, {
+    }).catch(function(error) {
+        return (error.response);
+    })
+}
+export const submitRejectJobNotice = async (idx: number) => {
+    return await instance.post(`v1/admin/application-reject/${idx}`, {
     }).catch(function(error) {
         return (error.response);
     })

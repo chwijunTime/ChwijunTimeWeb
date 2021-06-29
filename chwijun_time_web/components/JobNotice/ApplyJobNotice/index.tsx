@@ -41,9 +41,10 @@ const ApplyJobNotice:React.FC = () => {
             <S.Content>
                 <S.Title>
                     <S.Number>번호</S.Number>
+                    <S.Name>업체명</S.Name>
+                    <S.Status>상태</S.Status>
                     <S.ClassNumber>학번</S.ClassNumber>
-                    <S.Name>이름</S.Name>
-                    <S.Date>날짜</S.Date>
+                    <S.Field>채용분야</S.Field>                
                 </S.Title>
                 <S.ListPlace>
                     {currentList.length > 0 ? currentList.map((obj, idx) => {

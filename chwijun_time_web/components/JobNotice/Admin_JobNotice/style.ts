@@ -80,7 +80,7 @@ export const Number = styled.div`
     height: auto;
 `
 export const Name = styled(Number)`
-    width: 30%;
+    width: 25%;
 `
 export const Field = styled(Number)`
     width: 15%;

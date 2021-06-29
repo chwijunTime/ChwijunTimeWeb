@@ -8,7 +8,6 @@ import { TiHeadphones } from "react-icons/ti";
 import { BiChalkboard, BiFile } from "react-icons/bi";
 import Router from 'next/router';
 import { removeToken } from 'service/token';
-import { getUserInfo } from 'service/get';
 import { Logout } from 'service/post';
 
 const Template:React.FC = () => {

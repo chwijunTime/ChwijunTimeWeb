@@ -79,13 +79,16 @@ export const Number = styled.div`
     height: auto;
 `
 export const ClassNumber = styled(Number)`
-    width: 20%;
+    width: 10%;
 `
 export const Name = styled(Number)`
-    width: 20%;
+    width: 25%;
 `
-export const Date = styled(Number)`
-    width: 40%;
+export const Status = styled(Number)`
+    width: 10%;
+`
+export const Field = styled(Number)`
+    width: 15%;
 `
 export const OptionPlace = styled.div`
   display: flex;

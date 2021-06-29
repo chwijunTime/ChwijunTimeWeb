@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as S from './style';
 import Router from 'next/router';
 import { deleteJobNotice } from 'service/delete'; 
 import { MdDelete } from "react-icons/md";
+import { JobApplyModal } from 'components/Modal';
 
 interface Props {
     info: any,
@@ -11,10 +12,8 @@ interface Props {
 
 const JobNoticeList:React.FC<Props> = ({info, idx}) => {
     const MAX_LENGTH = 2;
+    const [modal, handleModal] = useState(false);
 
-    const Click_Apply = () => {
-        handleModal(true);
-    }
     const Click_Delete = async () => {
         try {
             const { data } = await deleteJobNotice(info.employmentAnnouncementIdx);
@@ -25,6 +24,7 @@ const JobNoticeList:React.FC<Props> = ({info, idx}) => {
     }
 
     return(
+        <>
         <S.Container>
             <S.Number>{idx}</S.Number>
             <S.Name onClick={() => Router.push(`jobnotice/${info.employmentAnnouncementIdx}`)}>{info.employmentAnnouncementName}</S.Name>
@@ -46,11 +46,12 @@ const JobNoticeList:React.FC<Props> = ({info, idx}) => {
             )}
             { localStorage.getItem('roles') === 'ROLE_User' && (
                 <S.Apply>
-                    <S.Apply_Btn status={info.consultingStatus === "No_Application"}
-                    onClick={() => Click_Apply()}>신청</S.Apply_Btn>
+                    <S.Apply_Btn onClick={() =>  handleModal(true)}>신청</S.Apply_Btn>
                 </S.Apply>
             )}
         </S.Container>
+        { modal && <JobApplyModal handleModal={handleModal} idx={info.employmentAnnouncementIdx} />}
+        </>
     )
 }
 

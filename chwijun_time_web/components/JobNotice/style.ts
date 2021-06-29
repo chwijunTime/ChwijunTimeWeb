@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import image from 'next/image';
 
 export const JobNoticeContainer = styled.div`
     display: flex;
@@ -80,7 +79,7 @@ export const Number = styled.div`
     height: auto;
 `
 export const Name = styled(Number)`
-    width: 30%;
+    width: 25%;
 `
 export const Field = styled(Number)`
     width: 15%;
