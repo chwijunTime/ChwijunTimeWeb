@@ -12,10 +12,8 @@ const instance = axios.create({
 
 instance.interceptors.response.use(
     (response) => {
-        console.log("delete success: ", response);
         return response;
     }, async (error) => {
-        console.log('delete 401 error');
         const {
             config,
             response: { status },
@@ -72,6 +70,12 @@ export const deleteReview = async (idx: number) => {
 }
 export const deleteStorage = async (idx: number) => {
     return await instance.delete(`v1/tips-storage/${idx}`, {
+    }).catch(function(error) {
+        return (error.response);
+    })
+}
+export const deleteTag = async (idx: number) => {
+    return await instance.delete(`v1/admin/tag/${idx}`, {
     }).catch(function(error) {
         return (error.response);
     })

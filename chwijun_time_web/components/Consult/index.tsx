@@ -10,14 +10,14 @@ const ConsultComponent:React.FC = () => {
     const [currentList, setCurrentList] = useState<Object[]>([]);
     const postPerPage = 9;
     const indexOfLast = currentPage * postPerPage;
-    const indexOfFirst = indexOfLast - postPerPage; 
+    const indexOfFirst = indexOfLast - postPerPage;
 
     useEffect(() => {
-        setCurrentList(consultList.slice(indexOfFirst, indexOfLast));
+        setCurrentList(consultList.slice(indexOfFirst, indexOfLast))
     }, [currentPage, consultList])
     
     useEffect(() => {
-        async function getAllConsultList() {
+        const getAllConsultList = async() => {
             try {
                 const { data } = await getAllConsultAdmin();
                 setConsultList(data.list);
@@ -26,7 +26,7 @@ const ConsultComponent:React.FC = () => {
             }
         }
         getAllConsultList();
-    }, [])
+    }, [])   
 
     return (
         <S.ConsultContainer>
@@ -37,7 +37,7 @@ const ConsultComponent:React.FC = () => {
                         <S.Sub_HeaderTitle>취업에 고민이 있는 학생과 상담을 도와줍니다.</S.Sub_HeaderTitle>
                     </S.HeaderTitle>
                 </S.HeaderPlace>
-            </S.Header>          
+            </S.Header>
             <S.Content>
                 <S.Title>
                     <S.Number>번호</S.Number>
@@ -51,7 +51,7 @@ const ConsultComponent:React.FC = () => {
                 </S.ListPlace>
                 <S.OptionPlace />
                 <S.PageNationPlace>
-                    { consultList.length > 0 &&                        
+                    { currentList.length > 0 &&                        
                         <Pagenation totalPosts={consultList.length} postPerPage={postPerPage} paginate={setCurrentPage} currentPage={currentPage} />                  
                     }
                 </S.PageNationPlace>

@@ -4,7 +4,6 @@ export const ModalContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-
     position: absolute;
     top: 0;
     bottom: 0;
@@ -21,9 +20,7 @@ export const TagModal = styled.div`
     width: 500px;
     height: auto;
     min-height: 307px;
-
     border-radius: 30px;
-
     background-color: #ffffff;
 `
 export const ConfirmBtn = styled.button`
@@ -32,7 +29,6 @@ export const ConfirmBtn = styled.button`
     align-items: center;
     width: 70px;
     height: 30px;
-
     border: none;
     border-radius: 5px;
     color: white;
@@ -46,18 +42,15 @@ export const SearchPlace = styled.div`
     justify-content: center;
     width: 100%;
     height: 40px;
-
     margin-top: 10px;
 `
 export const SearchBar = styled.input`
     width: 440px;
     height: 40px;
-
     border: 1px solid #bdbdbd;
     border-radius: 5px;
     font-size: 15px;
     padding-left: 5px;
-
     &:focus {
         outline: none!important;
         border-color: #565bf0;
@@ -77,10 +70,8 @@ export const DropdownList = styled.div`
     align-items: center;
     width: 440px;
     height: 40px;
-
     padding-left: 10px;
     border-bottom: 1px solid #bdbdbd;
-
     &:hover {
         cursor: pointer;
         background-color: #5B70B8;
@@ -123,7 +114,6 @@ export const CancelImg = styled.div`
     align-items: center;
     padding-left: 5px;
     padding-top: 2px;
-
     &:hover {
         cursor: pointer;
     }

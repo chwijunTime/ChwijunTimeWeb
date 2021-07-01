@@ -23,7 +23,8 @@ const Template:React.FC = () => {
         {name: "취업 공고", path: "/jobnotice", icon: <BiChalkboard color={para === '/jobnotice' ? '#f0f2f7' : color} />}, 
         {name: "공지사항", path: "/notice", icon: <VscMegaphone color={para === '/notice' ? '#f0f2f7' : color} />},
         {name: "이력서 및 포트폴리오", path: "/portfolio", icon: <BiFile color={para === '/portfolio' ? '#f0f2f7' : color} />}, 
-        {name: "꿀팁 저장소", path: "/storage", icon: <BsInboxesFill color={para === '/storage' ? '#f0f2f7' : color} />}
+        {name: "꿀팁 저장소", path: "/storage", icon: <BsInboxesFill color={para === '/storage' ? '#f0f2f7' : color} />},
+        {name: "태그", path: "/tag", icon: <BsInboxesFill color={para === '/storage' ? '#f0f2f7' : color} />}
     ]
 
     const F_Logout = async () => {
@@ -46,7 +47,7 @@ const Template:React.FC = () => {
                     <S.UserPlace>로그인된 이메일:
                         <S.User_Email>{email}</S.User_Email>
                         <S.BtnPlace>
-                            <S.Profile_Btn>내 정보</S.Profile_Btn>
+                            <S.Profile_Btn onClick={() => alert('개발 중 입니다.')}>내 정보</S.Profile_Btn>
                             <S.Logout_Btn onClick={() => F_Logout()}>로그아웃</S.Logout_Btn>
                         </S.BtnPlace>
                     </S.UserPlace>

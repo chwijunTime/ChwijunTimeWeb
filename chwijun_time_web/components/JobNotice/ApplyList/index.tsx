@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { submitAcceptJobNotice, submitRejectJobNotice } from 'service/post';
 import * as S from './style';
+import { JobApproveModal } from 'components/Modal';
 
 interface Props {
     info: any,
@@ -8,6 +9,7 @@ interface Props {
 }
 
 const ApplyList:React.FC<Props> = ({info, idx}) => {
+    const [modal, handleModal] = useState(false);
     let status;
 
     switch(info.applicationEmploymentStatus) {
@@ -35,9 +37,10 @@ const ApplyList:React.FC<Props> = ({info, idx}) => {
 
 
     return(
+    <>
         <S.Container>
             <S.Number>{idx}</S.Number>
-            <S.Name>{info.employmentAnnouncementName}</S.Name>
+            <S.Name onClick={() => handleModal(true)}>{info.employmentAnnouncementName}</S.Name>
             <S.Status>{status}</S.Status>
             <S.ClassNumber>{info.memberClassNumber}</S.ClassNumber>
             <S.Field>{info.recruitmentField}</S.Field>
@@ -46,6 +49,8 @@ const ApplyList:React.FC<Props> = ({info, idx}) => {
                     <S.Btn status={false} onClick={() => Reject_Btn()}>거절</S.Btn>
             </S.BtnPlace>
         </S.Container>
+        { modal && <JobApproveModal handleModal={handleModal} idx={info.applicationEmploymentIdx}/>}
+    </>
     )
 }
 

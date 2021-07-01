@@ -12,7 +12,6 @@ const instance = axios.create({
 
 instance.interceptors.response.use(
     (response) => {
-        console.log("success: ", response);
         return response;
     }, async (error) => {
         const {
@@ -172,6 +171,21 @@ export const submitAcceptJobNotice = async (idx: number) => {
 }
 export const submitRejectJobNotice = async (idx: number) => {
     return await instance.post(`v1/admin/application-reject/${idx}`, {
+    }).catch(function(error) {
+        return (error.response);
+    })
+}
+
+export const submitTag = async (tag: string) => {
+    return await instance.post(`v1/admin/tag`, {
+        "tagName": tag
+    }).catch(function(error) {
+        return (error.response);
+    })
+}
+export const submitRequestTag = async (tag: string) => {
+    return await instance.post(`v1/request-tag`, {
+        "tagName": tag
     }).catch(function(error) {
         return (error.response);
     })

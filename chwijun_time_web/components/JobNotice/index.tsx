@@ -46,7 +46,7 @@ const JobNoticeComponent:React.FC = () => {
                         <S.SearchBtn>검색</S.SearchBtn>
                     </S.SearchPlace>
                 </S.HeaderPlace>
-            </S.Header>          
+            </S.Header>
             <S.Content>
                 <S.Title>
                     <S.Number>번호</S.Number>

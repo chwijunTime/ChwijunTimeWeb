@@ -81,6 +81,12 @@ export const getSearchJobNotice = async (string: string) => {
         return (error.response);
     })
 }
+export const getApplyJobNotice = async (idx: number) => {
+    return await instance.get(`v1/admin/application/${idx}`, {
+    }).catch(function(error) {
+        return (error.response);
+    })
+}
 export const getAllTag = async () => {
     return await instance.get('/v1/tag', {
     }).catch(function(error) {
@@ -152,6 +158,56 @@ export const getIdxStorage = async (idx: number) => {
 }
 export const getAllCorrection = async () => {
     return await instance.get(`v1/admin/correction`, {
+    }).catch(function(error) {
+        return (error.response);
+    })
+}
+
+
+export const getMyPageJobNotice = async () => {
+    return await instance.get('v1/mypage-application-employment', {
+    }).catch(function(error) {
+        return (error.response);
+    })
+}
+export const getMyPageReview = async () => {
+    return await instance.get('v1/mypage-company-review', {
+    }).catch(function(error) {
+        return (error.response);
+    })
+}
+export const getMyPageConsult = async () => {
+    return await instance.get('v1/mypage-consulting-user', {
+    }).catch(function(error) {
+        return (error.response);
+    })
+}
+export const getMyPageCorrection = async () => {
+    return await instance.get('v1/mypage-correction', {
+    }).catch(function(error) {
+        return (error.response);
+    })
+}
+export const getMyPageApplyCorrection = async () => {
+    return await instance.get('v1/mypage-correction-apply', {
+    }).catch(function(error) {
+        return (error.response);
+    })
+}
+export const getMyPagePortfolio = async () => {
+    return await instance.get('v1/mypage-portfolio', {
+    }).catch(function(error) {
+        return (error.response);
+    })
+}
+export const getMyPageResume = async () => {
+    return await instance.get('v1/mypage-resume', {
+    }).catch(function(error) {
+        return (error.response);
+    })
+}
+export const getMyPageStorage = async () => {
+    return await instance.get('v1/mypage-tip-user', {
     }).catch(function(error) {
         return (error.response);
     })

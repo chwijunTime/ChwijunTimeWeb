@@ -5,3 +5,7 @@ export { default as LocationModal } from './LocationModal';
 export { default as ApplyModal } from './ApplyModal';
 export { default as CorrectionModal } from './CorrectionModal';
 export { default as JobApplyModal } from './JobApplyModal';
+export { default as JobApproveModal } from './JobApproveModal';
+export { default as EnrollTagModal } from './EnrollTagModal';
+export { default as ApplyTagModal } from './ApplyTagModal';
+export { default as ModifyTagModal } from './ModifyTagModal';
