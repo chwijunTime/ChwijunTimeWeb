@@ -175,7 +175,6 @@ export const submitRejectJobNotice = async (idx: number) => {
         return (error.response);
     })
 }
-
 export const submitTag = async (tag: string) => {
     return await instance.post(`v1/admin/tag`, {
         "tagName": tag

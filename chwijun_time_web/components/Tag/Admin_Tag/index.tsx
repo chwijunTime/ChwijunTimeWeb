@@ -42,7 +42,7 @@ const TagComponent:React.FC = () => {
                             <S.Sub_HeaderTitle>전체 태그를 확인하고 추가할 수 있습니다.</S.Sub_HeaderTitle>                      
                         </S.HeaderTitle>
                         <S.SearchPlace>
-                            <S.ApplyBtn onClick={() => Router.push('/jobnotice/applyjobnotice')}>태그신청 조회</S.ApplyBtn>
+                            <S.ApplyBtn onClick={() => Router.push('/tag/applytag')}>태그신청 조회</S.ApplyBtn>
                         </S.SearchPlace>
                     </S.HeaderPlace>
                 </S.Header>

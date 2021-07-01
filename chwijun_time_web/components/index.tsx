@@ -42,3 +42,4 @@ export { default as MyPageComponent } from './MyPage/index';
 
 export { default as TagComponent } from './Tag';
 export { default as Admin_TagComponent } from './Tag/Admin_Tag';
+export { default as ApplyTagComponent } from './Tag/ApplyTag';

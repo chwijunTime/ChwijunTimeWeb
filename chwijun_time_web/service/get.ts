@@ -93,6 +93,12 @@ export const getAllTag = async () => {
         return (error.response);
     })
 }
+export const getAllApplyTag = async () => {
+    return await instance.get(`v1/admin/request-tag`, {
+    }).catch(function(error) {
+        return (error.response);
+    })
+}
 export const getSearchMou = async (keyword: string) => {
     return await instance.get('v1/contracting-company-keyword', {
         params: {

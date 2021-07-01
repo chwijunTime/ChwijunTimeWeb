@@ -80,3 +80,9 @@ export const deleteTag = async (idx: number) => {
         return (error.response);
     })
 }
+export const deleteApplyTag = async (idx: number) => {
+    return await instance.delete(`v1/admin/request-tag/${idx}`, {
+    }).catch(function(error) {
+        return (error.response);
+    })
+}
