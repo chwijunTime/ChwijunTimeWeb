@@ -37,6 +37,7 @@ export { default as EnrollStorage } from './Storage/EnrollStorage';
 export { default as StorageElement } from './Storage/StorageElement';
 
 export { default as Portfolio } from './Portfolio';
+export { default as Admin_Portfoilo } from './Portfolio/Admin_Portfolio';
 
 export { default as MyPageComponent } from './MyPage/index';
 

@@ -14,17 +14,6 @@ export const Number = styled.div`
     width: 8%;
     height: auto;
 `
-export const Kind = styled(Number)`
-    width: 10%;
-`
-export const Status = styled(Number)`
-    width: 10%;
-    color: ${props => props.status === 'Correction_Rejection' ? '#ff6363' :
-    props.status === 'Correction_Successful' ? '#a1a1a1' : '#5B70B8'};
-`
-export const ClassNumber = styled(Number)`
-    width: 10%;
-`
 export const Link = styled.a`
     display: flex;
     align-items: center;
@@ -34,17 +23,10 @@ export const Link = styled.a`
         cursor: pointer;
     }
 `
-export const BtnPlace = styled(Number)`
-    width: 22%;
-    justify-content: flex-end;
-`
-export const Btn = styled.button`
-    width: 70px;
-    height: 33px;
-
-    border: none;
-    border-radius: 8px;
-    color: white;
-    margin: 0px 10px;
-    background-color: ${props => props.status ? '#5B70B8' : '#a1a1a1'};
+export const Delete = styled(Number)`
+width: 52%;
+justify-content: flex-end;
+font-size: 24px;
+padding-right: 10px;
+color: #878787;
 `

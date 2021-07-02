@@ -189,3 +189,17 @@ export const submitRequestTag = async (tag: string) => {
         return (error.response);
     })
 }
+export const submitPortfolio = async (url) => {
+    return await instance.post('v1/portfolio', {
+        'notionPortfolioURL': url
+    }).catch(function(error) {
+        return (error.response)
+    })
+}
+export const submitResume = async (url) => {
+    return await instance.post('v1/resume', {
+        'resumeFileURL': url
+    }).catch(function(error) {
+        return (error.response)
+    })
+}

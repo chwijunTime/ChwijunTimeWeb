@@ -86,3 +86,15 @@ export const deleteApplyTag = async (idx: number) => {
         return (error.response);
     })
 }
+export const deleteMyPortfolio = async (idx: number) => {
+    return await instance.delete(`v1/portfolio/${idx}`, {
+    }).catch(function(error) {
+        return (error.response);
+    })
+}
+export const deleteMyResume = async (idx: number) => {
+    return await instance.delete(`v1/resume/${idx}`, {
+    }).catch(function(error) {
+        return (error.response);
+    })
+}

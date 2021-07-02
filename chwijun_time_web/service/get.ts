@@ -168,7 +168,18 @@ export const getAllCorrection = async () => {
         return (error.response);
     })
 }
-
+export const getMyPortfolio = async () => {
+    return await instance.get('v1/my-portfolio', {
+    }).catch(function(error) {
+        return (error.response);
+    })
+}
+export const getMyResume = async () => {
+    return await instance.get('v1/my-resume', {
+    }).catch(function(error) {
+        return (error.response);
+    })
+}
 
 export const getMyPageJobNotice = async () => {
     return await instance.get('v1/mypage-application-employment', {

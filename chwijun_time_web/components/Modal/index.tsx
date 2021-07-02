@@ -9,3 +9,4 @@ export { default as JobApproveModal } from './JobApproveModal';
 export { default as EnrollTagModal } from './EnrollTagModal';
 export { default as ApplyTagModal } from './ApplyTagModal';
 export { default as ModifyTagModal } from './ModifyTagModal';
+export { default as EnrollCorrectionModal } from './EnrollCorrectionModal';
