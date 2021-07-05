@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import * as S from './style';
 import MouList from './MouList';
-import { getAllMou } from 'service/get';
+import { getAllMou, getSearchMou } from 'service/get';
 import Pagenation from 'components/Pagenation';
 
 const MouComponent:React.FC = () => {
@@ -10,29 +10,33 @@ const MouComponent:React.FC = () => {
     const postPerPage = 9;
     const indexOfLast = currentPage * postPerPage;
     const indexOfFirst = indexOfLast - postPerPage; 
-    const [currentList, setCurrentList] = useState<Object[]>([]);
-    
+    const [currentList, setCurrentList] = useState<Object[]>([]);    
     const [input, setInput] = useState('');
-  
-    useEffect(() => {
-        async function getAllMouList() {
-            try {
-                const { data } = await getAllMou();
-                setMouList(data.list);
-            } catch (error) {
-                console.log(error);
-            }
+    
+    async function getAllMouList() {
+        try {
+            const { data } = await getAllMou();
+            setMouList(data.list);
+        } catch (error) {
+            console.log(error);
         }
+    }
+    const onSearch = async() => {
+        try {
+            const { data } = await getSearchMou(input);
+            setMouList(data.list);
+            setCurrentPage(1);
+        } catch(error) {
+            console.log(error);
+        }
+    }
+
+    useEffect(() => {
         getAllMouList();
     }, [])
-
     useEffect(() => {
         setCurrentList(mouList.slice(indexOfFirst, indexOfLast));
     }, [currentPage, mouList])
-    
-    const onSearch = () => {
-        
-    }
 
     return (
         <S.MouContainer>
@@ -44,10 +48,11 @@ const MouComponent:React.FC = () => {
                     </S.HeaderTitle>
                     <S.SearchPlace>
                         <S.SearchBar placeholder="업체명으로 검색..." onChange={(e) => setInput(e.target.value)} />
-                        <S.SearchBtn>검색</S.SearchBtn>
+                        <S.SearchBtn onClick={() => onSearch()}>검색</S.SearchBtn>
+                        <S.ResetBtn onClick={() => getAllMouList()}>목록</S.ResetBtn>
                     </S.SearchPlace>
                 </S.HeaderPlace>
-            </S.Header>          
+            </S.Header>
             <S.Content>
                 <S.Title>
                     <S.Number>번호</S.Number>

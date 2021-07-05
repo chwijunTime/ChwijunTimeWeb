@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import * as S from './style';
 import StorageList from './StorageList';
-import { getAllStorage } from 'service/get';
+import { getAllStorage, getSearchStorage } from 'service/get';
 import Pagenation from 'components/Pagenation';
 import Router from 'next/router';
 import { PenIcon } from 'public';
@@ -13,19 +13,29 @@ const StorageComponent:React.FC = () => {
     const indexOfLast = currentPage * postPerPage;
     const indexOfFirst = indexOfLast - postPerPage;
     const [currentList, setCurrentList] = useState<Object[]>([]);
-    
-    useEffect(() => {
-        async function getAllStorageList() {
-            try {
-                const { data } = await getAllStorage();
-                setStorageList(data.list);
-            } catch (error) {
-                console.log(error);
-            }
+    const [input, setInput] = useState('');
+
+    async function getAllStorageList() {
+        try {
+            const { data } = await getAllStorage();
+            setStorageList(data.list);
+        } catch (error) {
+            console.log(error);
         }
+    }
+    const onSearch = async() => {
+        try {
+            const { data } = await getSearchStorage(input);
+            setStorageList(data.list);
+            setCurrentPage(1);
+        } catch(error) {
+            console.log(error);
+        }
+    }
+
+    useEffect(() => {
         getAllStorageList();
     }, [])
-
     useEffect(() => {
         setCurrentList(storageList.slice(indexOfFirst, indexOfLast));
     }, [currentPage, storageList])
@@ -34,9 +44,16 @@ const StorageComponent:React.FC = () => {
         <S.Container>
             <S.Header>
                 <S.UrlText>HOME &gt; 꿀팁 저장소</S.UrlText>
-                <S.HeaderTitle>꿀팁 저장소
-                    <S.Sub_HeaderTitle>취업에 도움이 될만한 꿀팁들을 확인할 수 있습니다.</S.Sub_HeaderTitle>
-                </S.HeaderTitle>
+                <S.HeaderPlace>
+                    <S.HeaderTitle>꿀팁 저장소
+                        <S.Sub_HeaderTitle>취업에 도움이 될만한 꿀팁들을 확인할 수 있습니다.</S.Sub_HeaderTitle>
+                    </S.HeaderTitle>
+                    <S.SearchPlace>
+                        <S.SearchBar placeholder="업체명으로 검색..." onChange={(e) => setInput(e.target.value)} />
+                        <S.SearchBtn onClick={() => onSearch()}>검색</S.SearchBtn>
+                        <S.ResetBtn onClick={() => getAllStorageList()}>목록</S.ResetBtn>
+                    </S.SearchPlace>
+                </S.HeaderPlace>
             </S.Header>
             <S.Content>
                 <S.Title>

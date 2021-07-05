@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import * as S from './style';
-import { getAllEmployment } from 'service/get';
+import { getAllEmployment, getSearchEmployment } from 'service/get';
 import EmploymentList from './../EmploymentList';
 import Pagenation from 'components/Pagenation';
 import { PenIcon } from 'public';
@@ -15,25 +15,30 @@ const EmploymentComponent:React.FC = () => {
     const indexOfFirst = indexOfLast - postPerPage; 
     const [input, setInput] = useState('');
 
+    async function getAllEmploymentList() {
+        try {
+            const { data } = await getAllEmployment();
+            setEmploymentList(data.list);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    const onSearch = async () => {
+        try {
+            const { data } = await getSearchEmployment(input);
+            setEmploymentList(data.list);
+            setCurrentPage(1);
+        } catch(error) {
+            console.log(error);
+        }
+    }
+
     useEffect(() => {
         setCurrentList(employmentList.slice(indexOfFirst, indexOfLast));
     }, [currentPage, employmentList])
-    
     useEffect(() => {
-        async function getAllJobNoticeList() {
-            try {
-                const { data } = await getAllEmployment();
-                setEmploymentList(data.list);
-            } catch (error) {
-                console.log(error);
-            }
-        }
-        getAllJobNoticeList();
+        getAllEmploymentList();
     }, [])
-    
-    const onSearch = () => {
-        
-    }
 
     return (
         <S.EmploymentContainer>
@@ -45,7 +50,8 @@ const EmploymentComponent:React.FC = () => {
                     </S.HeaderTitle>
                     <S.SearchPlace>
                         <S.SearchBar placeholder="검색..." onChange={(e) => setInput(e.target.value)} />
-                        <S.SearchBtn>검색</S.SearchBtn>
+                        <S.SearchBtn onClick={() => onSearch()}>검색</S.SearchBtn>
+                        <S.ResetBtn onClick={() => getAllEmploymentList()}>목록</S.ResetBtn>
                     </S.SearchPlace>
                 </S.HeaderPlace>
             </S.Header>          

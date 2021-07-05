@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import * as S from './style';
-import { getAllJobNotice } from 'service/get';
+import { getAllEmployment, getSearchEmployment } from 'service/get';
 import EmploymentList from './EmploymentList';
 import Pagenation from 'components/Pagenation';
 
 const EmploymentComponent:React.FC = () => {
-    const [jobNoticeList, setJobNoticeList] = useState([]);
+    const [employmentList, setEmploymentList] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [currentList, setCurrentList] = useState<Object[]>([]);
     const postPerPage = 9;
@@ -13,26 +13,31 @@ const EmploymentComponent:React.FC = () => {
     const indexOfFirst = indexOfLast - postPerPage; 
     const [input, setInput] = useState('');
 
-    useEffect(() => {
-        setCurrentList(jobNoticeList.slice(indexOfFirst, indexOfLast));
-    }, [currentPage, jobNoticeList])
-    
-    useEffect(() => {
-        async function getAllJobNoticeList() {
-            try {
-                const { data } = await getAllJobNotice();
-                setJobNoticeList(data.list);
-            } catch (error) {
-                console.log(error);
-            }
+    async function getAllEmploymentList() {
+        try {
+            const { data } = await getAllEmployment();
+            setEmploymentList(data.list);
+        } catch (error) {
+            console.log(error);
         }
-        getAllJobNoticeList();
-    }, [])
-    
-    const onSearch = () => {
-        
+    }
+    const onSearch = async () => {
+        try {
+            const { data } = await getSearchEmployment(input);
+            setEmploymentList(data.list);
+            setCurrentPage(1);
+        } catch(error) {
+            console.log(error);
+        }
     }
 
+    useEffect(() => {
+        setCurrentList(employmentList.slice(indexOfFirst, indexOfLast));
+    }, [currentPage, employmentList])
+    useEffect(() => {
+        getAllEmploymentList();
+    }, [])
+    
     return (
         <S.EmploymentContainer>
             <S.Header>
@@ -43,7 +48,8 @@ const EmploymentComponent:React.FC = () => {
                     </S.HeaderTitle>
                     <S.SearchPlace>
                         <S.SearchBar placeholder="검색..." onChange={(e) => setInput(e.target.value)} />
-                        <S.SearchBtn>검색</S.SearchBtn>
+                        <S.SearchBtn onClick={() => onSearch()}>검색</S.SearchBtn>
+                        <S.ResetBtn onClick={() => getAllEmploymentList()}>목록</S.ResetBtn>
                     </S.SearchPlace>
                 </S.HeaderPlace>
             </S.Header>          
@@ -62,8 +68,8 @@ const EmploymentComponent:React.FC = () => {
                 </S.ListPlace>
                 <S.OptionPlace />
                 <S.PageNationPlace>
-                    { jobNoticeList.length > 0 &&                        
-                        <Pagenation totalPosts={jobNoticeList.length} postPerPage={postPerPage} paginate={setCurrentPage} currentPage={currentPage} />                  
+                    { employmentList.length > 0 &&                        
+                        <Pagenation totalPosts={employmentList.length} postPerPage={postPerPage} paginate={setCurrentPage} currentPage={currentPage} />                  
                     }
                 </S.PageNationPlace>
             </S.Content>

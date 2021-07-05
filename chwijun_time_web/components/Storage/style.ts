@@ -14,6 +14,14 @@ export const Header = styled.div`
     width: 95%;
     margin-top: 20px;
 `
+export const HeaderPlace = styled.div`
+    display: flex;
+    justify-content: space-between;
+    
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 30px;
+`
 export const UrlText = styled.div`
     font-size: 15px;
     color: #666;
@@ -24,14 +32,48 @@ export const HeaderTitle = styled.div`
     
     font-size: 20px;
     font-weight: bold;
-    margin-top: 30px;
 `
 export const Sub_HeaderTitle = styled.div`
     font-size: 15px;
     font-weight: normal;
     margin-top: 5px;
 `
+export const SearchPlace = styled.div`
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 50%;
+`
+export const SearchBar = styled.input`
+    width: 300px;
+    height: 35px;
 
+    border: 1px solid #bdbdbd;
+    border-radius: 5px;
+    margin: 0px 25px;
+    padding-left: 10px;
+
+    &:focus {
+        outline: none!important;
+        border-color: #565bf0;
+    }
+`
+export const SearchBtn = styled.button`
+    width: 80px;
+    height: 35px;
+
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    background-color: #666;
+`
+export const ResetBtn = styled(SearchBtn)`
+    border: 1px solid #5B70B8;
+    color: #5B70B8;
+    background-color: #fff;
+    margin-left: 10px;
+`
 
 export const Content = styled.div`
     display: flex;

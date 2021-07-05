@@ -119,6 +119,12 @@ export const SearchBtn = styled.button`
     color: white;
     background-color: #666;
 `
+export const ResetBtn = styled(SearchBtn)`
+    border: 1px solid #5B70B8;
+    color: #5B70B8;
+    background-color: #fff;
+    margin-left: 10px;
+`
 export const OptionPlace = styled.div`
   display: flex;
   justify-content: flex-end;

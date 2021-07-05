@@ -23,7 +23,7 @@ instance.interceptors.response.use(
             const { data } = await axios.post(`${BaseUrl}/v1/auth/refresh`, {
                 "refreshToken": getRefreshToken()
             });
-            data.success ? setAccessToken(data.data.newToken) : (alert("다시 로그인해주세요."), window.location.replace('/'));
+            data.success ? setAccessToken(data.data.newToken) : (alert("로그인 후 이용가능합니다."), window.location.replace('/'));
             axios.defaults.headers.common.Authorization = `Bearer ${getAccessToken()}`;
             originalRequest.headers.Authorization = `Bearer ${getAccessToken()}`;
             return axios(originalRequest);

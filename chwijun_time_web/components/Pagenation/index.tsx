@@ -39,11 +39,10 @@ const Pagenation:React.FC<Props> = ({ totalPosts, postPerPage, paginate, current
 
     useEffect(() => {
         handleTarget();
-    }, [start, end]);
+    }, [start, end, totalPosts]);
 
     return(
-        <S.PageNationContainer>
-              
+        <S.PageNationContainer>          
             <S.PageNumberContainer>
                 <S.PrevBtn onClick={() => PrevClick()}>이전</S.PrevBtn>
                 {target.map((idx, key) => {

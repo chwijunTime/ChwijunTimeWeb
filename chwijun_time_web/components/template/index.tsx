@@ -3,7 +3,7 @@ import * as S from './style';
 import { CgOrganisation, CgMenu } from "react-icons/cg";
 import { BsBookHalf, BsInboxesFill } from "react-icons/bs";
 import { VscMegaphone } from "react-icons/vsc";
-import { FaSchool } from "react-icons/fa";
+import { FaSchool, FaTags } from "react-icons/fa";
 import { TiHeadphones } from "react-icons/ti";
 import { BiChalkboard, BiFile } from "react-icons/bi";
 import Router from 'next/router';
@@ -24,7 +24,7 @@ const Template:React.FC = () => {
         {name: "공지사항", path: "/notice", icon: <VscMegaphone color={para === '/notice' ? '#f0f2f7' : color} />},
         {name: "이력서 및 포트폴리오", path: "/portfolio", icon: <BiFile color={para === '/portfolio' ? '#f0f2f7' : color} />}, 
         {name: "꿀팁 저장소", path: "/storage", icon: <BsInboxesFill color={para === '/storage' ? '#f0f2f7' : color} />},
-        {name: "태그", path: "/tag", icon: <BsInboxesFill color={para === '/storage' ? '#f0f2f7' : color} />}
+        {name: "태그", path: "/tag", icon: <FaTags color={para === '/tag' ? '#f0f2f7' : color} />}
     ]
 
     const F_Logout = async () => {

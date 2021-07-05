@@ -155,3 +155,9 @@ export const NotExistList = styled.div`
     font-size: 20px;
     padding-top: 30px;
 `
+export const ResetBtn = styled(SearchBtn)`
+    border: 1px solid #5B70B8;
+    color: #5B70B8;
+    background-color: #fff;
+    margin-left: 10px;
+`

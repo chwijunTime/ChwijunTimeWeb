@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import * as S from './style';
 import JobNoticeList from './JobNoticeList';
-import { getAllJobNotice } from 'service/get';
+import { getAllJobNotice, getSearchJobNotice } from 'service/get';
 import Pagenation from 'components/Pagenation';
 
 const JobNoticeComponent:React.FC = () => {
@@ -13,26 +13,32 @@ const JobNoticeComponent:React.FC = () => {
     const indexOfFirst = indexOfLast - postPerPage; 
     const [input, setInput] = useState('');
 
+    async function getAllJobNoticeList() {
+        try {
+            const { data } = await getAllJobNotice();
+            setJobNoticeList(data.list);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    const onSearch = async() => {
+        try {
+            const { data } = await getSearchJobNotice(input);
+            setJobNoticeList(data.list);
+            setCurrentPage(1);
+        } catch(error) {
+            console.log(error);
+        }
+    }
+
     useEffect(() => {
         setCurrentList(jobNoticeList.slice(indexOfFirst, indexOfLast));
     }, [currentPage, jobNoticeList])
     
-    useEffect(() => {
-        async function getAllJobNoticeList() {
-            try {
-                const { data } = await getAllJobNotice();
-                setJobNoticeList(data.list);
-            } catch (error) {
-                console.log(error);
-            }
-        }
+    useEffect(() => {     
         getAllJobNoticeList();
     }, [])
     
-    const onSearch = () => {
-        
-    }
-
     return (
         <S.JobNoticeContainer>
             <S.Header>
@@ -43,7 +49,8 @@ const JobNoticeComponent:React.FC = () => {
                     </S.HeaderTitle>
                     <S.SearchPlace>
                         <S.SearchBar placeholder="검색..." onChange={(e) => setInput(e.target.value)} />
-                        <S.SearchBtn>검색</S.SearchBtn>
+                        <S.SearchBtn onClick={() => onSearch()}>검색</S.SearchBtn>
+                        <S.ResetBtn onClick={() => getAllJobNoticeList()}>목록</S.ResetBtn>
                     </S.SearchPlace>
                 </S.HeaderPlace>
             </S.Header>

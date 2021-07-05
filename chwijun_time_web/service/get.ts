@@ -24,7 +24,7 @@ instance.interceptors.response.use(
             const { data } = await axios.post(`${BaseUrl}/v1/auth/refresh`, {
                 "refreshToken": getRefreshToken()
             });
-            data.success ? setAccessToken(data.data.newToken) : (alert("다시 로그인해주세요."), window.location.replace('/'));
+            data.success ? setAccessToken(data.data.newToken) : (alert("로그인 후 이용가능합니다."), window.location.replace('/'));
             axios.defaults.headers.common.Authorization = `Bearer ${getAccessToken()}`;
             originalRequest.headers.Authorization = `Bearer ${getAccessToken()}`;
             return axios(originalRequest);
@@ -75,12 +75,6 @@ export const getAllApplyJobNotice = async (status: string) => {
         return (error.response);
     })
 }
-export const getSearchJobNotice = async (string: string) => {
-    return await instance.get(`v1/application-keyword?keyword=${string}`, {
-    }).catch(function(error) {
-        return (error.response);
-    })
-}
 export const getApplyJobNotice = async (idx: number) => {
     return await instance.get(`v1/admin/application/${idx}`, {
     }).catch(function(error) {
@@ -95,15 +89,6 @@ export const getAllTag = async () => {
 }
 export const getAllApplyTag = async () => {
     return await instance.get(`v1/admin/request-tag`, {
-    }).catch(function(error) {
-        return (error.response);
-    })
-}
-export const getSearchMou = async (keyword: string) => {
-    return await instance.get('v1/contracting-company-keyword', {
-        params: {
-            "keyword": keyword
-        }
     }).catch(function(error) {
         return (error.response);
     })
@@ -225,6 +210,38 @@ export const getMyPageResume = async () => {
 }
 export const getMyPageStorage = async () => {
     return await instance.get('v1/mypage-tip-user', {
+    }).catch(function(error) {
+        return (error.response);
+    })
+}
+
+
+export const getSearchMou = async (input: string) => {
+    return await instance.get(`v1/contracting-company-keyword?keyword=${input}`, {
+    }).catch(function(error) {
+        return (error.response);
+    })
+}
+export const getSearchStorage = async (input: string) => {
+    return await instance.get(`v1/tips-storage-keyword?keyword=${input}`, {
+    }).catch(function(error) {
+        return (error.response);
+    })
+}
+export const getSearchJobNotice = async (input: string) => {
+    return await instance.get(`v1/application-keyword?keyword=${input}`, {
+    }).catch(function(error) {
+        return (error.response);
+    })
+}
+export const getSearchEmployment = async (input: string) => {
+    return await instance.get(`v1/employment-confirmation-keyword?keyword=${input}`, {
+    }).catch(function(error) {
+        return (error.response);
+    })
+}
+export const getSearchReview = async (input: string) => {
+    return await instance.get(`v1/companyreview-keyword?companyNameKeyword=${input}`, {
     }).catch(function(error) {
         return (error.response);
     })
