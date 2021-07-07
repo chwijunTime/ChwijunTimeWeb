@@ -10,3 +10,4 @@ export { default as EnrollTagModal } from './EnrollTagModal';
 export { default as ApplyTagModal } from './ApplyTagModal';
 export { default as ModifyTagModal } from './ModifyTagModal';
 export { default as EnrollCorrectionModal } from './EnrollCorrectionModal';
+export { default as ModifyPortfolioModal } from './ModifyPortfolioModal';

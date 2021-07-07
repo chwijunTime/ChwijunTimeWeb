@@ -24,9 +24,22 @@ export const Link = styled.a`
     }
 `
 export const Delete = styled(Number)`
-width: 52%;
-justify-content: flex-end;
-font-size: 24px;
-padding-right: 10px;
-color: #878787;
+    width: 10%;
+    font-size: 24px;
+    padding-right: 10px;
+    color: #878787;
+`
+export const Modify = styled(Number)`
+    width: 42%;
+    justify-content: flex-end;
+`
+export const ModifyBtn = styled.button`
+    width: 80px;
+    height: 35px;
+
+    border: 1px solid #5B70B8;
+    border-radius: 3px;
+    color: #5B70B8;
+
+    background-color: white;
 `

@@ -8,7 +8,6 @@ const PortfolioComponent:React.FC = () => {
 
     return(
         <S.NoticeContainer>
-            {console.log(selected)}
             <S.Header>
                 <S.UrlText>HOME &gt; 이력서 및 포트폴리오</S.UrlText>
                 <S.HeaderPlace>

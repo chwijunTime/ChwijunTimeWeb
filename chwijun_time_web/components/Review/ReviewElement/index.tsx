@@ -2,10 +2,13 @@ import React, { useEffect, useState } from 'react';
 import * as S from './style';
 import { getIdxReview } from 'service/get';
 import Router from 'next/router';
+import ModifyReview from '../Modify_Review';
 
 const ReviewElement:React.FC = () => {
     const [reviewIdx, setReviewIdx] = useState(typeof window !== 'undefined' ? window.location.href.split('/')[4] : '');
+    const roles = typeof window !== 'undefined' ? localStorage.getItem('roles') : '';
     const [reviewInfo, setReviewInfo] = useState<any>();
+    const [modify, handleModify] = useState(false);
   
     useEffect(() => {
         async function getIdxReviewInfo() {
@@ -21,12 +24,17 @@ const ReviewElement:React.FC = () => {
     }, [])
     
     return(
-        <S.ReviewContainer>       
+        !modify ? <S.ReviewContainer>       
             <S.Header>
                 <S.UrlText>HOME &gt; 면접 후기</S.UrlText>
-                <S.HeaderTitle>면접 후기 및 회사 후기
-                    <S.Sub_HeaderTitle>학생들이 본 면접후기 및 회사후기를 확인할 수 있습니다.</S.Sub_HeaderTitle>
-                </S.HeaderTitle>
+                    <S.HeaderPlace>
+                        <S.HeaderTitle>면접 후기 및 회사 후기
+                            <S.Sub_HeaderTitle>학생들이 본 면접후기 및 회사후기를 확인할 수 있습니다.</S.Sub_HeaderTitle>
+                        </S.HeaderTitle>
+                        <S.ModifyPlace>
+                            <S.ModifyBtn onClick={() => handleModify(true)}>수정</S.ModifyBtn>
+                        </S.ModifyPlace>
+                </S.HeaderPlace>
             </S.Header>
             <S.ContentPlace>
                 <S.TitlePlace>{ reviewInfo && reviewInfo.companyName }</S.TitlePlace>
@@ -57,7 +65,7 @@ const ReviewElement:React.FC = () => {
                     <S.ListBtn onClick={() => Router.push('/review')}>목록</S.ListBtn>
                 </S.BtnPlace>
             </S.ContentPlace>
-        </S.ReviewContainer>
+        </S.ReviewContainer> : <ModifyReview info={reviewInfo} idx={parseInt(reviewIdx)} />
     )
 }
 

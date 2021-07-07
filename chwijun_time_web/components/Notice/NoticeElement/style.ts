@@ -25,7 +25,6 @@ export const HeaderTitle = styled.div`
     
     font-size: 20px;
     font-weight: bold;
-    margin-top: 30px;
 `
 export const Sub_HeaderTitle = styled.div`
     font-size: 15px;
@@ -98,4 +97,20 @@ export const ListBtn = styled.button`
     color: #5B70B8;
 
     background-color: white;
+`
+export const ModifyBtn = styled(ListBtn)`
+`
+export const HeaderPlace = styled.div`
+    display: flex;
+    justify-content: space-between;
+    
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 30px;
+`
+export const ModifyPlace = styled.div`
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 50%;
 `

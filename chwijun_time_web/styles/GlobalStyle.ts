@@ -6,7 +6,7 @@ export const GlobalStyle = createGlobalStyle`
   body {
     padding: 0;
     margin: 0;
-    font-family: --apple-system,  NixgonFont, sans-serif
+    font-family: NixgonFont, --apple-system, sans-serif
   }
 
   a {

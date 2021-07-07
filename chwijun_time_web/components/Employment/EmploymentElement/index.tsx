@@ -2,10 +2,13 @@ import React, { useEffect, useState } from 'react';
 import * as S from './style';
 import { getIdxEmployment } from 'service/get';
 import Router from 'next/router';
+import ModifyEmployment from '../Modify_Employment';
 
 const EmploymentElement:React.FC = () => {
     const [employmentIdx, setEmploymentIdx] = useState(typeof window !== 'undefined' ? window.location.href.split('/')[4] : '');
+    const roles = typeof window !== 'undefined' ? localStorage.getItem('roles') : '';
     const [employmentInfo, setEmploymentInfo] = useState<any>();
+    const [modify, handleModify] = useState(false);
   
     useEffect(() => {
         async function getIdxEmploymentList() {
@@ -21,12 +24,18 @@ const EmploymentElement:React.FC = () => {
     }, [])
     
     return(
+        !modify ?
         <S.EmploymentContainer>       
             <S.Header>
                 <S.UrlText>HOME &gt; 취업확정 현황</S.UrlText>
-                <S.HeaderTitle>취업확정 현황
-                    <S.Sub_HeaderTitle>학생들의 취업확정 현황 정보입니다.</S.Sub_HeaderTitle>
-                </S.HeaderTitle>
+                <S.HeaderPlace>
+                    <S.HeaderTitle>취업확정 현황
+                        <S.Sub_HeaderTitle>학생들의 취업확정 현황 정보입니다.</S.Sub_HeaderTitle>
+                    </S.HeaderTitle>
+                    <S.ModifyPlace>
+                        { roles === 'ROLE_Admin' && <S.ModifyBtn onClick={() => handleModify(true)}>수정</S.ModifyBtn> }
+                    </S.ModifyPlace>
+                </S.HeaderPlace>
             </S.Header>
             <S.ContentPlace>
                 <S.TitlePlace>{ employmentInfo && employmentInfo.employmentConfirmationName }</S.TitlePlace>
@@ -58,7 +67,7 @@ const EmploymentElement:React.FC = () => {
                     <S.ListBtn onClick={() => Router.push('/employment')}>목록</S.ListBtn>
                 </S.BtnPlace>
             </S.ContentPlace>
-        </S.EmploymentContainer>
+        </S.EmploymentContainer> : <ModifyEmployment info={employmentInfo} idx={parseInt(employmentIdx)} />
     )
 }
 

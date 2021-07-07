@@ -2,10 +2,13 @@ import React, { useEffect, useState } from 'react';
 import * as S from './style';
 import { getIdxJobNotice } from 'service/get';
 import Router from 'next/router';
+import ModifyJobNotice from '../Modify_JobNotice';
 
 const JobNoticeElement:React.FC = () => {
     const [jobNoticeIdx, setJobNoticeIdx] = useState(typeof window !== 'undefined' ? window.location.href.split('/')[4] : '');
+    const roles = typeof window !== 'undefined' ? localStorage.getItem('roles') : '';
     const [jobNoticeInfo, setJobNoticeInfo] = useState<any>();
+    const [modify, handleModify] = useState(false);
   
     useEffect(() => {
         async function getIdxJobNoticeList() {
@@ -21,12 +24,17 @@ const JobNoticeElement:React.FC = () => {
     }, [])
     
     return(
-        <S.JobNoticeContainer>       
+        !modify ? <S.JobNoticeContainer>       
             <S.Header>
                 <S.UrlText>HOME &gt; 취업 공고</S.UrlText>
-                <S.HeaderTitle>취업 공고
-                    <S.Sub_HeaderTitle>학교에 들어온 취업 공고 정보입니다.</S.Sub_HeaderTitle>
-                </S.HeaderTitle>
+                <S.HeaderPlace>
+                    <S.HeaderTitle>취업 공고
+                        <S.Sub_HeaderTitle>학교에 들어온 취업 공고 정보입니다.</S.Sub_HeaderTitle>
+                    </S.HeaderTitle>
+                    <S.ModifyPlace>
+                        { roles === 'ROLE_Admin' && <S.ModifyBtn onClick={() => handleModify(true)}>수정</S.ModifyBtn> }
+                    </S.ModifyPlace>
+                </S.HeaderPlace>
             </S.Header>
             <S.ContentPlace>
                 <S.TitlePlace>{ jobNoticeInfo && jobNoticeInfo.employmentAnnouncementName }</S.TitlePlace>
@@ -61,7 +69,7 @@ const JobNoticeElement:React.FC = () => {
                     <S.ListBtn onClick={() => Router.push('/jobnotice')}>목록</S.ListBtn>
                 </S.BtnPlace>
             </S.ContentPlace>
-        </S.JobNoticeContainer>
+        </S.JobNoticeContainer> : <ModifyJobNotice info={jobNoticeInfo} idx={parseInt(jobNoticeIdx)} />
     )
 }
 

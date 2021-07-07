@@ -2,10 +2,13 @@ import React, { useEffect, useState } from 'react';
 import * as S from './style';
 import { getIdxMou } from 'service/get';
 import Router from 'next/router';
+import ModifyMou from '../Modify_Mou';
 
 const MouElement:React.FC = () => {
     const [mouIdx, setMouIdx] = useState(typeof window !== 'undefined' ? window.location.href.split('/')[4] : '');
+    const roles = typeof window !== 'undefined' ? localStorage.getItem('roles') : '';
     const [mouInfo, setMouInfo] = useState<any>();
+    const [modify, handleModify] = useState(false);
   
     useEffect(() => {
         async function getIdxMouList() {
@@ -21,12 +24,17 @@ const MouElement:React.FC = () => {
     }, [])
     
     return(
-        <S.MouContainer>       
+        !modify ? <S.MouContainer>       
             <S.Header>
                 <S.UrlText>HOME &gt; 협약 업체</S.UrlText>
-                <S.HeaderTitle>협약 업체
-                    <S.Sub_HeaderTitle>학교와 MOU 체결을 맺은 기업 정보입니다.</S.Sub_HeaderTitle>
-                </S.HeaderTitle>
+                <S.HeaderPlace>
+                    <S.HeaderTitle>협약 업체
+                        <S.Sub_HeaderTitle>학교와 MOU 체결을 맺은 기업 정보입니다.</S.Sub_HeaderTitle>
+                    </S.HeaderTitle>
+                    <S.ModifyPlace>
+                        { roles === 'ROLE_Admin' && <S.ModifyBtn onClick={() => handleModify(true)}>수정</S.ModifyBtn> }
+                    </S.ModifyPlace>
+                </S.HeaderPlace>
             </S.Header>
             <S.ContentPlace>
                 <S.TitlePlace>{ mouInfo && mouInfo.contractingCompanyName }</S.TitlePlace>
@@ -58,7 +66,7 @@ const MouElement:React.FC = () => {
                     <S.ListBtn onClick={() => Router.push('/mou')}>목록</S.ListBtn>
                 </S.BtnPlace>
             </S.ContentPlace>
-        </S.MouContainer>
+        </S.MouContainer> : <ModifyMou info={mouInfo} idx={parseInt(mouIdx)} />
     )
 }
 

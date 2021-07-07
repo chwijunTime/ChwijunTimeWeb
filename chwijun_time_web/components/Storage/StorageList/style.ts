@@ -18,6 +18,10 @@ export const Name = styled(Number)`
     justify-content: flex-start;
     width: 30%;
     color: #5B70B8;
+
+    &:hover {
+        cursor: pointer;
+    }
 `
 export const Address = styled(Number)`
     width: 40%;

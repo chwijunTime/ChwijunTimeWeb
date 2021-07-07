@@ -6,6 +6,7 @@ export { default as Admin_NoticeComponent } from './Notice/Admin_Notice';
 export { default as NoticeComponent } from './Notice';
 export { default as EnrollNotice } from './Notice/EnrollNotice';
 export { default as NoticeElement } from './Notice/NoticeElement';
+export { default as ModifyNotice } from './Notice/Modify_Notice';
 
 export { default as Admin_MouComponent } from './Mou/Admin_Mou';
 export { default as MouComponent } from './Mou';

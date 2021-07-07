@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react';
 import * as S from './style';
 import { getIdxStorage } from 'service/get';
 import Router from 'next/router';
+import ModifyStorage from '../Modify_Storage';
 
 const StorageElement:React.FC = () => {
     const [storageIdx, setStorageIdx] = useState(typeof window !== 'undefined' ? window.location.href.split('/')[4] : '');
     const [storageInfo, setStorageInfo] = useState<any>();
+    const [modify, handleModify] = useState(false);
   
     useEffect(() => {
         async function getIdxStorageList() {
@@ -21,12 +23,17 @@ const StorageElement:React.FC = () => {
     }, [])
     
     return(
-        <S.MouContainer>       
+        !modify ? <S.MouContainer>       
             <S.Header>
                 <S.UrlText>HOME &gt; 꿀팁 저장소</S.UrlText>
-                <S.HeaderTitle>꿀팁 저장소
-                    <S.Sub_HeaderTitle>취업에 도움이 될만한 꿀팁들을 확인할 수 있습니다.</S.Sub_HeaderTitle>
-                </S.HeaderTitle>
+                <S.HeaderPlace>
+                    <S.HeaderTitle>꿀팁 저장소
+                        <S.Sub_HeaderTitle>취업에 도움이 될만한 꿀팁들을 확인할 수 있습니다.</S.Sub_HeaderTitle>
+                    </S.HeaderTitle>
+                    <S.ModifyPlace>
+                        <S.ModifyBtn onClick={() => handleModify(true)}>수정</S.ModifyBtn>
+                    </S.ModifyPlace>
+                </S.HeaderPlace>
             </S.Header>
             <S.ContentPlace>
                 <S.TitlePlace>{ storageInfo && storageInfo.workCompanyName }</S.TitlePlace>
@@ -52,7 +59,7 @@ const StorageElement:React.FC = () => {
                     <S.ListBtn onClick={() => Router.push('/storage')}>목록</S.ListBtn>
                 </S.BtnPlace>
             </S.ContentPlace>
-        </S.MouContainer>
+        </S.MouContainer> : <ModifyStorage data={storageInfo} idx={parseInt(storageIdx)} />
     )
 }
 

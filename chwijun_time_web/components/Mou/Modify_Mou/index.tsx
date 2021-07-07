@@ -2,16 +2,21 @@ import React, { useState } from 'react';
 import * as S from './style';
 import Router from 'next/router';
 import { TagModal, LocationModal } from 'components/Modal';
-import { submitEnrollMou } from 'service/post';
+import { modifyMou } from 'service/put';
 
-const EnrollMou:React.FC = () => {
-    const [name, setName] = useState('');
-    const [business, setBusiness] = useState('');
-    const [location, setLocation] = useState('');
-    const [address, setAddress] = useState('');
-    const [etc, setEtc] = useState('');
-    const [salary, setSalary] = useState('');
-    const [tag, setTag] = useState<string[]>([]);
+interface Props {
+    info: any,
+    idx: number
+}
+
+const ModifyMou:React.FC<Props> = ({ info, idx }) => {
+    const [name, setName] = useState(info.contractingCompanyName);
+    const [business, setBusiness] = useState(info.contractingBusinessAreas);
+    const [location, setLocation] = useState(info.contractingArea);
+    const [address, setAddress] = useState(info.contractingCompanyAddress);
+    const [etc, setEtc] = useState(info.contractingCompanyAboutUs);
+    const [salary, setSalary] = useState(info.contractingCompanyAverageAnnualSalary);
+    const [tag, setTag] = useState<string[]>(info.contractingCompanyTags);
 
     const [tagModal, setTagModal] = useState(false);
     const [locationModal, setLocationModal] = useState(false);
@@ -23,10 +28,10 @@ const EnrollMou:React.FC = () => {
         setLocationModal(status);
     }
 
-    const Enroll = async () => {
+    const Modify = async () => {
         try {
-            const { data } = await submitEnrollMou(name, business, location, address, etc, salary, tag);
-                data.success ? (alert("등록되었습니다."), Router.push('/mou') ): alert(data.msg)              
+            const { data } = await modifyMou(name, business, location, address, etc, salary+"만원", tag, idx);
+                data.success ? (alert("수정되었습니다."), window.location.replace(`/mou/${idx}`)): alert(data.msg)              
         } catch(error) {
             console.log(error);
         }
@@ -35,22 +40,22 @@ const EnrollMou:React.FC = () => {
     return(
         <S.MouContainer>
             <S.Header>
-                <S.UrlText>협약업체 &gt; 협약업체 등록</S.UrlText>
-                <S.Title>협약업체 등록
-                    <S.Sub_Title>학교에 들어온 MOU 업체들을 등록합니다.</S.Sub_Title>
+                <S.UrlText>협약업체 &gt; 협약업체 수정</S.UrlText>
+                <S.Title>협약업체 수정
+                    <S.Sub_Title>등록된 MOU 업체를 수정합니다.</S.Sub_Title>
                 </S.Title>
             </S.Header>
             <S.InputContainer>
                 <S.ItemList>
                     <S.Item>업체명</S.Item>
                     <S.InputItem>
-                        <S.S_Input placeholder="업체명을 입력해주세요." onChange={(e) => setName(e.target.value)} />
+                        <S.S_Input placeholder="업체명을 입력해주세요." onChange={(e) => setName(e.target.value)} value={name} />
                     </S.InputItem>
                 </S.ItemList>
                 <S.ItemList>
                     <S.Item>사업 분야</S.Item>
                     <S.InputItem>
-                        <S.S_Input placeholder="사업 분야를 입력해주세요." onChange={(e) => setBusiness(e.target.value)} />
+                        <S.S_Input placeholder="사업 분야를 입력해주세요." onChange={(e) => setBusiness(e.target.value)} value={business} />
                     </S.InputItem>
                 </S.ItemList>
                 <S.ItemList>
@@ -63,20 +68,20 @@ const EnrollMou:React.FC = () => {
                 <S.ItemList>
                     <S.Item>주소</S.Item>
                     <S.InputItem>
-                    <S.Address_Input placeholder="주소를 입력해주세요." onChange={(e) => setAddress(e.target.value)} />
+                    <S.Address_Input placeholder="주소를 입력해주세요." onChange={(e) => setAddress(e.target.value)} value={address} />
                     <S.SubText>※ 정확한 주소를 입력해주세요.</S.SubText>
                     </S.InputItem>
                 </S.ItemList>
                 <S.ItemList>
                     <S.Item>평균연봉</S.Item>
                     <S.InputItem>
-                    <S.Salary_Input placeholder="연봉" onChange={(e) => setSalary(e.target.value + " 만원")} /> &nbsp; 만원
+                    <S.Salary_Input placeholder="연봉" onChange={(e) => setSalary(e.target.value)} value={salary} /> &nbsp; 만원
                     </S.InputItem>
                 </S.ItemList>
                 <S.ItemList>
                     <S.ETC_Item>회사소개</S.ETC_Item>
                     <S.InputItem>
-                    <S.M_Input placeholder="회사소개를 입력해주세요." onChange={(e) => setEtc(e.target.value)} />
+                    <S.M_Input placeholder="회사소개를 입력해주세요." onChange={(e) => setEtc(e.target.value)} value={etc} />
                     </S.InputItem>
                 </S.ItemList>
                 <S.ItemList>
@@ -91,7 +96,7 @@ const EnrollMou:React.FC = () => {
             </S.InputContainer>
             <S.BtnPlace>  
                 <S.Cancel_Btn onClick={() => confirm('취소하시겠습니까?') ? Router.push('/mou') : null}>취소</S.Cancel_Btn>
-                <S.Enroll_Btn onClick={() => confirm('등록하시겠습니까?') ? Enroll() : null}>등록</S.Enroll_Btn>
+                <S.Enroll_Btn onClick={() => confirm('수정하시겠습니까?') ? Modify() : null}>수정</S.Enroll_Btn>
             </S.BtnPlace>
             { tagModal && 
               <TagModal handleModal={handleTagModal} currentTag={tag} handleTag={setTag} />
@@ -103,4 +108,4 @@ const EnrollMou:React.FC = () => {
     )
 }
 
-export default EnrollMou;
+export default ModifyMou;
