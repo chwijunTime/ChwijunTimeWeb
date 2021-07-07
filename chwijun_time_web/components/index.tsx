@@ -40,8 +40,6 @@ export { default as StorageElement } from './Storage/StorageElement';
 export { default as Portfolio } from './Portfolio';
 export { default as Admin_Portfoilo } from './Portfolio/Admin_Portfolio';
 
-export { default as MyPageComponent } from './MyPage/index';
-
 export { default as TagComponent } from './Tag';
 export { default as Admin_TagComponent } from './Tag/Admin_Tag';
 export { default as ApplyTagComponent } from './Tag/ApplyTag';
