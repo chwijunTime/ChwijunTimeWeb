@@ -11,8 +11,8 @@ const DataList:React.FC<Props> = ({info, idx}) => {
     const status = useState(info.correctionStatus === 'Correction_Applying' ? '신청중' : 
     (info.correctionStatus === 'Correction_Successful' ? '첨삭 완료' :
     (info.correctionStatus === 'Correction_Rejection' ? '거절' : '' )))
-    const link = info.correctionType === 'Resume' ? info.memberResume.resumeFileURL : 
-    (info.correctionType === 'Portfolio' ? info.memberPortfolio.notionPortfolioURL : null);
+    const link = info.correctionType === 'Resume' ? info.resumeFileURL : 
+    (info.correctionType === 'Portfolio' ? info.notionPortfolioURL : null);
     const [modal, setModal] = useState(false);
     const [clicked, setClicked] = useState(false);
 
@@ -28,14 +28,14 @@ const DataList:React.FC<Props> = ({info, idx}) => {
                 <S.Kind>{info.correctionType}</S.Kind>
                 <S.Status status={status}>{status}</S.Status>
                 {console.log(link)}
-                <S.ClassNumber>{info.member.memberClassNumber}</S.ClassNumber>          
+                <S.ClassNumber>{info.memberClassNumber}</S.ClassNumber>          
                 <S.Link target='_blank' href={`${link}`} rel="noreferrer">{link}</S.Link>
                 <S.BtnPlace>
                     <S.Btn status={true} onClick={() => Btn_OnClick(true)}>수락</S.Btn>
                     <S.Btn status={false} onClick={() => Btn_OnClick(false)}>거절</S.Btn>
                 </S.BtnPlace>
             </S.Container>
-            { modal && <CorrectionModal classNumber={info.member.memberClassNumber} idx={info.correctionApplyIdx}
+            { modal && <CorrectionModal classNumber={info.memberClassNumber} idx={info.correctionApplyIdx}
             handleModal={setModal} clicked={clicked} /> }
         </>
     )
