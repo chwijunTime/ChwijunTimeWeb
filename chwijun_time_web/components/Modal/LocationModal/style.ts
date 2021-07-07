@@ -50,7 +50,7 @@ export const CityTitle = styled.div`
 export const ProvinceTitle = styled(CityTitle)`
     margin-top: 20px;
 `
-export const CityComponent = styled.div`
+export const CityComponent = styled.div<{selected : boolean}>`
     display: flex;
     justify-content: center;
     align-items: center;

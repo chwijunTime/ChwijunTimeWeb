@@ -8,7 +8,7 @@ interface Props {
 }
 
 const DataList:React.FC<Props> = ({info, idx}) => {
-    const status = useState(info.correctionStatus === 'Correction_Applying' ? '신청중' : 
+    const status = useState<string>(info.correctionStatus === 'Correction_Applying' ? '신청중' : 
     (info.correctionStatus === 'Correction_Successful' ? '첨삭 완료' :
     (info.correctionStatus === 'Correction_Rejection' ? '거절' : '' )))
     const link = info.correctionType === 'Resume' ? info.resumeFileURL : 
@@ -26,8 +26,7 @@ const DataList:React.FC<Props> = ({info, idx}) => {
             <S.Container>
                 <S.Number>{idx}</S.Number>
                 <S.Kind>{info.correctionType}</S.Kind>
-                <S.Status status={status}>{status}</S.Status>
-                {console.log(link)}
+                <S.Status stats={status}>{status}</S.Status>
                 <S.ClassNumber>{info.memberClassNumber}</S.ClassNumber>          
                 <S.Link target='_blank' href={`${link}`} rel="noreferrer">{link}</S.Link>
                 <S.BtnPlace>

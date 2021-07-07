@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const SideBar = styled.div`
+export const SideBar = styled.div<{current : boolean}>`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -82,7 +82,7 @@ export const MenuListPlace = styled.div`
     margin-top: 20px;
     font-size: 17px;
 `
-export const MenuList = styled.div`
+export const MenuList = styled.div<{current : boolean}>`
     display: flex;
     align-items: center;
     width: 100%;

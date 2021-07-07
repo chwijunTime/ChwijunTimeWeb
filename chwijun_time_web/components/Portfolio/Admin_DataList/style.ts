@@ -17,10 +17,10 @@ export const Number = styled.div`
 export const Kind = styled(Number)`
     width: 10%;
 `
-export const Status = styled(Number)`
+export const Status = styled(Number)<{stats : any}>`
     width: 10%;
-    color: ${props => props.status === 'Correction_Rejection' ? '#ff6363' :
-    props.status === 'Correction_Successful' ? '#a1a1a1' : '#5B70B8'};
+    color: ${props => props.stats === 'Correction_Rejection' ? '#ff6363' :
+    props.stats === 'Correction_Successful' ? '#a1a1a1' : '#5B70B8'};
 `
 export const ClassNumber = styled(Number)`
     width: 10%;
@@ -38,7 +38,7 @@ export const BtnPlace = styled(Number)`
     width: 22%;
     justify-content: flex-end;
 `
-export const Btn = styled.button`
+export const Btn = styled.button<{status : boolean}>`
     width: 70px;
     height: 33px;
 

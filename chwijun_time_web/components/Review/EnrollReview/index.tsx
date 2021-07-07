@@ -66,7 +66,7 @@ const EnrollJobNotice:React.FC = () => {
                 <S.ItemList>
                     <S.Item>비용</S.Item>
                     <S.InputItem>
-                        <S.Cost_Input placeholder="비용" onChange={(e) => setCost(e.target.value)} /> &nbsp;원
+                        <S.Cost_Input placeholder="비용" onChange={(e) => setCost(parseInt(e.target.value))} /> &nbsp;원
                     </S.InputItem>
                 </S.ItemList>
                 <S.ItemList>

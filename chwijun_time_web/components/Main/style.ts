@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const MainPlace = styled.div`
+export const MainPlace = styled.div<{signInBlur : boolean, signUpBlur : boolean}>`
     display: flex;
     position: absolute;
     width: 100%;

@@ -18,14 +18,14 @@ export const Number = styled.div`
     width: 8%;
     height: auto;
 `
-export const Status = styled.div`
+export const Status = styled.div<{stats : boolean}>`
     display: flex;
     justify-content: center;
     align-items: center;
     width: 35%;
     height: auto;
 
-    color: ${props => props.status ? '#454BC8' : '#a1a1a1'};
+    color: ${props => props.stats ? '#454BC8' : '#a1a1a1'};
 `
 export const Date = styled(Number)`
     width: 20%;
@@ -37,7 +37,7 @@ export const Apply = styled(Number)`
     font-size: 24px;
     color: #878787;
 `
-export const Apply_Btn = styled.button`
+export const Apply_Btn = styled.button<{stats : boolean}>`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -48,10 +48,10 @@ export const Apply_Btn = styled.button`
     border-radius: 5px;
 
     color: white;
-    background-color: ${props => props.status ? '#5B70B8' : '#a1a1a1'};
+    background-color: ${props => props.stats ? '#5B70B8' : '#a1a1a1'};
 
     &:hover {
-        cursor: ${props => props.status ? 'pointer' : 'default'};
+        cursor: ${props => props.stats ? 'pointer' : 'default'};
     }
 `
 export const Delete_Btn = styled(Apply_Btn)`

@@ -45,8 +45,8 @@ const ApplyList:React.FC<Props> = ({info, idx}) => {
             <S.ClassNumber>{info.memberClassNumber}</S.ClassNumber>
             <S.Field>{info.recruitmentField}</S.Field>
             <S.BtnPlace>
-                    <S.Btn status={true} onClick={() => Approve_Btn()} >수락</S.Btn>
-                    <S.Btn status={false} onClick={() => Reject_Btn()}>거절</S.Btn>
+                    <S.Btn stats={true} onClick={() => Approve_Btn()} >수락</S.Btn>
+                    <S.Btn stats={false} onClick={() => Reject_Btn()}>거절</S.Btn>
             </S.BtnPlace>
         </S.Container>
         { modal && <JobApproveModal handleModal={handleModal} idx={info.applicationEmploymentIdx}/>}

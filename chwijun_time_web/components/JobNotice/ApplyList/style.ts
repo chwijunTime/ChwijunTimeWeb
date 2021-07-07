@@ -36,7 +36,7 @@ export const BtnPlace = styled(Number)`
     width: 32%;
     justify-content: flex-end;
 `
-export const Btn = styled.button`
+export const Btn = styled.button<{stats : boolean}>`
     width: 70px;
     height: 33px;
 
@@ -44,5 +44,5 @@ export const Btn = styled.button`
     border-radius: 8px;
     color: white;
     margin: 0px 10px;
-    background-color: ${props => props.status ? '#5B70B8' : '#a1a1a1'};
+    background-color: ${props => props.stats ? '#5B70B8' : '#a1a1a1'};
 `

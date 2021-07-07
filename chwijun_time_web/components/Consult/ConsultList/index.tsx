@@ -27,12 +27,12 @@ const JobNoticeList:React.FC<Props> = ({info, idx}) => {
         <>
             <S.Container>
                 <S.Number>{idx}</S.Number>
-                <S.Status status={info.consultingStatus === "No_Application"}>{status}</S.Status>
+                <S.Status stats={info.consultingStatus === "No_Application"}>{status}</S.Status>
                 <S.Date>{date}</S.Date>
                 { localStorage.getItem('roles') === 'ROLE_User' && (
                     <S.Apply>
                         <S.Apply_Btn disabled={info.consultingStatus === "Apply"} 
-                        status={info.consultingStatus === "No_Application"} onClick={() => Click_Apply()}>신청</S.Apply_Btn>
+                        stats={info.consultingStatus === "No_Application"} onClick={() => Click_Apply()}>신청</S.Apply_Btn>
                     </S.Apply>
                 )}
                 { localStorage.getItem('roles') === 'ROLE_Admin' && (

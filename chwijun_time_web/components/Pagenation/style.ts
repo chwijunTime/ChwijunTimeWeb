@@ -17,7 +17,7 @@ export const PageNumberContainer = styled.ul`
 
   padding: 0px;
 `
-export const PageNumber = styled.div`
+export const PageNumber = styled.div<{current : boolean}>`
   display: flex;
   justify-content: center;
   align-items: center;

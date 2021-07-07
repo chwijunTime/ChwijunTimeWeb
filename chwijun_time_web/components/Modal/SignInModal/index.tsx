@@ -10,7 +10,7 @@ interface Props {
 }
 
 const SignInModal:React.FC<Props> = ({handleSignInModal, handleSignUpModal}: Props) => {
-    const setOpen = useRef<HTMLDivElement>();
+    const setOpen = useRef<any>();
     const [id, setId] = useState('');
     const [pw, setPw] = useState('');
     const [isChecked, setIsChecked] = useState(false);

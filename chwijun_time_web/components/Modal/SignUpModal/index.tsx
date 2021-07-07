@@ -14,7 +14,7 @@ const SignUpModal = ({handleSignUpModal}: Props) => {
             isCorrectPs(pw, confirmPw);
         }
     }
-    const setOpen = useRef<HTMLDivElement>();
+    const setOpen = useRef<any>();
     const [id, setId] = useState('');
     const [pw, setPw] = useState('');
     const [confirmPw, setConfirmPw] = useState('');
