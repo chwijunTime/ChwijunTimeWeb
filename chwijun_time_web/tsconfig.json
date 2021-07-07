@@ -9,6 +9,7 @@
       "dom",
       "esnext.asynciterable"
     ],
+    "typeRoots": ["./node_modules/@types", "types"],
     "sourceMap": true,
     "allowJs": true,
     "jsx": "preserve",
