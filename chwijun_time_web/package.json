@@ -8,6 +8,7 @@
     "start": "next start -p 60100"
   },
   "dependencies": {
+    "@babel/core": "^7.14.6",
     "@babel/runtime": "^7.14.0",
     "@types/axios": "^0.14.0",
     "@types/moment": "^2.13.0",
