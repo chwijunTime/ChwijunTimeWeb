@@ -203,3 +203,9 @@ export const submitResume = async (url) => {
         return (error.response)
     })
 }
+export const submitCorrectionRequest = async (type: string, idx: number) => {
+    return await instance.post(`v1/correction-request?correctionType=${type}&idx=${idx}`, {
+    }).catch(function(error) {
+        return (error.response);
+    })
+}

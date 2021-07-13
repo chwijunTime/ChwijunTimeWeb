@@ -24,14 +24,18 @@ export const Link = styled.a`
     }
 `
 export const Delete = styled(Number)`
-    width: 10%;
+    width: 5%;
+    justify-content: flex-end;
     font-size: 24px;
     padding-right: 10px;
     color: #878787;
 `
 export const Modify = styled(Number)`
-    width: 42%;
+    width: 37%;
     justify-content: flex-end;
+`
+export const Apply = styled(Number)`
+    width: 10%;
 `
 export const ModifyBtn = styled.button`
     width: 80px;
@@ -42,4 +46,8 @@ export const ModifyBtn = styled.button`
     color: #5B70B8;
 
     background-color: white;
+`
+export const ApplyBtn = styled(ModifyBtn)`
+    background-color: #5B70B8;
+    color: white;
 `

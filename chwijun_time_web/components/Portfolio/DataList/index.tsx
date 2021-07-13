@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import * as S from './style';
 import { MdDelete } from "react-icons/md";
 import { deleteMyResume, deleteMyPortfolio } from 'service/delete';
+import { submitCorrectionRequest } from 'service/post';
 import { ModifyPortfolioModal } from 'components/Modal';
 
 interface Props {
@@ -30,6 +31,15 @@ const DataList:React.FC<Props> = ({info, idx, isResume}) => {
             console.log(error);
         }
     }
+    const ApplyCorrection = async () => {
+        try {
+            const { data } = await submitCorrectionRequest(isResume ? 'Resume' : 'Portfolio',
+            isResume ? info.memberResumeIdx : info.memberPortfolioIdx);
+            data.success ? (alert('신청되었습니다.'), window.location.replace('/portfolio')) : null;
+        } catch(error) {
+            console.log(error);
+        }
+    }
 
     return(
         <>
@@ -39,6 +49,9 @@ const DataList:React.FC<Props> = ({info, idx, isResume}) => {
                 <S.Modify>
                     <S.ModifyBtn onClick={() => handleModal(true)}>수정</S.ModifyBtn>
                 </S.Modify>
+                <S.Apply>
+                    <S.ApplyBtn onClick={() => ApplyCorrection()}>첨삭요청</S.ApplyBtn>
+                </S.Apply>
                 <S.Delete>
                     <MdDelete onClick={() => confirm('삭제하시겠습니까?') ?
                     ( isResume ? Delete_Resume() : Delete_Portfolio()) : null}>삭제</MdDelete>

@@ -47,7 +47,7 @@ const Template:React.FC = () => {
                     <S.UserPlace>로그인된 이메일:
                         <S.User_Email>{email}</S.User_Email>
                         <S.BtnPlace>
-                            <S.Profile_Btn onClick={() => alert('개발 중 입니다.')}>내 정보</S.Profile_Btn>
+                            <S.Profile_Btn onClick={() => Router.push('/mypage')}>내 정보</S.Profile_Btn>
                             <S.Logout_Btn onClick={() => F_Logout()}>로그아웃</S.Logout_Btn>
                         </S.BtnPlace>
                     </S.UserPlace>
